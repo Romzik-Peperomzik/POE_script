@@ -10,7 +10,7 @@
 #MaxThreadsPerHotkey 2
 
 SetDefaultMouseSpeed, 0  ; Sets the mouse speed, 0 - instantly
-global keys_flask_list = w-e-2-3-4-5-q
+global keys_flask_list := 'w-e-2-3-4-5-q'
 
 /*
 global quickFlasksHotkey0
@@ -55,6 +55,16 @@ $^D::HoldWalk()                    ; Ctrl+D Autorun.
 $F3::EventLogoutLoop()             ; F3 activate loop.
 
 SC029::GameLogout()                ; `= SC029 Tilda's id.
+
+~a::                               ; A key - Loot one item.
+    if !LootSmallRegion(){
+        LootBigRegion()
+    }
+    return
+
+~^a::LootAll()                     ; Ctrl+A hold to keep looting.
+
+~^j::OpenPortal()                  ; Ctrl+J use portal scroll 
 
 $F5::Hideout()                     ; F5 Hideout.
 

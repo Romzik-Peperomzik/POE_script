@@ -104,6 +104,52 @@ LoopNoticeCmd(){  ; Loop notification on screen(only windowed).
     WinMove Loop, , 1536, 230
 }
 
+LootBigRegion(){
+    PixelSearch, Px, Py, 100, 100, A_ScreenWidth-10, A_ScreenHeight-150, lootColor, 5, Fast
+    if ErrorLevel{
+        return False
+    }
+    else{
+        Px := Px + 50
+        Py := Py + 20
+        Click %Px%, %Py%
+        return True
+    }
+}
+
+LootSmallRegion(){
+    PixelSearch, Px, Py, 650, 300, 950, 500, lootColor, 5, Fast
+    if ErrorLevel{
+        return False
+    }
+    else{
+        Px := Px + 50
+        Py := Py + 20
+        Click %Px%, %Py%
+        return True
+    }
+}
+
+LootAll(){
+    while (GetKeyState("LControl", "P") && GetKeyState("a", "P")){
+        if !LootSmallRegion(){
+            break
+        }
+        Sleep loot_dalay
+    }
+
+    while (GetKeyState("LControl", "P") && GetKeyState("a", "P")){
+        LootBigRegion()
+        Sleep 1200
+        while (GetKeyState("LControl", "P") && GetKeyState("a", "P")){
+            if !LootSmallRegion(){
+                break
+            }
+            Sleep loot_dalay
+        }
+    }
+}
+
 Hideout(){  ; Hideout Command.
 	BlockInput On
 	SendInput, {Enter}
@@ -127,3 +173,4 @@ PartyKick(){  ; Kick command.
 	BlockInput Off
 	return
 }
+
