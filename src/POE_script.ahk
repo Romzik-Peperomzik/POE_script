@@ -1,7 +1,7 @@
 #Include functions.ahk
-#Include SearchItem.ahk
-#Include gui.ahk
-#Include rw_settings.ahk
+;#Include SearchItem.ahk
+;#Include gui.ahk
+;#Include rw_settings.ahk
 
 #IfWinActive, Path of Exile ahk_class POEWindowClass
 #SingleInstance force  ; Replaces the old instance of script automatically
@@ -10,11 +10,12 @@
 #MaxThreadsPerHotkey 2
 
 SetDefaultMouseSpeed, 0  ; Sets the mouse speed, 0 - instantly
+global keys_flask_list = w-e-2-3-4-5-q
 
+/*
 global quickFlasksHotkey0
 global quickFlasksHotkey1
 
-global keys_flask_list
 global quick_flask_list_1
 
 global quick_flask_active = True
@@ -33,7 +34,7 @@ global auto_flask_active = False
 
 global mine_laying_time
 global auto_detonate_active = False
-
+*/
 ;-----------------------------------------------------------------------------
 ; Read settings here?
 ; And run gui?
@@ -41,25 +42,25 @@ global auto_detonate_active = False
 
 !z::GetMouseColorPos()             ; Alt+Z get pixel coords and color at mouse.
 
-a::QuickFlask(keys_flask_list)     ; A set of flasks.
+a::QuickFlask(keys_flask_list)     ; a key - Set of flasks. 
 
-r::SmokeMine()	                   ; R Smoke mine.
+r::SmokeMine()	                   ; r key - Smoke mine.
 
-~RButton::CremationDesecrate()     ; RMB Cremation > desecrate.
+;~RButton::CremationDesecrate()     ; RMB Cremation > Desecrate.
 
-~RButton::BFBB()                   ; RMB BF + BB.
+;~RButton::BFBB()                   ; RMB BF + BB.
 
 $^D::HoldWalk()                    ; Ctrl+D Autorun.
 
-$F3::MainLogoutLoop()              ; F3 activate loop.
+$F3::EventLogoutLoop()             ; F3 activate loop.
 
-SC029::logout()                    ; `= SC029 Tilda's id.
+SC029::GameLogout()                ; `= SC029 Tilda's id.
 
-$F5::hideout()                     ; F5 Hideout.
+$F5::Hideout()                     ; F5 Hideout.
 
-$F6::invite()                      ; F6 Party invite.
+$F6::PartyInvite()                 ; F6 Party invite.
 
-$F7::kick()                        ; Kick last party member.
+$F7::PartyKick()                   ; F7 Kick last party member.
 
 RCtrl::reload                      ; Hotkeys for script control.
 Pause:: pause                      ; ^

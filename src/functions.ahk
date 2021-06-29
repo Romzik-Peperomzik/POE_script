@@ -59,8 +59,8 @@ PixelExist(Color, x1, y1, x2, y2){  ; Pixel search function.
 ;//Statue yellow save point: 39 979 0x8DACD0	black pixel at this coords now are constant.	
 ;//Delve values: #75% 0x201698 151, 924
 ;//Life flask values: #95% 0x271F65 112, 885
-;//#80% 0x282073 73, 911	#70% 0x1B1A5F 67, 932	#58% 0x1D1B71 72, 957	#45% 0x1E0EA8 91, 972
-MainLogoutLoop(){  ; Main logout function.
+;//#80% 0x282073 73, 911	#70% 0x1B1A5F 67, 932	#58% 0x1D1B71 72, 957	#45% 0x1E0EA8 91, 972  #test 168, 927 0x1B1291
+EventLogoutLoop(){  ; Main logout function.
     LoopNoticeCmd()
     oosCommand()
     Loop
@@ -73,18 +73,18 @@ MainLogoutLoop(){  ; Main logout function.
             Send {F2}
             Send {Pause}
         }
-        if(PixelExist("0x1E0EA8", 91, 972, 91, 972)=0) and (PixelExist("0x000000", 39, 979, 39, 979)=0)
+        if(PixelExist("0x1B1291", 168, 927, 168, 927)=0) and (PixelExist("0x000000", 39, 979, 39, 979)=0)
         {
-            logout()
+            GameLogout()
             sleep 200
         }
     }
 }
 
-logout(){  ; Closing port which POE use by cports.exe.
+GameLogout(){  ; Closing port which POE use by cports.exe.
     IfWinActive Path of Exile
     {
-    Run cports.exe /close * * * * PathofExile_x64.exe
+    Run ./cports/cports.exe /close * * * * PathofExile_x64.exe
     }
     return
 }
@@ -104,7 +104,7 @@ LoopNoticeCmd(){  ; Loop notification on screen(only windowed).
     WinMove Loop, , 1536, 230
 }
 
-hideout(){  ; Hideout Command.
+Hideout(){  ; Hideout Command.
 	BlockInput On
 	SendInput, {Enter}
 	Sleep 2
@@ -114,14 +114,14 @@ hideout(){  ; Hideout Command.
 	return
 }
 
-invite(){  ; Invite Command.
+PartyInvite(){  ; Invite to party command.
 	BlockInput On
 	Send ^{Enter}{Home}{Delete}/invite {Enter}
 	BlockInput Off
 	return
 }
 
-kick(){  ; Kick Command.
+PartyKick(){  ; Kick command.
 	BlockInput On
 	Send ^{Enter}{Home}{Delete}/kick {Enter}
 	BlockInput Off
