@@ -61,7 +61,7 @@ PixelExist(Color, x1, y1, x2, y2){  ; Pixel search function.
 ;//Life flask values: #95% 0x271F65 112, 885
 ;//#80% 0x282073 73, 911	#70% 0x1B1A5F 67, 932	#58% 0x1D1B71 72, 957	#45% 0x1E0EA8 91, 972  #test 168, 927 0x1B1291
 EventLogoutLoop(){  ; Main logout function.
-    LoopNoticeCmd()
+    LoopNotice()
     oosCommand()
     Loop
     {
@@ -99,7 +99,7 @@ oosCommand(){  ; Clearing ign stack?
 	return
 }
 
-LoopNoticeCmd(){  ; Loop notification on screen(only windowed).
+LoopNotice(){  ; Loop notification on screen(only windowed).
     SplashTextOn, 100, 1, Loop activated.
     WinMove Loop, , 1536, 230
 }
@@ -110,8 +110,8 @@ LootBigRegion(){
         return False
     }
     else{
-        Px := Px + 50
-        Py := Py + 20
+        Px := Px + 53
+        Py := Py + 23
         Click %Px%, %Py%
         return True
     }
@@ -123,31 +123,42 @@ LootSmallRegion(){
         return False
     }
     else{
-        Px := Px + 50
-        Py := Py + 20
+        Px := Px + 52
+        Py := Py + 22
         Click %Px%, %Py%
         return True
     }
 }
 
 LootAll(){
-    while (GetKeyState("LControl", "P") && GetKeyState("a", "P")){
+    while (GetKeyState("LControl", "P") && GetKeyState("s", "P")){
         if !LootSmallRegion(){
             break
         }
         Sleep loot_dalay
     }
 
-    while (GetKeyState("LControl", "P") && GetKeyState("a", "P")){
+    while (GetKeyState("LControl", "P") && GetKeyState("s", "P")){
         LootBigRegion()
         Sleep 1200
-        while (GetKeyState("LControl", "P") && GetKeyState("a", "P")){
+        while (GetKeyState("LControl", "P") && GetKeyState("s", "P")){
             if !LootSmallRegion(){
                 break
             }
             Sleep loot_dalay
         }
     }
+}
+
+OpenPortal(){
+    BlockInput On
+    MouseGetPos x, y 
+    Send {tab}
+    Click, %portalX%, %portalY%, right
+    Send {tab}
+    MouseMove, x, y
+    BlockInput Off
+    return
 }
 
 Hideout(){  ; Hideout Command.

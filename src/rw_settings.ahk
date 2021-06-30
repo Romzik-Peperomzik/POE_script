@@ -5,8 +5,8 @@ ReadSettings(){
     IniRead, flask_key_set1,      settings.ini, settings, flask_key_set1,      3-w
     IniRead, lootColor,           settings.ini, settings, lootColor,           0x790062
     IniRead, loot_dalay,          settings.ini, settings, loot_dalay,          400
-    IniRead, portalX,             settings.ini, settings, portalX,             1889
-    IniRead, portalY,             settings.ini, settings, portalY,             607
+    IniRead, portalX,             settings.ini, settings, portalX,             1303
+    IniRead, portalY,             settings.ini, settings, portalY,             816
     IniRead, low_life_X,          settings.ini, settings, low_life_X,          169
     IniRead, low_life_Y,          settings.ini, settings, low_life_Y,          923
     IniRead, life_color,          settings.ini, settings, life_color,          0x180B8F    

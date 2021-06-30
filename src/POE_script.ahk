@@ -49,21 +49,21 @@ r::SmokeMine()	                   ; r key - Smoke mine.
 
 ;~RButton::BFBB()                   ; RMB BF + BB.
 
-$^D::HoldWalk()                    ; Ctrl+D Autorun.
+^D::HoldWalk()                    ; Ctrl+D Autorun.
 
 $F3::EventLogoutLoop()             ; F3 activate loop.
 
 SC029::GameLogout()                ; `= SC029 Tilda's id.
-/*
-~a::                               ; A key - Loot one item.
+
+s::                               ; A key - Loot one item.
     if !LootSmallRegion(){
         LootBigRegion()
     }
     return
 
-~^a::LootAll()                     ; Ctrl+A hold to keep looting.
-*/
-; ~^j::OpenPortal()                  ; Ctrl+J use portal scroll 
+^s::LootAll()                     ; Ctrl+A hold to keep looting.
+
+v::OpenPortal()                  ; Ctrl+J use portal scroll 
 
 $F5::Hideout()                     ; F5 Hideout.
 
