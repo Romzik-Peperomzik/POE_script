@@ -1,7 +1,8 @@
 #Include functions.ahk
 #Include rw_settings.ahk
-;#Include SearchItem.ahk
 ;#Include gui.ahk
+;#Include SearchItem.ahk
+
 
 #IfWinActive, Path of Exile ahk_class POEWindowClass
 #SingleInstance force  ; Replaces the old instance of script automatically
@@ -9,18 +10,18 @@
 #Persistent  ; Keeps a script permanently running
 #MaxThreadsPerHotkey 2
 
-SetDefaultMouseSpeed, 0  ; Sets the mouse speed, 0 - instantly
+SetDefaultMouseSpeed, 0          ; Sets the mouse speed, 0 - instantly
 
-global quickFlasksHotkey0
-global quickFlasksHotkey1
+; global quickFlasksHotkey0      ; If u want to redefine key which activate flasks.
+; global quickFlasksHotkey1
 
-global flask_key_set
-global flask_key_set1
+global flask_key_set             ; main flasks and keys sequence
+; global flask_key_set1          ; second sequence if need
 
-global quick_flask_active = True
+; global quick_flask_active = True ; autoflask
 
-global lootColor
-global loot_dalay
+global lootColor                 ; border loot icon color 
+global loot_dalay                ; delay between looting
 
 global portalX
 global portalY
@@ -31,8 +32,8 @@ global life_color
 global low_life_flask_list
 global auto_flask_active = False
 
-global mine_laying_time
-global auto_detonate_active = False
+; global mine_laying_time
+; global auto_detonate_active = False
 
 ;-----------------------------------------------------------------------------
 ReadSettings()
