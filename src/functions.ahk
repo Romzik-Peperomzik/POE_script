@@ -7,8 +7,8 @@ GetMouseColorPos(){  ; Picking color and coords at mouse position.
 
 QuickFlask(list){  ; Iterating on string and send its substings which delim by -.
     Loop, parse, list, -
-    {
-        Send {%A_LoopField%}
+    {        
+        Send %A_LoopField%
         Sleep 50
     }
     return

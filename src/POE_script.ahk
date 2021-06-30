@@ -1,7 +1,7 @@
 #Include functions.ahk
+#Include rw_settings.ahk
 ;#Include SearchItem.ahk
 ;#Include gui.ahk
-;#Include rw_settings.ahk
 
 #IfWinActive, Path of Exile ahk_class POEWindowClass
 #SingleInstance force  ; Replaces the old instance of script automatically
@@ -10,13 +10,12 @@
 #MaxThreadsPerHotkey 2
 
 SetDefaultMouseSpeed, 0  ; Sets the mouse speed, 0 - instantly
-global keys_flask_list := 'w-e-2-3-4-5-q'
 
-/*
 global quickFlasksHotkey0
 global quickFlasksHotkey1
 
-global quick_flask_list_1
+global flask_key_set
+global flask_key_set1
 
 global quick_flask_active = True
 
@@ -34,15 +33,15 @@ global auto_flask_active = False
 
 global mine_laying_time
 global auto_detonate_active = False
-*/
+
 ;-----------------------------------------------------------------------------
-; Read settings here?
+ReadSettings()
 ; And run gui?
 ;-----------------------------------------------------------------------------
 
 !z::GetMouseColorPos()             ; Alt+Z get pixel coords and color at mouse.
 
-a::QuickFlask(keys_flask_list)     ; a key - Set of flasks. 
+a::QuickFlask(flask_key_set)     ; a key - Set of flasks. 
 
 r::SmokeMine()	                   ; r key - Smoke mine.
 
@@ -55,7 +54,7 @@ $^D::HoldWalk()                    ; Ctrl+D Autorun.
 $F3::EventLogoutLoop()             ; F3 activate loop.
 
 SC029::GameLogout()                ; `= SC029 Tilda's id.
-
+/*
 ~a::                               ; A key - Loot one item.
     if !LootSmallRegion(){
         LootBigRegion()
@@ -63,8 +62,8 @@ SC029::GameLogout()                ; `= SC029 Tilda's id.
     return
 
 ~^a::LootAll()                     ; Ctrl+A hold to keep looting.
-
-~^j::OpenPortal()                  ; Ctrl+J use portal scroll 
+*/
+; ~^j::OpenPortal()                  ; Ctrl+J use portal scroll 
 
 $F5::Hideout()                     ; F5 Hideout.
 
