@@ -12,13 +12,14 @@
 
 SetDefaultMouseSpeed, 0          ; Sets the mouse speed, 0 - instantly
 
-; global quickFlasksHotkey0      ; If u want to redefine key which activate flasks.
-; global quickFlasksHotkey1
+global quickFlasksHotkey         ; If u want to redefine key which activate flasks.
+global smokeMineHotkey           ; If u want to redefine key which activate Smoke Mine.
 
-global flask_key_set             ; main flasks and keys sequence
+global flask_key_set             ; flasks and skills sequence
 ; global flask_key_set1          ; second sequence if need
 
-; global quick_flask_active = True ; autoflasks
+global quick_flask_active = True ; Quick flasks.
+global smoke_mine_active = True  ; Auto smoke mine.
 
 global lootColor                 ; border loot icon color 
 global loot_dalay                ; delay between looting
@@ -44,7 +45,9 @@ global black_screen
 ;-----------------------------------------------------------------------------
 ReadSettings()
 
-Hotkey, 
+Hotkey, %quickFlasksHotkey%, QuickFlaskLabel
+Hotkey, %smokeMineHotkey%, AutoSmokeMine 
+
 ; And run gui?
 ;-----------------------------------------------------------------------------
 ;~RButton::BFBB()                  ; RMB BF + BB.
@@ -53,9 +56,23 @@ Hotkey,
 
 !z::GetMouseColorPos()             ; Alt+z get pixel coords and color at mouse.
 
-a::QuickFlask(flask_key_set)       ; a key - Set of flasks. 
+QuickFlaskLabel:                   ; Pressing set of flasks and skills. 
+    if quick_flask_active{
+        QuickFlask(flask_key_set)
+    }
+    else{
+        Send, %quickFlasksHotkey%
+    }
+    return   
 
-r::SmokeMine()	                   ; r key - Smoke mine.
+AutoSmokeMine:                     ; Pressing and activating Smoke mine.
+    if smoke_mine_active{
+        SmokeMine()
+    }
+    else{
+        Send, %smokeMineHotkey%
+    }
+    return 
 
 ^d::HoldWalk()                     ; Ctrl+d Toggle walk (like hold lmb to walk).
 

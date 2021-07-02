@@ -1,6 +1,6 @@
 ReadSettings(){
-    IniRead, quickFlasksHotkey0,  settings.ini, settings, quickFlasksHotkey0,  2
-    IniRead, quickFlasksHotkey1,  settings.ini, settings, quickFlasksHotkey1,  3
+    IniRead, quickFlasksHotkey,   settings.ini, settings, quickFlasksHotkey,   a
+    IniRead, smokeMineHotkey,     settings.ini, settings, smokeMineHotkey,     r
     IniRead, flask_key_set,       settings.ini, settings, flask_key_set,       2-3-4-5
     IniRead, flask_key_set1,      settings.ini, settings, flask_key_set1,      3-w
     IniRead, lootColor,           settings.ini, settings, lootColor,           0x790062
