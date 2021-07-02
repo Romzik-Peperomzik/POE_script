@@ -1,7 +1,6 @@
 #Include functions.ahk
 #Include rw_settings.ahk
 ;#Include gui.ahk
-;#Include SearchItem.ahk
 
 
 #IfWinActive, Path of Exile ahk_class POEWindowClass

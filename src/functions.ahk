@@ -102,7 +102,7 @@ EventLogoutLoop(){  ; Main logout function.
         if WinActive("Path of Exile")
         {
             PixelGetColor, color, logout_X, logout_Y            
-            if color = %black_screen%  ; If its tp's screen - do nothing.
+            if color = %black_screen%  ; If it's tp's screen - suspend and sleep 3s.
             {
                 Send {F2}
                 Send {Pause}
@@ -133,7 +133,7 @@ GameLogout(){  ; Closing port which POE use by cports.exe.
     return
 }
 
-oosCommand(){  ; Clearing ign stack?
+oosCommand(){  ; Cheking synchronization with server.
 	BlockInput On
 	SendInput, {enter}
 	Sleep 2
