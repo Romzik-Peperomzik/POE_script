@@ -18,7 +18,7 @@ SetDefaultMouseSpeed, 0          ; Sets the mouse speed, 0 - instantly
 global flask_key_set             ; main flasks and keys sequence
 ; global flask_key_set1          ; second sequence if need
 
-; global quick_flask_active = True ; autoflask
+; global quick_flask_active = True ; autoflasks
 
 global lootColor                 ; border loot icon color 
 global loot_dalay                ; delay between looting
@@ -32,39 +32,48 @@ global life_color
 global low_life_flask_list
 global auto_flask_active = False
 
+global logout_X
+global logout_Y
+global logout_life_color
+global auto_logout_active = False
+global black_screen
+
 ; global mine_laying_time
 ; global auto_detonate_active = False
 
 ;-----------------------------------------------------------------------------
 ReadSettings()
+
+Hotkey, 
 ; And run gui?
 ;-----------------------------------------------------------------------------
+;~RButton::BFBB()                  ; RMB BF + BB.
 
-!z::GetMouseColorPos()             ; Alt+Z get pixel coords and color at mouse.
+;~RButton::CremationDesecrate()    ; RMB Cremation > Desecrate.
 
-a::QuickFlask(flask_key_set)     ; a key - Set of flasks. 
+!z::GetMouseColorPos()             ; Alt+z get pixel coords and color at mouse.
+
+a::QuickFlask(flask_key_set)       ; a key - Set of flasks. 
 
 r::SmokeMine()	                   ; r key - Smoke mine.
 
-;~RButton::CremationDesecrate()     ; RMB Cremation > Desecrate.
+^d::HoldWalk()                     ; Ctrl+d Toggle walk (like hold lmb to walk).
 
-;~RButton::BFBB()                   ; RMB BF + BB.
+^f::Activate_AutoFlask()           ; Ctrl+f AutoFlask.
 
-^D::HoldWalk()                    ; Ctrl+D Autorun.
+$F3::Activate_AutoLogout()         ; F3 AutoLogout. Cannot work at the same time with AutoFlask.
 
-$F3::EventLogoutLoop()             ; F3 activate loop.
-
-SC029::GameLogout()                ; `= SC029 Tilda's id.
-
-s::                               ; A key - Loot one item.
+s::                                ; s key - Loot one item.
     if !LootSmallRegion(){
         LootBigRegion()
     }
     return
 
-^s::LootAll()                     ; Ctrl+A hold to keep looting.
+^s::LootAll()                      ; Ctrl+s hold to keep looting.
 
-v::OpenPortal()                  ; Ctrl+J use portal scroll 
+SC029::GameLogout()                ; `- Logout, SC029 is Tilda's id.
+
+v::OpenPortal()                    ; v key use portal scroll 
 
 $F5::Hideout()                     ; F5 Hideout.
 

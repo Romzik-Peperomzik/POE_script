@@ -7,9 +7,13 @@ ReadSettings(){
     IniRead, loot_dalay,          settings.ini, settings, loot_dalay,          400
     IniRead, portalX,             settings.ini, settings, portalX,             1303
     IniRead, portalY,             settings.ini, settings, portalY,             816
-    IniRead, low_life_X,          settings.ini, settings, low_life_X,          169
-    IniRead, low_life_Y,          settings.ini, settings, low_life_Y,          923
-    IniRead, life_color,          settings.ini, settings, life_color,          0x180B8F    
+    IniRead, low_life_X,          settings.ini, settings, low_life_X,          133
+    IniRead, low_life_Y,          settings.ini, settings, low_life_Y,          948
+    IniRead, life_color,          settings.ini, settings, life_color,          0x2419A7
+    IniRead, logout_X,            settings.ini, settings, logout_X,            84
+    IniRead, logout_Y,            settings.ini, settings, logout_Y,            992
+    IniRead, logout_life_color,   settings.ini, settings, logout_life_color,   0x19117B
+    IniRead, black_screen,        settings.ini, settings, black_screen,        0x000000
     IniRead, low_life_flask_list, settings.ini, settings, low_life_flask_list, 1
     IniRead, quickEnterText0,     settings.ini, settings, quickEnterText0,     /global 2
     IniRead, quickEnterText1,     settings.ini, settings, quickEnterText1,     /global 820

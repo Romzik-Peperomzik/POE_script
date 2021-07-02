@@ -1,7 +1,7 @@
 GetMouseColorPos(){  ; Picking color and coords at mouse position.
     MouseGetPos, MouseX, MouseY
     PixelGetColor, color, %MouseX%, %MouseY%
-    MsgBox The current cursor position is %MouseX%, %MouseY%, color is %color%.
+    MsgBox The current cursor position is x=%MouseX%, y=%MouseY%, color is %color%.
     return
 }
 
@@ -47,38 +47,82 @@ HoldWalk(){
     return
 }
 
-PixelExist(Color, x1, y1, x2, y2){  ; Pixel search function.
-    PixelSearch, Px, Py, x1, y1, x2, y2, color, 0, Fast
-    if ErrorLevel
-        return 0
-    else
-        return 1
+Activate_AutoFlask(){
+    auto_flask_active := !auto_flask_active
+    if auto_flask_active{
+        AutoFlaskNotice()
+        ; MsgBox , 0, , Auto flask : On, 0.5
+        AutoFlask()
+    }
+    else{
+        SplashTextOff
+        ; MsgBox , 0, , Auto flask : Off, 0.5
+    }
+    return
 }
 
-;//HP FullScreen res:1920x1080		
-;//Statue yellow save point: 39 979 0x8DACD0	black pixel at this coords now are constant.	
-;//Delve values: #75% 0x201698 151, 924
-;//Life flask values: #95% 0x271F65 112, 885
-;//#80% 0x282073 73, 911	#70% 0x1B1A5F 67, 932	#58% 0x1D1B71 72, 957	#45% 0x1E0EA8 91, 972  #test 168, 927 0x1B1291
-EventLogoutLoop(){  ; Main logout function.
-    LoopNotice()
-    oosCommand()
-    Loop
+AutoFlask(){    
+    while auto_flask_active
     {
-        if(PixelExist("0x000000", 39, 979, 39, 979)=1)
+        if WinActive("Path of Exile")
         {
-            Send {F2}
-            Send {Pause}
-            sleep 3000
-            Send {F2}
-            Send {Pause}
+            PixelGetColor, color, low_life_X, low_life_Y
+            if color != %life_color%
+            {
+                QuickFlask(low_life_flask_list)
+                Sleep 150
+            }
         }
-        if(PixelExist("0x1B1291", 168, 927, 168, 927)=0) and (PixelExist("0x000000", 39, 979, 39, 979)=0)
-        {
-            GameLogout()
-            sleep 200
-        }
+    }    
+    return
+}
+
+;HP FullScreen res:1920x1080		
+;Statue yellow save point: 39 979 0x8DACD0	black pixel at this coords now are constant.	
+;Delve values: #75% 0x201698 151, 924
+;Life flask values: #95% 0x271F65 112, 885
+;#80% 0x282073 73, 911	#70% 0x1B1A5F 67, 932	#58% 0x1D1B71 72, 957	#45% 0x1E0EA8 91, 972  #test 168, 927 0x1B1291
+
+Activate_AutoLogout(){  
+    auto_logout_active := !auto_logout_active
+    if auto_logout_active{        
+        oosCommand()
+        AutoLogoutNotice()
+        EventLogoutLoop() 
     }
+    else{
+        SplashTextOff
+    }
+    return
+}
+
+EventLogoutLoop(){  ; Main logout function.
+    while auto_logout_active
+    {
+        if WinActive("Path of Exile")
+        {
+            PixelGetColor, color, logout_X, logout_Y            
+            if color = %black_screen%  ; If its tp's screen - do nothing.
+            {
+                Send {F2}
+                Send {Pause}
+                sleep 3000
+                Send {F2}
+                Send {Pause}
+            }
+            if color != %logout_life_color%  ; If life pixel not found.
+            {
+                if color != %black_screen%  ; And it's not a loading screen.
+                {
+                    QuickFlask(low_life_flask_list)  ; Drink life potion before logout.
+                    GameLogout()
+                    Sleep 150
+                    Activate_AutoLogout()
+                }
+            }
+        }
+    }    
+    return
 }
 
 GameLogout(){  ; Closing port which POE use by cports.exe.
@@ -99,9 +143,14 @@ oosCommand(){  ; Clearing ign stack?
 	return
 }
 
-LoopNotice(){  ; Loop notification on screen(only windowed).
-    SplashTextOn, 100, 1, Loop activated.
-    WinMove Loop, , 1536, 230
+AutoLogoutNotice(){  ; AutoLogout notification on screen(only windowed).
+    SplashTextOn, 100, 1, Lg activated.
+    WinMove Lg activated, , 1536, 230
+}
+
+AutoFlaskNotice(){  ; AutoFlask notification on screen(only windowed).
+    SplashTextOn, 100, 1, F activated.
+    WinMove F, , 1536, 230
 }
 
 LootBigRegion(){
