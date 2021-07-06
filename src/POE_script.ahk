@@ -11,56 +11,57 @@
 
 SetDefaultMouseSpeed, 0          ; Sets the mouse speed, 0 - instantly
 
-global quickFlasksHotkey         ; If u want to redefine key which activate flasks.
+; Turn on/off hotkeys:
+global set_of_flasks_active      ; Quick flasks.
+global smoke_mine_active         ; Auto smoke mine.
+
+; Hotkeys of functions:
+global setOfFlasksHotkey         ; If u want to redefine key which activate flasks.
 global smokeMineHotkey           ; If u want to redefine key which activate Smoke Mine.
 
-global flask_key_set             ; flasks and skills sequence
-; global flask_key_set1          ; second sequence if need
-
-global quick_flask_active = True ; Quick flasks.
-global smoke_mine_active = True  ; Auto smoke mine.
-
+; Just variables:
 global lootColor                 ; border loot icon color 
 global loot_dalay                ; delay between looting
-
 global portalX
 global portalY
+global flask_key_set             ; flasks and skills sequence
+global flask_key_set1            ; second sequence if need
 
+; Auto life flask variables:
 global low_life_X
 global low_life_Y
 global life_color
 global low_life_flask_list
-global auto_flask_active = False
+global auto_life_flask_active = False
 
+; Auto logout variables:
 global logout_X
 global logout_Y
 global logout_life_color
 global auto_logout_active = False
 global black_screen
 
-; global mine_laying_time
-; global auto_detonate_active = False
-
 ;-----------------------------------------------------------------------------
 ReadSettings()
 
-Hotkey, %quickFlasksHotkey%, QuickFlaskLabel
+Hotkey, %setOfFlasksHotkey%, SetOfFlasksLabel
 Hotkey, %smokeMineHotkey%, AutoSmokeMine 
 
 ; And run gui?
 ;-----------------------------------------------------------------------------
+
+!z::GetMouseColorPos()             ; Alt+z get pixel coords and color at mouse.
+
 ;~RButton::BFBB()                  ; RMB BF + BB.
 
 ;~RButton::CremationDesecrate()    ; RMB Cremation > Desecrate.
 
-!z::GetMouseColorPos()             ; Alt+z get pixel coords and color at mouse.
-
-QuickFlaskLabel:                   ; Pressing set of flasks and skills. 
-    if quick_flask_active{
-        QuickFlask(flask_key_set)
+SetOfFlasksLabel:                   ; Pressing set of flasks and skills. 
+    if set_of_flasks_active{
+        SetOfFlasks(flask_key_set)
     }
     else{
-        Send, %quickFlasksHotkey%
+        Send, %setOfFlasksHotkey%
     }
     return   
 
@@ -73,12 +74,6 @@ AutoSmokeMine:                     ; Pressing and activating Smoke mine.
     }
     return 
 
-^d::HoldWalk()                     ; Ctrl+d Toggle walk (like hold lmb to walk).
-
-^f::Activate_AutoFlask()           ; Ctrl+f AutoFlask.
-
-$F3::Activate_AutoLogout()         ; F3 AutoLogout. Cannot work at the same time with AutoFlask.
-
 s::                                ; s key - Loot one item.
     if !LootSmallRegion(){
         LootBigRegion()
@@ -86,6 +81,12 @@ s::                                ; s key - Loot one item.
     return
 
 ^s::LootAll()                      ; Ctrl+s hold to keep looting.
+
+^d::HoldWalk()                     ; Ctrl+d Toggle walk (like hold lmb to walk).
+
+^f::Activate_AutoLifeFlask()       ; Ctrl+f AutoLifeFlask.
+
+$F3::Activate_AutoLogout()         ; F3 AutoLogout. Cannot work at the same time with AutoLifeFlask.
 
 SC029::GameLogout()                ; `- Logout, SC029 is Tilda's id.
 

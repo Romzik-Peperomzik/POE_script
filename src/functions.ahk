@@ -5,7 +5,7 @@ GetMouseColorPos(){  ; Picking color and coords at mouse position.
     return
 }
 
-QuickFlask(list){  ; Iterating on string and send its substings which delim by -.
+SetOfFlasks(list){  ; Iterating on string and send its substings which delim by -.
     Loop, parse, list, -
     {        
         Send %A_LoopField%
@@ -47,12 +47,12 @@ HoldWalk(){
     return
 }
 
-Activate_AutoFlask(){
-    auto_flask_active := !auto_flask_active
-    if auto_flask_active{
-        AutoFlaskNotice()
+Activate_AutoLifeFlask(){
+    auto_life_flask_active := !auto_life_flask_active
+    if auto_life_flask_active{
+        AutoLifeFlaskNotice()
         ; MsgBox , 0, , Auto flask : On, 0.5
-        AutoFlask()
+        AutoLifeFlask()
     }
     else{
         SplashTextOff
@@ -61,15 +61,15 @@ Activate_AutoFlask(){
     return
 }
 
-AutoFlask(){    
-    while auto_flask_active
+AutoLifeFlask(){    
+    while auto_life_flask_active
     {
         if WinActive("Path of Exile")
         {
             PixelGetColor, color, low_life_X, low_life_Y
             if color != %life_color%
             {
-                QuickFlask(low_life_flask_list)
+                SetOfFlasks(low_life_flask_list)
                 Sleep 150
             }
         }
@@ -114,7 +114,7 @@ EventLogoutLoop(){  ; Main logout function.
             {
                 if color != %black_screen%  ; And it's not a loading screen.
                 {
-                    QuickFlask(low_life_flask_list)  ; Drink life potion before logout.
+                    SetOfFlasks(low_life_flask_list)  ; Drink life potion before logout.
                     GameLogout()
                     Sleep 150
                     Activate_AutoLogout()
@@ -148,7 +148,7 @@ AutoLogoutNotice(){  ; AutoLogout notification on screen(only windowed).
     WinMove Lg activated, , 1536, 230
 }
 
-AutoFlaskNotice(){  ; AutoFlask notification on screen(only windowed).
+AutoLifeFlaskNotice(){  ; AutoLifeFlask notification on screen(only windowed).
     SplashTextOn, 100, 1, F activated.
     WinMove F, , 1536, 230
 }
