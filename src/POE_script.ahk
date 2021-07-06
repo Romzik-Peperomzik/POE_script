@@ -11,52 +11,78 @@
 
 SetDefaultMouseSpeed, 0          ; Sets the mouse speed, 0 - instantly
 
-; Turn on/off hotkeys:
-global set_of_flasks_active      ; Quick flasks.
-global smoke_mine_active         ; Auto smoke mine.
+; Importing bool status of functions:
+global set_of_flasks_active
+global smoke_mine_active
+global auto_looting_active
+global loot_one_item_active
+global auto_walk_active
+global open_portal_active
+global game_logout_active
+global hideout_active
+global party_invite_active
+global party_kick_active
+global seq_skills_active
+global auto_l_flask_active
+global auto_logout_active
 
-; Hotkeys of functions:
-global setOfFlasksHotkey         ; If u want to redefine key which activate flasks.
-global smokeMineHotkey           ; If u want to redefine key which activate Smoke Mine.
+; Importing hotkeys of functions:
+global setOfFlasksHotkey
+global smokeMineHotkey
+global autoLootingHotkey
+global lootOneItemHotkey
+global autoWalkHotkey
+global openPortalHotkey
+global gameLogoutHotkey
+global hideoutHotkey
+global partyInviteHotkey
+global partyKickHotkey
+global seqSkillsHotkey
+global autoLifeFlaskHotkey
+global autoLogoutHotkey
 
 ; Just variables:
-global lootColor                 ; border loot icon color 
-global loot_dalay                ; delay between looting
+global lootColor                   ; border loot icon color 
+global loot_dalay                  ; delay between looting
 global portalX
 global portalY
-global flask_key_set             ; flasks and skills sequence
-global flask_key_set1            ; second sequence if need
-
-; Auto life flask variables:
-global low_life_X
+global flask_key_set               ; flasks and skills sequence
+global flask_key_set1              ; second sequence if need
+global mine_laying_time            ; delay between throw mine and detonate them
+global seq_castspeed_time          ; delay between cast rmb skill and cast q skill
+global low_life_X                  ; auto flask variables start
 global low_life_Y
 global life_color
 global low_life_flask_list
-global auto_life_flask_active = False
-
-; Auto logout variables:
-global logout_X
+global logout_X                    ; auto logout variables start
 global logout_Y
 global logout_life_color
-global auto_logout_active = False
 global black_screen
 
 ;-----------------------------------------------------------------------------
 ReadSettings()
 
+; Binding hotkeys to functions of callback
 Hotkey, %setOfFlasksHotkey%, SetOfFlasksLabel
-Hotkey, %smokeMineHotkey%, AutoSmokeMine 
+Hotkey, %smokeMineHotkey%, SmokeMineLabel
+Hotkey, %autoLootingHotkey%, LootAllLabel 
+Hotkey, %lootOneItemHotkey%, LootOneItem 
+Hotkey, %autoWalkHotkey%, HoldWalkLabel 
+Hotkey, %openPortalHotkey%, OpenPortalLabel 
+Hotkey, %gameLogoutHotkey%, GameLogoutLabel 
+Hotkey, %hideoutHotkey%, HideoutLabel
+Hotkey, %partyInviteHotkey%, PartyInviteLabel
+Hotkey, %partyKickHotkey%, PartyKickLabel 
+Hotkey, %seqSkillsHotkey%, SequenceOfSkillsLabel 
+Hotkey, %autoLifeFlaskHotkey%, AutoLifeFlaskLabel
+Hotkey, %auto_logout_active%, AutoLogoutLabel
 
 ; And run gui?
 ;-----------------------------------------------------------------------------
 
-!z::GetMouseColorPos()             ; Alt+z get pixel coords and color at mouse.
+!z::GetMouseColorPos()             ; Alt+z get pixel coords and color at mouse pos.
 
-;~RButton::BFBB()                  ; RMB BF + BB.
-
-;~RButton::CremationDesecrate()    ; RMB Cremation > Desecrate.
-
-SetOfFlasksLabel:                   ; Pressing set of flasks and skills. 
+SetOfFlasksLabel:                  ; Pressing set of flasks and skills. 
     if set_of_flasks_active{
         SetOfFlasks(flask_key_set)
     }
@@ -65,7 +91,17 @@ SetOfFlasksLabel:                   ; Pressing set of flasks and skills.
     }
     return   
 
-AutoSmokeMine:                     ; Pressing and activating Smoke mine.
+
+AutoLifeFlaskLabel:                ; Auto life flask. Cannot work at the same
+    if auto_l_flask_active{        ;                     time with AutoLogout.
+        Activate_AutoLifeFlask()
+    }
+    else{
+        Send, %autoLifeFlaskHotkey%
+    }
+    return
+
+SmokeMineLabel:                    ; Throwing and activating Smoke mine.
     if smoke_mine_active{
         SmokeMine()
     }
@@ -74,30 +110,98 @@ AutoSmokeMine:                     ; Pressing and activating Smoke mine.
     }
     return 
 
-s::                                ; s key - Loot one item.
-    if !LootSmallRegion(){
-        LootBigRegion()
+LootOneItem:                       ; Loot one item.
+    if loot_one_item_active{                         
+        if !LootSmallRegion(){
+            LootBigRegion()
+        }
+    }
+    else{
+        Send, %lootOneItemHotkey%
     }
     return
 
-^s::LootAll()                      ; Ctrl+s hold to keep looting.
+LootAllLabel:                      ; Hold to keep looting.
+    if auto_looting_active{
+        LootAll()
+    }
+    else{
+        Send, %autoLootingHotkey%
+    }
+    return
+                  
+HoldWalkLabel:                     ; Toggle walk (like hold lmb to walk).
+    if auto_walk_active{
+        HoldWalk()
+    }
+    else{
+        Send, %autoWalkHotkey%
+    }
+    return
 
-^d::HoldWalk()                     ; Ctrl+d Toggle walk (like hold lmb to walk).
+OpenPortalLabel:                   ; Use portal scroll 
+    if open_portal_active{
+        OpenPortal()
+    }
+    else{
+        Send, %openPortalHotkey%
+    }
+    return
 
-^f::Activate_AutoLifeFlask()       ; Ctrl+f AutoLifeFlask.
+GameLogoutLabel:                   ; `- Logout, SC029 is Tilda's id.
+    if game_logout_active{
+        GameLogout()
+    }
+    else{
+        Send, %gameLogoutHotkey%
+    }
+    return 
 
-$F3::Activate_AutoLogout()         ; F3 AutoLogout. Cannot work at the same time with AutoLifeFlask.
+AutoLogoutLabel:                   ; AutoLogout. Cannot work at the same time
+    if auto_logout_active{         ;                       with AutoLifeFlask.
+        Activate_AutoLogout()
+    }
+    else{
+        Send, %autoLogoutHotkey%
+    }
+    return 
 
-SC029::GameLogout()                ; `- Logout, SC029 is Tilda's id.
+HideoutLabel:                      ; Hideout.
+    if hideout_active{
+        Hideout()
+    }
+    else{
+        Send, %hideoutHotkey%
+    }
+    return 
 
-v::OpenPortal()                    ; v key use portal scroll 
+PartyInviteLabel:                  ; Invite to party by last received player message.
+    if party_invite_active{
+        PartyInvite()
+    }
+    else{
+        Send, %partyInviteHotkey%
+    }
+    return 
 
-$F5::Hideout()                     ; F5 Hideout.
+PartyKickLabel:                    ; Kick from party by last received player message.
+    if hideout_active{
+        PartyKick()
+    }
+    else{
+        Send, %hideoutHotkey%
+    }
+    return
 
-$F6::PartyInvite()                 ; F6 Party invite.
+SequenceOfSkillsLabel:             ; Cremation delay Desecrate, BF delay BB and etc.
+    if seq_skills_active{
+        SequenceOfSkills()
+    }
+    else{
+        Send, %seqSkillsHotkey%
+    }
+    return
 
-$F7::PartyKick()                   ; F7 Kick last party member.
-
-RCtrl::reload                      ; Hotkeys for script control.
+RCtrl::reload                      ; Hotkeys for script handling.
 Pause:: pause                      ; ^
 $F2:: suspend                      ; ^

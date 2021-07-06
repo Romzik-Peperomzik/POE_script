@@ -17,24 +17,16 @@ SetOfFlasks(list){  ; Iterating on string and send its substings which delim by 
 SmokeMine(){
     Send d
     Send r
-    sleep 150
+    sleep %mine_laying_time%
     Send d
     sleep 40
     Send d
     return
 }
 
-CremationDesecrate(){
+SequenceOfSkills(){
     Click, right
-    sleep 340
-    Send q
-    sleep 20
-    return
-}
-
-BFBB(){
-    Click, right
-    sleep 310
+    sleep %seq_castspeed_time%
     Send q
     sleep 20
     return
