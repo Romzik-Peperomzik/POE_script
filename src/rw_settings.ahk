@@ -48,7 +48,8 @@ ReadSettings(){
     IniRead, partyKickHotkey,     settings.ini, settings, partyKickHotkey,     F7
     ; Sequence of skills, BFBB, Cremation > Desecrate and etc
     IniRead, seq_skills_active,   settings.ini, settings, seq_skills_active,   True
-    IniRead, seqSkillsHotkey,     settings.ini, settings, seqSkillsHotkey,     RMB
+    IniRead, seqSkillsHotkey,     settings.ini, settings, seqSkillsHotkey,     right
+    IniRead, seq_second_skill,    settings.ini, settings, seq_second_skill,    q
     IniRead, seq_castspeed_time,  settings.ini, settings, seq_castspeed_time,  340
 
     return

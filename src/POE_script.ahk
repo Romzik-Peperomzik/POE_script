@@ -91,7 +91,6 @@ SetOfFlasksLabel:                  ; Pressing set of flasks and skills.
     }
     return   
 
-
 AutoLifeFlaskLabel:                ; Auto life flask. Cannot work at the same
     if auto_l_flask_active{        ;                     time with AutoLogout.
         Activate_AutoLifeFlask()

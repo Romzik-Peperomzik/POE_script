@@ -27,15 +27,15 @@ SmokeMine(){
 SequenceOfSkills(){
     Click, right
     sleep %seq_castspeed_time%
-    Send q
+    Send %seq_second_skill%
     sleep 20
     return
 }
 
 HoldWalk(){
     if GetKeyState("d", "p")
-	Click left down
-	sleep 100
+	    Click left down
+	    sleep 100
     return
 }
 
@@ -68,12 +68,6 @@ AutoLifeFlask(){
     }    
     return
 }
-
-;HP FullScreen res:1920x1080		
-;Statue yellow save point: 39 979 0x8DACD0	black pixel at this coords now are constant.	
-;Delve values: #75% 0x201698 151, 924
-;Life flask values: #95% 0x271F65 112, 885
-;#80% 0x282073 73, 911	#70% 0x1B1A5F 67, 932	#58% 0x1D1B71 72, 957	#45% 0x1E0EA8 91, 972  #test 168, 927 0x1B1291
 
 Activate_AutoLogout(){  
     auto_logout_active := !auto_logout_active
