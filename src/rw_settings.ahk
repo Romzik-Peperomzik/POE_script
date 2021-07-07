@@ -23,7 +23,7 @@ ReadSettings(){
     IniRead, loot_dalay,          settings.ini, settings, loot_dalay,          400
     ; Auto walk
     IniRead, auto_walk_active,    settings.ini, settings, auto_walk_active,    True
-    IniRead, autoWalkHotkey,      settings.ini, settings, autoWalkHotkey,      ^d   
+    IniRead, autoWalkHotkey,      settings.ini, settings, autoWalkHotkey,      ^d 
     ; Open portal
     IniRead, open_portal_active,  settings.ini, settings, open_portal_active,  True
     IniRead, openPortalHotkey,    settings.ini, settings, openPortalHotkey,    v
@@ -56,18 +56,57 @@ ReadSettings(){
 }
 
 SaveSettings(){
+    ; Set of flasks
+    IniWrite, %set_of_flasks_active%,settings.ini, settings, set_of_flasks_active
     IniWrite, %setOfFlasksHotkey%,   settings.ini, settings, setOfFlasksHotkey
-    IniWrite, %quick_flask_list%,    settings.ini, settings, quick_flask_list
-    IniWrite, %quick_flask_list_1%,  settings.ini, settings, quick_flask_list_1
-    IniWrite, %lootColor%,           settings.ini, settings, lootColor
-    IniWrite, %loot_dalay%,          settings.ini, settings, loot_dalay
-    IniWrite, %portalX%,             settings.ini, settings, portalX
-    IniWrite, %portalY%,             settings.ini, settings, portalY
+    IniWrite, %flask_key_set%,       settings.ini, settings, flask_key_set
+    IniWrite, %flask_key_set1%,      settings.ini, settings, flask_key_set1
+    IniWrite, %auto_l_flask_active%, settings.ini, settings, auto_l_flask_active
+    IniWrite, %autoLifeFlaskHotkey%, settings.ini, settings, autoLifeFlaskHotkey
+    IniWrite, %low_life_flask_list%, settings.ini, settings, low_life_flask_list
     IniWrite, %low_life_X%,          settings.ini, settings, low_life_X
     IniWrite, %low_life_Y%,          settings.ini, settings, low_life_Y
     IniWrite, %life_color%,          settings.ini, settings, life_color
-    IniWrite, %low_life_flask_list%, settings.ini, settings, low_life_flask_list
+    ; Smoke mine
+    IniWrite, %smoke_mine_active%,   settings.ini, settings, smoke_mine_active
+    IniWrite, %smokeMineHotkey%,     settings.ini, settings, smokeMineHotkey
     IniWrite, %mine_laying_time%,    settings.ini, settings, mine_laying_time
-    IniWrite, %url%,                 settings.ini, settings, url
+    ; Auto loot
+    IniWrite, %auto_looting_active%, settings.ini, settings, auto_looting_active
+    IniWrite, %autoLootingHotkey%,   settings.ini, settings, autoLootingHotkey
+    IniWrite, %loot_one_item_active%,settings.ini, settings, loot_one_item_active
+    IniWrite, %lootOneItemHotkey%,   settings.ini, settings, lootOneItemHotkey
+    IniWrite, %lootColor%,           settings.ini, settings, lootColor
+    IniWrite, %loot_dalay%,          settings.ini, settings, loot_dalay
+    ; Auto walk
+    IniWrite, %auto_walk_active%,    settings.ini, settings, auto_walk_active
+    IniWrite, %autoWalkHotkey%,      settings.ini, settings, autoWalkHotkey
+    ; Open portal
+    IniWrite, %open_portal_active%,  settings.ini, settings, open_portal_active
+    IniWrite, %openPortalHotkey%,    settings.ini, settings, openPortalHotkey
+    IniWrite, %portalX%,             settings.ini, settings, portalX
+    IniWrite, %portalY%,             settings.ini, settings, portalY
+    ; Game Logout
+    IniWrite, %game_logout_active%,  settings.ini, settings, game_logout_active
+    IniWrite, %gameLogoutHotkey%,    settings.ini, settings, gameLogoutHotkey
+    IniWrite, %auto_logout_active%,  settings.ini, settings, auto_logout_active
+    IniWrite, %autoLogoutHotkey%,    settings.ini, settings, autoLogoutHotkey
+    IniWrite, %logout_X%,            settings.ini, settings, logout_X
+    IniWrite, %logout_Y%,            settings.ini, settings, logout_Y
+    IniWrite, %logout_life_color%,   settings.ini, settings, logout_life_color
+    IniWrite, %black_screen%,        settings.ini, settings, black_screen
+    ; Hideout
+    IniWrite, %hideout_active%,      settings.ini, settings, hideout_active
+    IniWrite, %hideoutHotkey%,       settings.ini, settings, hideoutHotkey
+    ; Party invite/kick
+    IniWrite, %party_invite_active%, settings.ini, settings, partyInvite_active
+    IniWrite, %partyInviteHotkey%,   settings.ini, settings, partyInviteHotkey
+    IniWrite, %party_kick_active%,   settings.ini, settings, party_kick_active
+    IniWrite, %partyKickHotkey%,     settings.ini, settings, partyKickHotkey
+    ; Sequence of skills, BFBB, Cremation > Desecrate and etc
+    IniWrite, %seq_skills_active%,   settings.ini, settings, seq_skills_active
+    IniWrite, %seqSkillsHotkey%,     settings.ini, settings, seqSkillsHotkey
+    IniWrite, %seq_second_skill%,    settings.ini, settings, seq_second_skill
+    IniWrite, %seq_castspeed_time%,  settings.ini, settings, seq_castspeed_time
     return
 }

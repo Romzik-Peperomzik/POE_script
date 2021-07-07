@@ -1,6 +1,6 @@
 #Include functions.ahk
 #Include rw_settings.ahk
-;#Include gui.ahk
+#Include gui.ahk
 
 
 #IfWinActive, Path of Exile ahk_class POEWindowClass
@@ -75,9 +75,9 @@ Hotkey, %partyInviteHotkey%, PartyInviteLabel
 Hotkey, %partyKickHotkey%, PartyKickLabel 
 Hotkey, %seqSkillsHotkey%, SequenceOfSkillsLabel 
 Hotkey, %autoLifeFlaskHotkey%, AutoLifeFlaskLabel
-Hotkey, %auto_logout_active%, AutoLogoutLabel
+; Hotkey, %auto_logout_active%, AutoLogoutLabel
 
-; And run gui?
+RunGUI()
 ;-----------------------------------------------------------------------------
 
 !z::GetMouseColorPos()             ; Alt+z get pixel coords and color at mouse pos.
