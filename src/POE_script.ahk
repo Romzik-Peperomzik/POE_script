@@ -2,8 +2,7 @@
 #Include rw_settings.ahk
 #Include gui.ahk
 
-
-#IfWinActive, Path of Exile ahk_class POEWindowClass
+; #IfWinActive, Path of Exile ahk_class POEWindowClass
 #SingleInstance force  ; Replaces the old instance of script automatically
 #NoEnv  ; Recommended for performance
 #Persistent  ; Keeps a script permanently running
@@ -31,7 +30,7 @@ global setOfFlasksHotkey
 global smokeMineHotkey
 global autoLootingHotkey
 global lootOneItemHotkey
-global autoWalkHotkey
+global AutoWalkHotkey
 global openPortalHotkey
 global gameLogoutHotkey
 global hideoutHotkey
@@ -67,7 +66,7 @@ Hotkey, %setOfFlasksHotkey%, SetOfFlasksLabel
 Hotkey, %smokeMineHotkey%, SmokeMineLabel
 Hotkey, %autoLootingHotkey%, LootAllLabel 
 Hotkey, %lootOneItemHotkey%, LootOneItem 
-Hotkey, %autoWalkHotkey%, HoldWalkLabel 
+Hotkey, %AutoWalkHotkey%, HoldWalkLabel 
 Hotkey, %openPortalHotkey%, OpenPortalLabel 
 Hotkey, %gameLogoutHotkey%, GameLogoutLabel 
 Hotkey, %hideoutHotkey%, HideoutLabel
@@ -134,7 +133,7 @@ HoldWalkLabel:                     ; Toggle walk (like hold lmb to walk).
         HoldWalk()
     }
     else{
-        Send, %autoWalkHotkey%
+        Send, %AutoWalkHotkey%
     }
     return
 
