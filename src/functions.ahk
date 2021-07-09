@@ -5,22 +5,13 @@ GetMouseColorPos(){  ; Picking color and coords at mouse position.
     return
 }
 
-SetOfFlasks(list){  ; Iterating on string and send its substings which delim by -.
-    Loop, parse, list, -
-    {        
-        Send %A_LoopField%
-        Sleep 50
-    }
-    return
-}
-
 SmokeMine(){
-    Send d
-    Send r
+    Send %detonate_button%
+    Send %smoke_mine_button%
     sleep %mine_laying_time%
-    Send d
+    Send %detonate_button%
     sleep 40
-    Send d
+    Send %detonate_button%
     return
 }
 
@@ -39,9 +30,30 @@ HoldWalk(){
     return
 }
 
+Activate_Set_of_Flasks(){
+    set_of_flasks_toggle := !set_of_flasks_toggle
+    if set_of_flasks_toggle{
+        MsgBox , 0, , Set of flasks : On, 0.5
+        SetOfFlasks(flask_key_set)
+    }
+    else{
+        MsgBox , 0, , Set of flasks : Off, 0.5
+    }
+    return
+}
+
+SetOfFlasks(list){  ; Iterating on string and send its substings which delim by -.
+    Loop, parse, list, -
+    {        
+        Send %A_LoopField%
+        Sleep 50
+    }
+    return
+}
+
 Activate_AutoLifeFlask(){
-    auto_life_flask_active := !auto_life_flask_active
-    if auto_life_flask_active{
+    auto_l_flask_toggle := !auto_l_flask_toggle
+    if auto_l_flask_toggle{
         AutoLifeFlaskNotice()
         ; MsgBox , 0, , Auto flask : On, 0.5
         AutoLifeFlask()
@@ -54,7 +66,7 @@ Activate_AutoLifeFlask(){
 }
 
 AutoLifeFlask(){    
-    while auto_life_flask_active
+    while auto_l_flask_toggle
     {
         if WinActive("Path of Exile")
         {
@@ -170,7 +182,7 @@ LootAll(){
         if !LootSmallRegion(){
             break
         }
-        Sleep loot_dalay
+        Sleep loot_delay
     }
 
     while (GetKeyState("LControl", "P") && GetKeyState("s", "P")){
@@ -180,7 +192,7 @@ LootAll(){
             if !LootSmallRegion(){
                 break
             }
-            Sleep loot_dalay
+            Sleep loot_delay
         }
     }
 }

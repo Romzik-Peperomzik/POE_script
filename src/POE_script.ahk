@@ -12,6 +12,8 @@ SetDefaultMouseSpeed, 0          ; Sets the mouse speed, 0 - instantly
 
 ; Importing bool status of functions:
 global set_of_flasks_active
+global auto_l_flask_active
+global auto_l_flask_toggle
 global smoke_mine_active
 global auto_looting_active
 global loot_one_item_active
@@ -22,7 +24,6 @@ global hideout_active
 global party_invite_active
 global party_kick_active
 global seq_skills_active
-global auto_l_flask_active
 global auto_logout_active
 
 ; Importing hotkeys of functions:
@@ -42,7 +43,7 @@ global autoLogoutHotkey
 
 ; Just variables:
 global lootColor                   ; border loot icon color 
-global loot_dalay                  ; delay between looting
+global loot_delay                  ; delay between looting
 global portalX
 global portalY
 global flask_key_set               ; flasks and skills sequence
@@ -57,6 +58,8 @@ global logout_X                    ; auto logout variables start
 global logout_Y
 global logout_life_color
 global black_screen
+global smoke_mine_button
+global detonate_button
 
 ;-----------------------------------------------------------------------------
 ReadSettings()
@@ -83,119 +86,145 @@ RunGUI()
 
 SetOfFlasksLabel:                  ; Pressing set of flasks and skills. 
     if set_of_flasks_active{
-        SetOfFlasks(flask_key_set)
-    }
+        Hotkey, %setOfFlasksHotkey%, On
+        Activate_Set_of_Flasks()
+    } 
     else{
+        Hotkey, %setOfFlasksHotkey%, Off
         Send, %setOfFlasksHotkey%
     }
-    return   
+return
 
 AutoLifeFlaskLabel:                ; Auto life flask. Cannot work at the same
     if auto_l_flask_active{        ;                     time with AutoLogout.
+        Hotkey, %autoLifeFlaskHotkey%, On
         Activate_AutoLifeFlask()
     }
     else{
+        Hotkey, %autoLifeFlaskHotkey%, Off
         Send, %autoLifeFlaskHotkey%
     }
     return
 
 SmokeMineLabel:                    ; Throwing and activating Smoke mine.
     if smoke_mine_active{
+        Hotkey, %smokeMineHotkey%, On
         SmokeMine()
     }
     else{
+        Hotkey, %smokeMineHotkey%, Off
         Send, %smokeMineHotkey%
     }
     return 
 
 LootOneItem:                       ; Loot one item.
-    if loot_one_item_active{                         
+    if loot_one_item_active{
+        Hotkey, %lootOneItemHotkey%, On
         if !LootSmallRegion(){
             LootBigRegion()
         }
     }
     else{
+        Hotkey, %lootOneItemHotkey%, Off
         Send, %lootOneItemHotkey%
     }
     return
 
 LootAllLabel:                      ; Hold to keep looting.
     if auto_looting_active{
+        Hotkey, %autoLootingHotkey%, On
         LootAll()
     }
     else{
+        Hotkey, %autoLootingHotkey%, Off
         Send, %autoLootingHotkey%
     }
     return
                   
 HoldWalkLabel:                     ; Toggle walk (like hold lmb to walk).
     if auto_walk_active{
+        Hotkey, %AutoWalkHotkey%, On
         HoldWalk()
     }
     else{
+        Hotkey, %AutoWalkHotkey%, Off
         Send, %AutoWalkHotkey%
     }
     return
 
 OpenPortalLabel:                   ; Use portal scroll 
     if open_portal_active{
+        Hotkey, %openPortalHotkey%, On
         OpenPortal()
     }
     else{
+        Hotkey, %openPortalHotkey%, Off
         Send, %openPortalHotkey%
     }
     return
 
 GameLogoutLabel:                   ; `- Logout, SC029 is Tilda's id.
     if game_logout_active{
+        Hotkey, %gameLogoutHotkey%, On
         GameLogout()
     }
     else{
+        Hotkey, %gameLogoutHotkey%, Off
         Send, %gameLogoutHotkey%
     }
     return 
 
 AutoLogoutLabel:                   ; AutoLogout. Cannot work at the same time
     if auto_logout_active{         ;                       with AutoLifeFlask.
+        Hotkey, %autoLogoutHotkey%, On
         Activate_AutoLogout()
     }
     else{
+        Hotkey, %autoLogoutHotkey%, Off
         Send, %autoLogoutHotkey%
     }
     return 
 
 HideoutLabel:                      ; Hideout.
     if hideout_active{
+        Hotkey, %hideoutHotkey%, On
         Hideout()
     }
     else{
+        Hotkey, %hideoutHotkey%, Off
         Send, %hideoutHotkey%
     }
     return 
 
 PartyInviteLabel:                  ; Invite to party by last received player message.
     if party_invite_active{
+        Hotkey, %partyInviteHotkey%, On
         PartyInvite()
     }
     else{
+        Hotkey, %partyInviteHotkey%, Off
         Send, %partyInviteHotkey%
     }
     return 
 
 PartyKickLabel:                    ; Kick from party by last received player message.
     if hideout_active{
+        Hotkey, %hideoutHotkey%, On
         PartyKick()
     }
     else{
+        Hotkey, %hideoutHotkey%, Off
         Send, %hideoutHotkey%
     }
     return
 
 SequenceOfSkillsLabel:             ; Cremation delay Desecrate, BF delay BB and etc.
     if seq_skills_active{
+        Hotkey, %seqSkillsHotkey%, On
         SequenceOfSkills()
     }
     else{
+        Hotkey, %seqSkillsHotkey%, Off
         Send, %seqSkillsHotkey%
     }
     return

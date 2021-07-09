@@ -1,26 +1,24 @@
 ReadSettings(){
     ; Set of flasks
-    IniRead, set_of_flasks_active,settings.ini, settings, set_of_flasks_active,0
+    IniRead, set_of_flasks_active,settings.ini, settings, set_of_flasks_active,1
+    IniRead, set_of_flasks_toggle,settings.ini, settings, set_of_flasks_toggle,1
     IniRead, setOfFlasksHotkey,   settings.ini, settings, setOfFlasksHotkey,   a    
     IniRead, flask_key_set,       settings.ini, settings, flask_key_set,       2-3-4-5
     IniRead, flask_key_set1,      settings.ini, settings, flask_key_set1,      3-w
     IniRead, auto_l_flask_active, settings.ini, settings, auto_l_flask_active, 0
+    IniRead, auto_l_flask_toggle, settings.ini, settings, auto_l_flask_toggle, 1
     IniRead, autoLifeFlaskHotkey, settings.ini, settings, autoLifeFlaskHotkey, ^f
     IniRead, low_life_flask_list, settings.ini, settings, low_life_flask_list, 1 
     IniRead, low_life_X,          settings.ini, settings, low_life_X,          133
     IniRead, low_life_Y,          settings.ini, settings, low_life_Y,          948
-    IniRead, life_color,          settings.ini, settings, life_color,          0x2419A7 
-    ; Smoke mine
-    IniRead, smoke_mine_active,   settings.ini, settings, smoke_mine_active,   0
-    IniRead, smokeMineHotkey,     settings.ini, settings, smokeMineHotkey,     ^r
-    IniRead, mine_laying_time,    settings.ini, settings, mine_laying_time,    150 
+    IniRead, life_color,          settings.ini, settings, life_color,          0x2419A7
     ; Auto loot
     IniRead, auto_looting_active, settings.ini, settings, auto_looting_active, 0
-    IniRead, autoLootingHotkey,   settings.ini, settings, autoLootingHotkey,   ^s
+    IniRead, autoLootingHotkey,   settings.ini, settings, autoLootingHotkey,   +s
     IniRead, loot_one_item_active,settings.ini, settings, loot_one_item_active,0
     IniRead, lootOneItemHotkey,   settings.ini, settings, lootOneItemHotkey,   s
     IniRead, lootColor,           settings.ini, settings, lootColor,           0x790062
-    IniRead, loot_dalay,          settings.ini, settings, loot_dalay,          400
+    IniRead, loot_delay,          settings.ini, settings, loot_delay,          400
     ; Auto walk
     IniRead, auto_walk_active,    settings.ini, settings, auto_walk_active,    0
     IniRead, AutoWalkHotkey,      settings.ini, settings, AutoWalkHotkey,      ^d 
@@ -46,11 +44,18 @@ ReadSettings(){
     IniRead, partyInviteHotkey,   settings.ini, settings, partyInviteHotkey,   F6
     IniRead, party_kick_active,   settings.ini, settings, party_kick_active,   0
     IniRead, partyKickHotkey,     settings.ini, settings, partyKickHotkey,     F7
-    ; Sequence of skills, BFBB, Cremation > Desecrate and etc
+    ; Abilities sequences, BF > BB, Cremation > Desecrate and etc
     IniRead, seq_skills_active,   settings.ini, settings, seq_skills_active,   0
     IniRead, seqSkillsHotkey,     settings.ini, settings, seqSkillsHotkey,     right
     IniRead, seq_second_skill,    settings.ini, settings, seq_second_skill,    q
     IniRead, seq_castspeed_time,  settings.ini, settings, seq_castspeed_time,  340
+    ; Smoke mine
+    IniRead, detonate_button,     settings.ini, settings, detonate_button,     d
+    IniRead, smoke_mine_button,   settings.ini, settings, smoke_mine_button,   r
+    IniRead, smoke_mine_active,   settings.ini, settings, smoke_mine_active,   0
+    IniRead, smokeMineHotkey,     settings.ini, settings, smokeMineHotkey,     ^r
+    IniRead, mine_laying_time,    settings.ini, settings, mine_laying_time,    150
+    
 
     return
 }
@@ -67,17 +72,13 @@ SaveSettings(){
     IniWrite, %low_life_X%,          settings.ini, settings, low_life_X
     IniWrite, %low_life_Y%,          settings.ini, settings, low_life_Y
     IniWrite, %life_color%,          settings.ini, settings, life_color
-    ; Smoke mine
-    IniWrite, %smoke_mine_active%,   settings.ini, settings, smoke_mine_active
-    IniWrite, %smokeMineHotkey%,     settings.ini, settings, smokeMineHotkey
-    IniWrite, %mine_laying_time%,    settings.ini, settings, mine_laying_time
     ; Auto loot
     IniWrite, %auto_looting_active%, settings.ini, settings, auto_looting_active
     IniWrite, %autoLootingHotkey%,   settings.ini, settings, autoLootingHotkey
     IniWrite, %loot_one_item_active%,settings.ini, settings, loot_one_item_active
     IniWrite, %lootOneItemHotkey%,   settings.ini, settings, lootOneItemHotkey
     IniWrite, %lootColor%,           settings.ini, settings, lootColor
-    IniWrite, %loot_dalay%,          settings.ini, settings, loot_dalay
+    IniWrite, %loot_delay%,          settings.ini, settings, loot_delay
     ; Auto walk
     IniWrite, %auto_walk_active%,    settings.ini, settings, auto_walk_active
     IniWrite, %AutoWalkHotkey%,      settings.ini, settings, AutoWalkHotkey
@@ -103,10 +104,14 @@ SaveSettings(){
     IniWrite, %partyInviteHotkey%,   settings.ini, settings, partyInviteHotkey
     IniWrite, %party_kick_active%,   settings.ini, settings, party_kick_active
     IniWrite, %partyKickHotkey%,     settings.ini, settings, partyKickHotkey
-    ; Sequence of skills, BFBB, Cremation > Desecrate and etc
+    ; Abilities sequences, BF > BB, Cremation > Desecrate and etc
     IniWrite, %seq_skills_active%,   settings.ini, settings, seq_skills_active
     IniWrite, %seqSkillsHotkey%,     settings.ini, settings, seqSkillsHotkey
     IniWrite, %seq_second_skill%,    settings.ini, settings, seq_second_skill
     IniWrite, %seq_castspeed_time%,  settings.ini, settings, seq_castspeed_time
+    ; Smoke mine
+    IniWrite, %smoke_mine_active%,   settings.ini, settings, smoke_mine_active
+    IniWrite, %smokeMineHotkey%,     settings.ini, settings, smokeMineHotkey
+    IniWrite, %mine_laying_time%,    settings.ini, settings, mine_laying_time
     return
 }
