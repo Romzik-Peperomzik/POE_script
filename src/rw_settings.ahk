@@ -26,16 +26,7 @@ ReadSettings(){
     IniRead, open_portal_active,  settings.ini, settings, open_portal_active,  0
     IniRead, openPortalHotkey,    settings.ini, settings, openPortalHotkey,    v
     IniRead, portalX,             settings.ini, settings, portalX,             1303
-    IniRead, portalY,             settings.ini, settings, portalY,             816
-    ; Game Logout
-    IniRead, game_logout_active,  settings.ini, settings, game_logout_active,  1
-    IniRead, gameLogoutHotkey,    settings.ini, settings, gameLogoutHotkey,    SC029
-    IniRead, auto_logout_active,  settings.ini, settings, auto_logout_active,  0
-    IniRead, autoLogoutHotkey,    settings.ini, settings, autoLogoutHotkey,    F3
-    IniRead, logout_X,            settings.ini, settings, logout_X,            84
-    IniRead, logout_Y,            settings.ini, settings, logout_Y,            992
-    IniRead, logout_life_color,   settings.ini, settings, logout_life_color,   0x19117B
-    IniRead, black_screen,        settings.ini, settings, black_screen,        0x000000
+    IniRead, portalY,             settings.ini, settings, portalY,             816    
     ; Hideout
     IniRead, hideout_active,      settings.ini, settings, hideout_active,      1
     IniRead, hideoutHotkey,       settings.ini, settings, hideoutHotkey,       F5
@@ -55,8 +46,15 @@ ReadSettings(){
     IniRead, smoke_mine_active,   settings.ini, settings, smoke_mine_active,   0
     IniRead, smokeMineHotkey,     settings.ini, settings, smokeMineHotkey,     ^r
     IniRead, mine_laying_time,    settings.ini, settings, mine_laying_time,    150
-    
-
+    ; Game Logout
+    IniRead, game_logout_active,  settings.ini, settings, game_logout_active,  1
+    IniRead, gameLogoutHotkey,    settings.ini, settings, gameLogoutHotkey,    SC029
+    IniRead, auto_logout_active,  settings.ini, settings, auto_logout_active,  0
+    IniRead, autoLogoutHotkey,    settings.ini, settings, autoLogoutHotkey,    F3
+    IniRead, logout_X,            settings.ini, settings, logout_X,            84
+    IniRead, logout_Y,            settings.ini, settings, logout_Y,            992
+    IniRead, logout_life_color,   settings.ini, settings, logout_life_color,   0x19117B
+    IniRead, black_screen,        settings.ini, settings, black_screen,        0x000000
     return
 }
 
@@ -86,16 +84,7 @@ SaveSettings(){
     IniWrite, %open_portal_active%,  settings.ini, settings, open_portal_active
     IniWrite, %openPortalHotkey%,    settings.ini, settings, openPortalHotkey
     IniWrite, %portalX%,             settings.ini, settings, portalX
-    IniWrite, %portalY%,             settings.ini, settings, portalY
-    ; Game Logout
-    IniWrite, %game_logout_active%,  settings.ini, settings, game_logout_active
-    IniWrite, %gameLogoutHotkey%,    settings.ini, settings, gameLogoutHotkey
-    IniWrite, %auto_logout_active%,  settings.ini, settings, auto_logout_active
-    IniWrite, %autoLogoutHotkey%,    settings.ini, settings, autoLogoutHotkey
-    IniWrite, %logout_X%,            settings.ini, settings, logout_X
-    IniWrite, %logout_Y%,            settings.ini, settings, logout_Y
-    IniWrite, %logout_life_color%,   settings.ini, settings, logout_life_color
-    IniWrite, %black_screen%,        settings.ini, settings, black_screen
+    IniWrite, %portalY%,             settings.ini, settings, portalY    
     ; Hideout
     IniWrite, %hideout_active%,      settings.ini, settings, hideout_active
     IniWrite, %hideoutHotkey%,       settings.ini, settings, hideoutHotkey
@@ -113,5 +102,14 @@ SaveSettings(){
     IniWrite, %smoke_mine_active%,   settings.ini, settings, smoke_mine_active
     IniWrite, %smokeMineHotkey%,     settings.ini, settings, smokeMineHotkey
     IniWrite, %mine_laying_time%,    settings.ini, settings, mine_laying_time
+    ; Game Logout
+    IniWrite, %game_logout_active%,  settings.ini, settings, game_logout_active
+    IniWrite, %gameLogoutHotkey%,    settings.ini, settings, gameLogoutHotkey
+    IniWrite, %auto_logout_active%,  settings.ini, settings, auto_logout_active
+    IniWrite, %autoLogoutHotkey%,    settings.ini, settings, autoLogoutHotkey
+    IniWrite, %logout_X%,            settings.ini, settings, logout_X
+    IniWrite, %logout_Y%,            settings.ini, settings, logout_Y
+    IniWrite, %logout_life_color%,   settings.ini, settings, logout_life_color
+    IniWrite, %black_screen%,        settings.ini, settings, black_screen
     return
 }

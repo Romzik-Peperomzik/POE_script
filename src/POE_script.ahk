@@ -60,6 +60,7 @@ global logout_life_color
 global black_screen
 global smoke_mine_button
 global detonate_button
+global seq_second_skill
 
 ;-----------------------------------------------------------------------------
 ReadSettings()
