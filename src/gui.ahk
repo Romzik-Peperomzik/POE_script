@@ -35,7 +35,7 @@ Gui, Add, Edit, x62 y249 w47 h20 vlow_life_X, %low_life_X%
 Gui, Add, Text, x142 y249 w10 h20 , Y:
 Gui, Add, Edit, x162 y249 w47 h20 vlow_life_Y, %low_life_Y%
 Gui, Add, Text, x42 y279 w100 h20 , X, Y pixel color:
-Gui, Add, Edit, x162 y279 w75 h20 vlife_color, %life_color%
+Gui, Add, Edit, x162 y279 w77 h20 vlife_color, %life_color%
 Gui, Add, Text, x42 y309 w100 h20 , list of keys:
 Gui, Add, Edit, x162 y309 w40 h20 vlow_life_flask_list, %low_life_flask_list%
 Gui, Add, Text, x42 y219 w110 h20 , Toggle AutoLF:
@@ -50,7 +50,7 @@ Gui, Font, S9 CDefault Bold, Verdana
 Gui, Add, GroupBox, x32 y369 w240 h140 , Auto Loot
 Gui, Font, norm, Verdana
 Gui, Add, Text, x42 y449 w120 h20 , Border loot color:
-Gui, Add, Edit, x162 y449 w75 h20 vlootColor, %lootColor%
+Gui, Add, Edit, x162 y449 w77 h20 vlootColor, %lootColor%
 Gui, Add, Text, x42 y389 w80 h20 , Loot 1 item
 Gui, Add, Hotkey, x162 y389 w60 h20 vlootOneItemHotkey, %lootOneItemHotkey%
 Gui, Add, CheckBox, x232 y389 w30 h20 Checked%loot_one_item_active% vloot_one_item_active, 
@@ -157,7 +157,7 @@ Gui, Add, Edit, x62 y579 w50 h20 vlogout_X, %logout_X%
 Gui, Add, Text, x142 y579 w10 h20 , Y:
 Gui, Add, Edit, x162 y579 w50 h20 vlogout_Y, %logout_Y%
 Gui, Add, Text, x42 y609 w150 h20 , Pixel Life/ES color:
-Gui, Add, Edit, x162 y609 w75 h20 vlogout_life_color, %logout_life_color%
+Gui, Add, Edit, x162 y609 w77 h20 vlogout_life_color, %logout_life_color%
 
 Gui, Font, S9 CDefault Bold, Verdana
 Gui, Add, Text, x428 y539 w153 h20 , How to use autologout:

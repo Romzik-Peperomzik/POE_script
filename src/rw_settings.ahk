@@ -7,9 +7,9 @@ ReadSettings(){
     IniRead, auto_l_flask_toggle, settings.ini, settings, auto_l_flask_toggle, 1
     IniRead, autoLifeFlaskHotkey, settings.ini, settings, autoLifeFlaskHotkey, ^f
     IniRead, low_life_flask_list, settings.ini, settings, low_life_flask_list, 1 
-    IniRead, low_life_X,          settings.ini, settings, low_life_X,          133
-    IniRead, low_life_Y,          settings.ini, settings, low_life_Y,          948
-    IniRead, life_color,          settings.ini, settings, life_color,          0x2419A7
+    IniRead, low_life_X,          settings.ini, settings, low_life_X,          158
+    IniRead, low_life_Y,          settings.ini, settings, low_life_Y,          937
+    IniRead, life_color,          settings.ini, settings, life_color,          0x1A0D98
     ; Auto loot
     IniRead, auto_looting_active, settings.ini, settings, auto_looting_active, 0
     IniRead, autoLootingHotkey,   settings.ini, settings, autoLootingHotkey,   ^s
@@ -54,6 +54,8 @@ ReadSettings(){
     IniRead, logout_Y,            settings.ini, settings, logout_Y,            953
     IniRead, logout_life_color,   settings.ini, settings, logout_life_color,   0x160C92
     IniRead, black_screen,        settings.ini, settings, black_screen,        0x000000
+    IniRead, black_screen_X,      settings.ini, settings, black_screen_X,      0
+    IniRead, black_screen_Y,      settings.ini, settings, black_screen_Y,      51
     return
 }
 
@@ -63,7 +65,7 @@ SaveSettings(){
     IniWrite, %setOfFlasksHotkey%,   settings.ini, settings, setOfFlasksHotkey
     IniWrite, %flask_key_set%,       settings.ini, settings, flask_key_set
     IniWrite, %auto_l_flask_active%, settings.ini, settings, auto_l_flask_active
-    IniWrite, %auto_l_flask_toggle%  settings.ini, settings, auto_l_flask_toggle
+    IniWrite, %auto_l_flask_toggle%, settings.ini, settings, auto_l_flask_toggle
     IniWrite, %autoLifeFlaskHotkey%, settings.ini, settings, autoLifeFlaskHotkey
     IniWrite, %low_life_flask_list%, settings.ini, settings, low_life_flask_list
     IniWrite, %low_life_X%,          settings.ini, settings, low_life_X
@@ -113,5 +115,7 @@ SaveSettings(){
     IniWrite, %logout_Y%,            settings.ini, settings, logout_Y
     IniWrite, %logout_life_color%,   settings.ini, settings, logout_life_color
     IniWrite, %black_screen%,        settings.ini, settings, black_screen
+    IniWrite, %black_screen_X%,      settings.ini, settings, black_screen_X
+    IniWrite, %black_screen_Y%,      settings.ini, settings, black_screen_Y
     return
 }

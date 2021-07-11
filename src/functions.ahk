@@ -30,7 +30,6 @@ HoldWalk(){
     return
 }
 
-
 SetOfFlasks(list){  ; Iterating on string and send its substings which delim by -.
     Loop, parse, list, -
     {        
@@ -40,7 +39,7 @@ SetOfFlasks(list){  ; Iterating on string and send its substings which delim by 
     return
 }
 
-Activate_AutoLifeFlask(){
+Activate_AutoLifeFlask(){  ; Auto Logout Toggle
     auto_l_flask_toggle := !auto_l_flask_toggle
     if auto_l_flask_toggle{
         AutoLifeFlaskNotice()
@@ -52,23 +51,34 @@ Activate_AutoLifeFlask(){
     return
 }
 
-AutoLifeFlask(){    
+AutoLifeFlask(){  ; Main Auto Life Flask function
     while auto_l_flask_toggle
     {
         if WinActive("Path of Exile")
         {
-            PixelGetColor, color, low_life_X, low_life_Y
-            if color != %life_color%
+            PixelGetColor, life_color_for_flask, low_life_X, low_life_Y
+            if life_color_for_flask != %life_color%
             {
-                SetOfFlasks(low_life_flask_list)
-                Sleep 150
+                PixelGetColor, black_pixel, black_screen_X, black_screen_Y
+                if black_pixel = %black_screen%  ; If it's tp's screen - suspend and sleep 3s.
+                {
+                    Send {F2}
+                    send {Pause}
+                    sleep 3000
+                    send {Pause}
+                    Send {F2}
+                }
+                else{
+                    SetOfFlasks(low_life_flask_list)
+                    Sleep 150
+                }
             }
         }
     }    
     return
 }
 
-Activate_AutoLogout(){  
+Activate_AutoLogout(){  ; Auto Logout Toggle
     auto_logout_toggle := !auto_logout_toggle
     if auto_logout_toggle{        
         oosCommand()
@@ -81,30 +91,32 @@ Activate_AutoLogout(){
     return
 }
 
-EventLogoutLoop(){  ; Main logout function.
+EventLogoutLoop(){  ; Main Auto logout function.
     while auto_logout_toggle
     {
         if WinActive("Path of Exile")
         {
-            PixelGetColor, color, logout_X, logout_Y            
-            if color = %black_screen%  ; If it's tp's screen - suspend and sleep 3s.
-            {
-                Send {F2}
-                Send {Pause}
-                sleep 3000
-                Send {F2}
-                Send {Pause}
-            }
-            if color != %logout_life_color%  ; If life pixel not found.
-            {
-                if color != %black_screen%  ; And it's not a loading screen.
+            PixelGetColor, life_pixel, logout_X, logout_Y            
+            if life_pixel != %logout_life_color% ; If life pixel not found.
+            {                
+                PixelGetColor, black_pixel, black_screen_X, black_screen_Y
+                if black_pixel = %black_screen%  ; If it's tp's screen - suspend and sleep 3s.
                 {
+                    Send {F2}
+                    send {Pause}
+                    sleep 3000
+                    send {Pause}
+                    Send {F2}
+                }
+                else{
                     SetOfFlasks(low_life_flask_list)  ; Drink life potion before logout.
                     GameLogout()
                     Sleep 150
                     Activate_AutoLogout()
+                    ; MsgBox %black_pixel%, %life_pixel%
                 }
             }
+
         }
     }    
     return
