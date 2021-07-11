@@ -14,53 +14,56 @@ SetDefaultMouseSpeed, 0          ; Sets the mouse speed, 0 - instantly
 global set_of_flasks_active
 global auto_l_flask_active
 global auto_l_flask_toggle
-global smoke_mine_active
 global auto_looting_active
 global loot_one_item_active
 global auto_walk_active
 global open_portal_active
-global game_logout_active
 global hideout_active
 global party_invite_active
 global party_kick_active
 global seq_skills_active
+global smoke_mine_active
+global game_logout_active
 global auto_logout_active
+global auto_logout_toggle
+
 
 ; Importing hotkeys of functions:
 global setOfFlasksHotkey
-global smokeMineHotkey
+global autoLifeFlaskHotkey
 global autoLootingHotkey
 global lootOneItemHotkey
 global AutoWalkHotkey
 global openPortalHotkey
-global gameLogoutHotkey
 global hideoutHotkey
 global partyInviteHotkey
 global partyKickHotkey
 global seqSkillsHotkey
-global autoLifeFlaskHotkey
+global smokeMineHotkey
+global gameLogoutHotkey
 global autoLogoutHotkey
 
+
 ; Just variables:
+global flask_key_set               ; flasks and skills sequence
+global low_life_flask_list         ; list of flasks which would be used by Auto Life Flask function
+global low_life_X                  
+global low_life_Y
+global life_color
 global lootColor                   ; border loot icon color 
 global loot_delay                  ; delay between looting
 global portalX
 global portalY
-global flask_key_set               ; flasks and skills sequence
-global flask_key_set1              ; second sequence if need
-global mine_laying_time            ; delay between throw mine and detonate them
+global seq_second_skill            ; second key which would be pressed at seqSkillsHotkey 
 global seq_castspeed_time          ; delay between cast rmb skill and cast q skill
-global low_life_X                  ; auto flask variables start
-global low_life_Y
-global life_color
-global low_life_flask_list
-global logout_X                    ; auto logout variables start
+global detonate_button             ; detonate mine key from in game settings
+global smoke_mine_button           ; smoke mine key from in game settings
+global mine_laying_time            ; delay between throw mine and detonate them
+global logout_X                    
 global logout_Y
 global logout_life_color
 global black_screen
-global smoke_mine_button
-global detonate_button
-global seq_second_skill
+
 
 ;-----------------------------------------------------------------------------
 ReadSettings()
@@ -78,17 +81,17 @@ Hotkey, %partyInviteHotkey%, PartyInviteLabel
 Hotkey, %partyKickHotkey%, PartyKickLabel 
 Hotkey, %seqSkillsHotkey%, SequenceOfSkillsLabel 
 Hotkey, %autoLifeFlaskHotkey%, AutoLifeFlaskLabel
-; Hotkey, %auto_logout_active%, AutoLogoutLabel
+Hotkey, %autoLogoutHotkey%, AutoLogoutLabel
 
 RunGUI()
 ;-----------------------------------------------------------------------------
 
-!z::GetMouseColorPos()             ; Alt+z get pixel coords and color at mouse pos.
+!z::GetMouseColorPos()             ; Alt+Z get pixel coords and color at mouse pos.
 
 SetOfFlasksLabel:                  ; Pressing set of flasks and skills. 
     if set_of_flasks_active{
         Hotkey, %setOfFlasksHotkey%, On
-        Activate_Set_of_Flasks()
+        SetOfFlasks(flask_key_set)
     } 
     else{
         Hotkey, %setOfFlasksHotkey%, Off

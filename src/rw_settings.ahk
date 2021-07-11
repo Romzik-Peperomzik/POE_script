@@ -1,10 +1,8 @@
 ReadSettings(){
     ; Set of flasks
     IniRead, set_of_flasks_active,settings.ini, settings, set_of_flasks_active,1
-    IniRead, set_of_flasks_toggle,settings.ini, settings, set_of_flasks_toggle,1
     IniRead, setOfFlasksHotkey,   settings.ini, settings, setOfFlasksHotkey,   a    
     IniRead, flask_key_set,       settings.ini, settings, flask_key_set,       2-3-4-5
-    IniRead, flask_key_set1,      settings.ini, settings, flask_key_set1,      3-w
     IniRead, auto_l_flask_active, settings.ini, settings, auto_l_flask_active, 0
     IniRead, auto_l_flask_toggle, settings.ini, settings, auto_l_flask_toggle, 1
     IniRead, autoLifeFlaskHotkey, settings.ini, settings, autoLifeFlaskHotkey, ^f
@@ -14,11 +12,11 @@ ReadSettings(){
     IniRead, life_color,          settings.ini, settings, life_color,          0x2419A7
     ; Auto loot
     IniRead, auto_looting_active, settings.ini, settings, auto_looting_active, 0
-    IniRead, autoLootingHotkey,   settings.ini, settings, autoLootingHotkey,   +s
+    IniRead, autoLootingHotkey,   settings.ini, settings, autoLootingHotkey,   ^s
     IniRead, loot_one_item_active,settings.ini, settings, loot_one_item_active,0
     IniRead, lootOneItemHotkey,   settings.ini, settings, lootOneItemHotkey,   s
     IniRead, lootColor,           settings.ini, settings, lootColor,           0x790062
-    IniRead, loot_delay,          settings.ini, settings, loot_delay,          400
+    IniRead, loot_delay,          settings.ini, settings, loot_delay,          300
     ; Auto walk
     IniRead, auto_walk_active,    settings.ini, settings, auto_walk_active,    0
     IniRead, AutoWalkHotkey,      settings.ini, settings, AutoWalkHotkey,      ^d 
@@ -50,10 +48,11 @@ ReadSettings(){
     IniRead, game_logout_active,  settings.ini, settings, game_logout_active,  1
     IniRead, gameLogoutHotkey,    settings.ini, settings, gameLogoutHotkey,    SC029
     IniRead, auto_logout_active,  settings.ini, settings, auto_logout_active,  0
+    IniRead, auto_logout_toggle,  settings.ini, settings, auto_logout_toggle,  0
     IniRead, autoLogoutHotkey,    settings.ini, settings, autoLogoutHotkey,    F3
-    IniRead, logout_X,            settings.ini, settings, logout_X,            84
-    IniRead, logout_Y,            settings.ini, settings, logout_Y,            992
-    IniRead, logout_life_color,   settings.ini, settings, logout_life_color,   0x19117B
+    IniRead, logout_X,            settings.ini, settings, logout_X,            161
+    IniRead, logout_Y,            settings.ini, settings, logout_Y,            953
+    IniRead, logout_life_color,   settings.ini, settings, logout_life_color,   0x160C92
     IniRead, black_screen,        settings.ini, settings, black_screen,        0x000000
     return
 }
@@ -63,8 +62,8 @@ SaveSettings(){
     IniWrite, %set_of_flasks_active%,settings.ini, settings, set_of_flasks_active
     IniWrite, %setOfFlasksHotkey%,   settings.ini, settings, setOfFlasksHotkey
     IniWrite, %flask_key_set%,       settings.ini, settings, flask_key_set
-    IniWrite, %flask_key_set1%,      settings.ini, settings, flask_key_set1
     IniWrite, %auto_l_flask_active%, settings.ini, settings, auto_l_flask_active
+    IniWrite, %auto_l_flask_toggle%  settings.ini, settings, auto_l_flask_toggle
     IniWrite, %autoLifeFlaskHotkey%, settings.ini, settings, autoLifeFlaskHotkey
     IniWrite, %low_life_flask_list%, settings.ini, settings, low_life_flask_list
     IniWrite, %low_life_X%,          settings.ini, settings, low_life_X
@@ -99,6 +98,8 @@ SaveSettings(){
     IniWrite, %seq_second_skill%,    settings.ini, settings, seq_second_skill
     IniWrite, %seq_castspeed_time%,  settings.ini, settings, seq_castspeed_time
     ; Smoke mine
+    IniWrite, %detonate_button%,     settings.ini, settings, detonate_button
+    IniWrite, %smoke_mine_button%,   settings.ini, settings, smoke_mine_button
     IniWrite, %smoke_mine_active%,   settings.ini, settings, smoke_mine_active
     IniWrite, %smokeMineHotkey%,     settings.ini, settings, smokeMineHotkey
     IniWrite, %mine_laying_time%,    settings.ini, settings, mine_laying_time
@@ -106,6 +107,7 @@ SaveSettings(){
     IniWrite, %game_logout_active%,  settings.ini, settings, game_logout_active
     IniWrite, %gameLogoutHotkey%,    settings.ini, settings, gameLogoutHotkey
     IniWrite, %auto_logout_active%,  settings.ini, settings, auto_logout_active
+    IniWrite, %auto_logout_toggle%,  settings.ini, settings, auto_logout_toggle
     IniWrite, %autoLogoutHotkey%,    settings.ini, settings, autoLogoutHotkey
     IniWrite, %logout_X%,            settings.ini, settings, logout_X
     IniWrite, %logout_Y%,            settings.ini, settings, logout_Y

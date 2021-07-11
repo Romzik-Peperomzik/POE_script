@@ -30,17 +30,6 @@ HoldWalk(){
     return
 }
 
-Activate_Set_of_Flasks(){
-    set_of_flasks_toggle := !set_of_flasks_toggle
-    if set_of_flasks_toggle{
-        MsgBox , 0, , Set of flasks : On, 0.5
-        SetOfFlasks(flask_key_set)
-    }
-    else{
-        MsgBox , 0, , Set of flasks : Off, 0.5
-    }
-    return
-}
 
 SetOfFlasks(list){  ; Iterating on string and send its substings which delim by -.
     Loop, parse, list, -
@@ -55,12 +44,10 @@ Activate_AutoLifeFlask(){
     auto_l_flask_toggle := !auto_l_flask_toggle
     if auto_l_flask_toggle{
         AutoLifeFlaskNotice()
-        ; MsgBox , 0, , Auto flask : On, 0.5
         AutoLifeFlask()
     }
     else{
         SplashTextOff
-        ; MsgBox , 0, , Auto flask : Off, 0.5
     }
     return
 }
@@ -82,11 +69,11 @@ AutoLifeFlask(){
 }
 
 Activate_AutoLogout(){  
-    auto_logout_active := !auto_logout_active
-    if auto_logout_active{        
+    auto_logout_toggle := !auto_logout_toggle
+    if auto_logout_toggle{        
         oosCommand()
         AutoLogoutNotice()
-        EventLogoutLoop() 
+        EventLogoutLoop()
     }
     else{
         SplashTextOff
@@ -95,7 +82,7 @@ Activate_AutoLogout(){
 }
 
 EventLogoutLoop(){  ; Main logout function.
-    while auto_logout_active
+    while auto_logout_toggle
     {
         if WinActive("Path of Exile")
         {
@@ -124,9 +111,8 @@ EventLogoutLoop(){  ; Main logout function.
 }
 
 GameLogout(){  ; Closing port which POE use by cports.exe.
-    IfWinActive Path of Exile
-    {
-    Run ./cports/cports.exe /close * * * * PathofExile_x64.exe
+    if WinActive("Path of Exile"){                              ;IfWinActive Path of Exile    
+        Run ./cports/cports.exe /close * * * * PathofExile.exe  ;PathofExile_x64.exe
     }
     return
 }
@@ -231,4 +217,3 @@ PartyKick(){  ; Kick command.
 	BlockInput Off
 	return
 }
-
