@@ -10,7 +10,7 @@ Gui, Add, GroupBox, x32 y4 w840 h70 , How to use script
 Gui, Font, S8 norm, Verdana
 Gui, Add, Text, x42 y23 w820 h15 , Choose and checkbox hotkeys functions whichever u need. If u want to change hotkey, click to field and tap at key or combination keys.
 Gui, Add, Text, x42 y38 w820 h15 , ATTENTION, Auto Logout and Auto Life Flask work only windowed game mode.
-Gui, Add, Text, x42 y53 w820 h15 , IF U NEED TO CHATTING OR JUST WANT OT PAUSE UR HOTKEYS PRESS F2 AND ALL HOTKEYS WILL BE BLOCKED.
+Gui, Add, Text, x42 y53 w820 h15 , IF U NEED TO CHATTING OR JUST WANT TO PAUSE UR HOTKEYS PRESS F2 AND ALL HOTKEYS WILL BE BLOCKED.
 
 ; Set of Flasks
 Gui, Font, S9 CDefault Bold, Verdana
@@ -89,7 +89,7 @@ Gui, Add, Text, x302 y399 w220 h20 , Kick from Party by Last Msg
 Gui, Add, Hotkey, x482 y399 w60 h20 vpartyKickHotkey, %partyKickHotkey%
 Gui, Add, CheckBox, x552 y399 w35 h20 Checked%party_kick_active% vparty_kick_active, 
 Gui, Add, Text, x302 y429 w130 h20 , Game Logout
-Gui, Add, Edit, x482 y429 w60 h20 vgameLogoutHotkey, %gameLogoutHotkey%
+Gui, Add, Edit, x482 y429 w52 h20 vgameLogoutHotkey, %gameLogoutHotkey%
 Gui, Add, CheckBox, x552 y429 w35 h20 Checked%game_logout_active% vgame_logout_active, 
 
 Gui, Font, S8 CDefault, Verdana
@@ -129,12 +129,16 @@ Gui, Add, Text, x622 y389 w240 h20 , And choose hotkey to activate r -> d sequen
 
 Gui, Font, S9 norm, Verdana
 Gui, Add, Text, x622 y329 w110 h20 , Smoke mine key:
-Gui, Add, Edit, x772 y329 w60 h20 vsmoke_mine_button, %smoke_mine_button%
+Gui, Add, Edit, x772 y329 w40 h20 vsmoke_mine_button, %smoke_mine_button%
 Gui, Add, Text, x622 y359 w150 h20 , Detonate mine key:
-Gui, Add, Edit, x772 y359 w60 h20 vdetonate_button, %detonate_button%
+Gui, Add, Edit, x772 y359 w40 h20 vdetonate_button, %detonate_button%
 Gui, Add, Text, x622 y409 w120 h20 , Quick Smoke mine
 Gui, Add, Hotkey, x772 y409 w60 h20 vsmokeMineHotkey, %smokeMineHotkey%
 Gui, Add, CheckBox, x842 y409 w20 h20 Checked%smoke_mine_active% vsmoke_mine_active, 
+Gui, Add, Text, x622 y434 w150 h14 , Smoke mine laying
+Gui, Add, Text, x682 y449 w150 h14 , time(ms):
+Gui, Add, Edit, x772 y439 w40 h20 vmine_laying_time, %mine_laying_time%
+
 Gui, Add, Text, x622 y579 w150 h20 , First key skill (trigger)
 Gui, Add, Hotkey, x772 y579 w60 h20 vseqSkillsHotkey, %seqSkillsHotkey%
 Gui, Add, CheckBox, x842 y579 w20 h20 Checked%seq_skills_active% vseq_skills_active, 

@@ -43,7 +43,7 @@ ReadSettings(){
     IniRead, smoke_mine_button,   settings.ini, settings, smoke_mine_button,   r
     IniRead, smoke_mine_active,   settings.ini, settings, smoke_mine_active,   0
     IniRead, smokeMineHotkey,     settings.ini, settings, smokeMineHotkey,     ^r
-    IniRead, mine_laying_time,    settings.ini, settings, mine_laying_time,    150
+    IniRead, mine_laying_time,    settings.ini, settings, mine_laying_time,    250
     ; Game Logout
     IniRead, game_logout_active,  settings.ini, settings, game_logout_active,  1
     IniRead, gameLogoutHotkey,    settings.ini, settings, gameLogoutHotkey,    SC029
