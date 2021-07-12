@@ -10,7 +10,7 @@ Gui, Add, GroupBox, x32 y4 w840 h70 , How to use script
 Gui, Font, S8 norm, Verdana
 Gui, Add, Text, x42 y23 w820 h15 , Choose and checkbox hotkeys functions whichever u need. If u want to change hotkey, click to field and tap at key or combination keys.
 Gui, Add, Text, x42 y38 w820 h15 , ATTENTION, Auto Logout and Auto Life Flask work only windowed game mode.
-Gui, Add, Text, x42 y53 w820 h15 , Place holder.
+Gui, Add, Text, x42 y53 w820 h15 , IF U NEED TO CHATTING OR JUST WANT OT PAUSE UR HOTKEYS PRESS F2 AND ALL HOTKEYS WILL BE BLOCKED.
 
 ; Set of Flasks
 Gui, Font, S9 CDefault Bold, Verdana
@@ -67,30 +67,36 @@ Gui, Font, norm, Verdana
 Gui, Add, Text, x302 y219 w190 h20 , Get Pixel Color and Coords:
 Gui, Add, Text, x302 y249 w160 h20 , Suspend Hotkeys Bind:
 Gui, Add, Text, x302 y279 w110 h20 , Reload script:
-Gui, Add, Text, x302 y309 w120 h20 , Pause script:
+;Gui, Add, Text, x302 y309 w120 h20 , Pause script:
 
 Gui, Font, S9 CDefault Bold, Verdana
 Gui, Add, Text, x482 y219 w50 h20 , Alt + Z
 Gui, Add, Text, x482 y249 w20 h20 , F2
 Gui, Add, Text, x482 y279 w40 h20 , RCtrl
-Gui, Add, Text, x482 y309 w40 h20 , Pause
+;Gui, Add, Text, x482 y309 w40 h20 , Pause
 
 Gui, Font, norm, Verdana
-Gui, Add, Text, x302 y339 w150 h20 , Auto Walk (lmb hold)
-Gui, Add, Hotkey, x482 y339 w60 h20 vAutoWalkHotkey, %AutoWalkHotkey%
-Gui, Add, CheckBox, x552 y339 w35 h20 Checked%auto_walk_active% vauto_walk_active, 
-Gui, Add, Text, x302 y369 w130 h20 , Game Logout
-Gui, Add, Edit, x482 y369 w60 h20 vgameLogoutHotkey, %gameLogoutHotkey%
-Gui, Add, CheckBox, x552 y369 w35 h20 Checked%game_logout_active% vgame_logout_active, 
-Gui, Add, Text, x302 y399 w90 h20 , Go to Hideout
-Gui, Add, Hotkey, x482 y399 w60 h20 vhideoutHotkey, %hideoutHotkey%
-Gui, Add, CheckBox, x552 y399 w35 h20 Checked%hideout_active% vhideout_active, 
-Gui, Add, Text, x302 y429 w220 h20 , Invite to Party by Last Msg
-Gui, Add, Hotkey, x482 y429 w60 h20 vpartyInviteHotkey, %partyInviteHotkey%
-Gui, Add, CheckBox, x552 y429 w35 h20 Checked%party_invite_active% vparty_invite_active, 
-Gui, Add, Text, x302 y459 w220 h20 , Kick from Party by Last Msg
-Gui, Add, Hotkey, x482 y459 w60 h20 vpartyKickHotkey, %partyKickHotkey%
-Gui, Add, CheckBox, x552 y459 w35 h20 Checked%party_kick_active% vparty_kick_active, 
+Gui, Add, Text, x302 y309 w150 h20 , Auto Walk (lmb hold)
+Gui, Add, Hotkey, x482 y309 w60 h20 vAutoWalkHotkey, %AutoWalkHotkey%
+Gui, Add, CheckBox, x552 y309 w35 h20 Checked%auto_walk_active% vauto_walk_active,
+Gui, Add, Text, x302 y339 w90 h20 , Go to Hideout
+Gui, Add, Hotkey, x482 y339 w60 h20 vhideoutHotkey, %hideoutHotkey%
+Gui, Add, CheckBox, x552 y339 w35 h20 Checked%hideout_active% vhideout_active, 
+Gui, Add, Text, x302 y369 w220 h20 , Invite to Party by Last Msg
+Gui, Add, Hotkey, x482 y369 w60 h20 vpartyInviteHotkey, %partyInviteHotkey%
+Gui, Add, CheckBox, x552 y369 w35 h20 Checked%party_invite_active% vparty_invite_active, 
+Gui, Add, Text, x302 y399 w220 h20 , Kick from Party by Last Msg
+Gui, Add, Hotkey, x482 y399 w60 h20 vpartyKickHotkey, %partyKickHotkey%
+Gui, Add, CheckBox, x552 y399 w35 h20 Checked%party_kick_active% vparty_kick_active, 
+Gui, Add, Text, x302 y429 w130 h20 , Game Logout
+Gui, Add, Edit, x482 y429 w60 h20 vgameLogoutHotkey, %gameLogoutHotkey%
+Gui, Add, CheckBox, x552 y429 w35 h20 Checked%game_logout_active% vgame_logout_active, 
+
+Gui, Font, S8 CDefault, Verdana
+Gui, Add, Text, x302 y449 w288 h13 , If u want quick logout at `` key, try to enter ``
+Gui, Add, Text, x302 y462 w288 h13 , key at the field or if it's not work, use KeyHooker
+Gui, Add, Text, x302 y475 w288 h13 , to identify id of `` key on ur keyboard and put it id
+Gui, Add, Text, x302 y488 w288 h13 , at the field below instead of `` key.
 
 ; Open Portal
 Gui, Font, S9 CDefault Bold, Verdana
