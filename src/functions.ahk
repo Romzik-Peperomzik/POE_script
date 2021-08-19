@@ -39,6 +39,15 @@ SetOfFlasks(list){  ; Iterating on string and send its substings which delim by 
     return
 }
 
+ClickLoop(){
+    if GetKeyState("g")
+    {
+        Click
+        Sleep 30
+    }
+    return
+}
+
 CleanInventory(coord_list){
     SplashTextOn, 100, 1, Sorting...
     WinMove Sorting..., , 1297, 451

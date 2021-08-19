@@ -91,6 +91,7 @@ RunGUI()
 
 !z::GetMouseColorPos()             ; Alt+Z get pixel coords and color at mouse pos.
 !x::CleanInventory(cells_coord_list)
+^g::ClickLoop()
 
 SetOfFlasksLabel:                  ; Pressing set of flasks and skills. 
     if set_of_flasks_active{
