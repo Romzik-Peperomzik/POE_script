@@ -89,9 +89,9 @@ Hotkey, %autoLogoutHotkey%, AutoLogoutLabel
 RunGUI()
 ;-----------------------------------------------------------------------------
 
-!z::GetMouseColorPos()             ; Alt+Z get pixel coords and color at mouse pos.
-!x::CleanInventory(cells_coord_list)
-^g::ClickLoop()
+!z::GetMouseColorPos()                ; Alt+Z get pixel coords and color at mouse pos.
+!x::CleanInventory(cells_coord_list)  ; Alt+X clean inventory except portal and wisdom scroll. 
+^g::ClickLoop()                       ; Ctrl+G hold to autograb currency from currency tab.
 
 SetOfFlasksLabel:                  ; Pressing set of flasks and skills. 
     if set_of_flasks_active{
