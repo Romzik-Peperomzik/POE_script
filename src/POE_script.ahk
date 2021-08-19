@@ -126,9 +126,12 @@ SmokeMineLabel:                    ; Throwing and activating Smoke mine.
 LootOneItem:                       ; Loot one item.
     if loot_one_item_active{
         Hotkey, %lootOneItemHotkey%, On
+        LootSmallRegion()
+        /*
         if !LootSmallRegion(){
             LootBigRegion()
         }
+        */
     }
     else{
         Hotkey, %lootOneItemHotkey%, Off

@@ -146,7 +146,7 @@ AutoLogoutNotice(){  ; AutoLogout notification on screen(only windowed).
 
 AutoLifeFlaskNotice(){  ; AutoLifeFlask notification on screen(only windowed).
     SplashTextOn, 100, 1, F activated.
-    WinMove F, , 1536, 230
+    WinMove F, , 232, 892
 }
 
 LootBigRegion(){
@@ -163,13 +163,13 @@ LootBigRegion(){
 }
 
 LootSmallRegion(){
-    PixelSearch, Px, Py, 650, 300, 950, 500, lootColor, 5, Fast
+    PixelSearch, Px, Py, 896, 277, 1104, 850, lootColor, 5, Fast
     if ErrorLevel{
         return False
     }
     else{
-        Px := Px + 52
-        Py := Py + 22
+        Px := Px
+        Py := Py + 11
         Click %Px%, %Py%
         return True
     }
@@ -199,7 +199,9 @@ OpenPortal(){
     BlockInput On
     MouseGetPos x, y 
     Send {tab}
+    Sleep 200
     Click, %portalX%, %portalY%, right
+    Sleep 100
     Send {tab}
     MouseMove, x, y
     BlockInput Off
