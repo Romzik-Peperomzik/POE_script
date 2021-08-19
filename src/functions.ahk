@@ -39,6 +39,32 @@ SetOfFlasks(list){  ; Iterating on string and send its substings which delim by 
     return
 }
 
+CleanInventory(coord_list){
+    SplashTextOn, 100, 1, Sorting...
+    WinMove Sorting..., , 1297, 451
+    Loop, parse, coord_list, -
+    {
+        arr := StrSplit(A_LoopField, ",")
+        inv_point_x := arr[1]
+        inv_point_y := arr[2]
+        PixelGetColor, inv_curr_point, inv_point_x, inv_point_y
+        if inv_curr_point = 0x000000
+        {
+            continue            
+        }
+        else
+        {
+            Sleep 20
+            Send {Control down}
+            MouseMove inv_point_x, inv_point_y
+            Click
+            Send {Control up}
+        }
+    }
+    SplashTextOff, 100, 1, Sorting...
+    return
+}
+
 Activate_AutoLifeFlask(){  ; Auto Logout Toggle
     auto_l_flask_toggle := !auto_l_flask_toggle
     if auto_l_flask_toggle{

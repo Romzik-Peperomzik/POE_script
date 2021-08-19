@@ -2,7 +2,7 @@
 #Include rw_settings.ahk
 #Include gui.ahk
 
-#IfWinActive, Path of Exile ahk_class POEWindowClass
+;#IfWinActive, Path of Exile ahk_class POEWindowClass
 #SingleInstance force  ; Replaces the old instance of script automatically
 #NoEnv  ; Recommended for performance
 #Persistent  ; Keeps a script permanently running
@@ -65,6 +65,7 @@ global logout_life_color
 global black_screen
 global black_screen_X
 global black_screen_Y
+global cells_coord_list
 
 
 ;-----------------------------------------------------------------------------
@@ -89,6 +90,7 @@ RunGUI()
 ;-----------------------------------------------------------------------------
 
 !z::GetMouseColorPos()             ; Alt+Z get pixel coords and color at mouse pos.
+!x::CleanInventory(cells_coord_list)
 
 SetOfFlasksLabel:                  ; Pressing set of flasks and skills. 
     if set_of_flasks_active{
