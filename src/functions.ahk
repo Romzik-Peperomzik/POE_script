@@ -39,6 +39,26 @@ SetOfFlasks(list){  ; Iterating on string and send its substings which delim by 
     return
 }
 
+AutoRolling(){
+    PixelGetColor cheking_border_pixel, 290, 370
+    Send {ShiftDown} 
+    While cheking_border_pixel != 0x77B4E7
+    {
+        PixelGetColor cheking_border_pixel, 290, 370
+        if cheking_border_pixel != 0x77B4E7
+        {
+            Click
+        }
+        else
+        {
+            Send {ShiftUp}
+        }
+        Sleep 300
+    }
+    Send {ShiftUp}
+    return
+}
+
 ClickLoop(){
     if GetKeyState("g")
     {

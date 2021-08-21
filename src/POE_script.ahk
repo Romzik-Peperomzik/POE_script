@@ -2,7 +2,7 @@
 #Include rw_settings.ahk
 #Include gui.ahk
 
-;#IfWinActive, Path of Exile ahk_class POEWindowClass
+#IfWinActive, Path of Exile ahk_class POEWindowClass
 #SingleInstance force  ; Replaces the old instance of script automatically
 #NoEnv  ; Recommended for performance
 #Persistent  ; Keeps a script permanently running
@@ -92,6 +92,7 @@ RunGUI()
 !z::GetMouseColorPos()                ; Alt+Z get pixel coords and color at mouse pos.
 !x::CleanInventory(cells_coord_list)  ; Alt+X clean inventory except portal and wisdom scroll. 
 ^g::ClickLoop()                       ; Ctrl+G hold to autograb currency from currency tab.
+^h::AutoRolling()                     ; Ctrl+H Press once to keep rolling loop up.
 
 SetOfFlasksLabel:                  ; Pressing set of flasks and skills. 
     if set_of_flasks_active{
