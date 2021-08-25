@@ -26,6 +26,8 @@ global smoke_mine_active
 global game_logout_active
 global auto_logout_active
 global auto_logout_toggle
+global do_delirious_toggle
+global deli_sub_toggle
 
 
 ; Importing hotkeys of functions:
@@ -89,10 +91,18 @@ Hotkey, %autoLogoutHotkey%, AutoLogoutLabel
 RunGUI()
 ;-----------------------------------------------------------------------------
 
-!z::GetMouseColorPos()                ; Alt+Z get pixel coords and color at mouse pos.
-!x::CleanInventory(cells_coord_list)  ; Alt+X clean inventory except portal and wisdom scroll. 
-^g::ClickLoop()                       ; Ctrl+G hold to autograb currency from currency tab.
+
+;-----------------------------------------------------------------------------
+; Functions that are not represented into GUI, only hotkeys.
+
+!x::CleanInventory(cells_coord_list)  ; Alt+X  Clean inventory except portal and wisdom scroll. 
+^g::ClickLoop()                       ; Ctrl+G Hold to autograb currency from currency tab.
 ^h::AutoRolling()                     ; Ctrl+H Press once to keep rolling loop up.
+!f::DoDelirious()                     ; Alt+F  Run delirium script.
+;-----------------------------------------------------------------------------
+
+!z::GetMouseColorPos()                ; Alt+Z  Get pixel coords and color at mouse pos.
+
 
 SetOfFlasksLabel:                  ; Pressing set of flasks and skills. 
     if set_of_flasks_active{
@@ -105,6 +115,7 @@ SetOfFlasksLabel:                  ; Pressing set of flasks and skills.
     }
 return
 
+
 AutoLifeFlaskLabel:                ; Auto life flask. Cannot work at the same
     if auto_l_flask_active{        ;                     time with AutoLogout.
         Hotkey, %autoLifeFlaskHotkey%, On
@@ -116,6 +127,7 @@ AutoLifeFlaskLabel:                ; Auto life flask. Cannot work at the same
     }
     return
 
+
 SmokeMineLabel:                    ; Throwing and activating Smoke mine.
     if smoke_mine_active{
         Hotkey, %smokeMineHotkey%, On
@@ -126,6 +138,7 @@ SmokeMineLabel:                    ; Throwing and activating Smoke mine.
         Send, %smokeMineHotkey%
     }
     return 
+
 
 LootOneItem:                       ; Loot one item.
     if loot_one_item_active{
@@ -143,6 +156,7 @@ LootOneItem:                       ; Loot one item.
     }
     return
 
+
 LootAllLabel:                      ; Hold to keep looting.
     if auto_looting_active{
         Hotkey, %autoLootingHotkey%, On
@@ -153,7 +167,8 @@ LootAllLabel:                      ; Hold to keep looting.
         Send, %autoLootingHotkey%
     }
     return
-                  
+
+
 HoldWalkLabel:                     ; Toggle walk (like hold lmb to walk).
     if auto_walk_active{
         Hotkey, %AutoWalkHotkey%, On
@@ -164,6 +179,7 @@ HoldWalkLabel:                     ; Toggle walk (like hold lmb to walk).
         Send, %AutoWalkHotkey%
     }
     return
+
 
 OpenPortalLabel:                   ; Use portal scroll 
     if open_portal_active{
@@ -176,6 +192,7 @@ OpenPortalLabel:                   ; Use portal scroll
     }
     return
 
+
 GameLogoutLabel:                   ; `- Logout, SC029 is Tilda's id.
     if game_logout_active{
         Hotkey, %gameLogoutHotkey%, On
@@ -186,6 +203,7 @@ GameLogoutLabel:                   ; `- Logout, SC029 is Tilda's id.
         Send, %gameLogoutHotkey%
     }
     return 
+
 
 AutoLogoutLabel:                   ; AutoLogout. Cannot work at the same time
     if auto_logout_active{         ;                       with AutoLifeFlask.
@@ -198,6 +216,7 @@ AutoLogoutLabel:                   ; AutoLogout. Cannot work at the same time
     }
     return 
 
+
 HideoutLabel:                      ; Hideout.
     if hideout_active{
         Hotkey, %hideoutHotkey%, On
@@ -208,6 +227,7 @@ HideoutLabel:                      ; Hideout.
         Send, %hideoutHotkey%
     }
     return 
+
 
 PartyInviteLabel:                  ; Invite to party by last received player message.
     if party_invite_active{
@@ -220,6 +240,7 @@ PartyInviteLabel:                  ; Invite to party by last received player mes
     }
     return 
 
+
 PartyKickLabel:                    ; Kick from party by last received player message.
     if hideout_active{
         Hotkey, %hideoutHotkey%, On
@@ -231,6 +252,7 @@ PartyKickLabel:                    ; Kick from party by last received player mes
     }
     return
 
+
 SequenceOfSkillsLabel:             ; Cremation delay Desecrate, BF delay BB and etc.
     if seq_skills_active{
         Hotkey, %seqSkillsHotkey%, On
@@ -241,6 +263,7 @@ SequenceOfSkillsLabel:             ; Cremation delay Desecrate, BF delay BB and 
         Send, %seqSkillsHotkey%
     }
     return
+
 
 RCtrl::reload                      ; Hotkeys for script handling.
 Pause:: pause                      ; ^

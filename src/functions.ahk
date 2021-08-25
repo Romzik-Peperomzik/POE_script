@@ -1,9 +1,10 @@
-GetMouseColorPos(){  ; Picking color and coords at mouse position.
+GetMouseColorPos(){                                      ; Picking color and coords at mouse position.
     MouseGetPos, MouseX, MouseY
     PixelGetColor, color, %MouseX%, %MouseY%
     MsgBox The current cursor position is x=%MouseX%, y=%MouseY%, color is %color%.
     return
 }
+
 
 SmokeMine(){
     Send %detonate_button%
@@ -15,6 +16,7 @@ SmokeMine(){
     return
 }
 
+
 SequenceOfSkills(){
     Click, right
     sleep %seq_castspeed_time%
@@ -23,14 +25,16 @@ SequenceOfSkills(){
     return
 }
 
-HoldWalk(){
+
+HoldWalk(){                                              ; Just holding LMB.
     if GetKeyState("d", "p")
 	    Click left down
 	    sleep 100
     return
 }
 
-SetOfFlasks(list){  ; Iterating on string and send its substings which delim by -.
+
+SetOfFlasks(list){                                 ; Iterating on string and send its substings which delim by -.
     Loop, parse, list, -
     {        
         Send %A_LoopField%
@@ -39,7 +43,78 @@ SetOfFlasks(list){  ; Iterating on string and send its substings which delim by 
     return
 }
 
-AutoRolling(){
+
+DeliriumFlasks(){                                        ; Set of flasks of Delirium script.
+    Loop, parse, flask_key_set, -
+    {        
+        Send %A_LoopField%
+        Sleep 50
+    }
+    return
+}
+
+
+AutoGuardSkill(){
+    Send, {f}
+    return
+}
+
+
+AutoFrostShield(){
+    Send, {e}
+}
+
+
+AutoDiscipline(){
+    PixelGetColor, shield_color, 102, 529
+    if shield_color != 0xFFE88E
+    {
+        Send, {t}
+    }
+    PixelGetColor, bot_shield_color, 102, 529            ; TODO enter coord and color.
+    if bot_shield_color != 0xFFE88E
+    {
+        Send, {t}
+    }
+    return
+}
+
+
+DeliriumSubroutinesToggle(){                             ; Subroutines for DoDelirious function.
+    deli_sub_toggle := !deli_sub_toggle
+    if deli_sub_toggle{
+        SetTimer, DeliriumFlasks, 8000
+        SetTimer, AutoDiscipline, 500
+        SetTimer, AutoGuardSkill, 5000                   ; Immortal call
+        SetTimer, AutoFrostShield, 5000
+    } else {
+        SetTimer, DeliriumFlasks, Off
+        SetTimer, AutoDiscipline, Off
+        SetTimer, AutoGuardSkill, Off
+        SetTimer, AutoFrostShield, Off
+    }
+}
+
+
+DoDelirious(){                                           ; Main Delirium script function.
+    do_delirious_toggle := !do_delirious_toggle
+    if do_delirious_toggle{
+        SplashTextOn, 100, 1, Do Delirious...
+        WinMove Do Delirious..., , 1522, 312
+        DeliriumSubroutinesToggle()                      ; Turn On Delirium subroutines.
+        Send, {RButton down}                             ; Hold Spark key.
+    } else {
+        if deli_sub_toggle{                              ; Turn Off Delirium subroutines.
+            DeliriumSubroutinesToggle()
+        }
+        Send, {RButton up}                               ; Release Spark key.
+        SplashTextOff, 100, 1, Do Delirious...
+    }
+    return
+}
+
+
+AutoRolling(){                        ; Roll any item at currency stash tab with highlight border as a sentiel.
     PixelGetColor cheking_border_pixel, 290, 370
     Send {ShiftDown} 
     While cheking_border_pixel != 0x77B4E7
@@ -59,16 +134,17 @@ AutoRolling(){
     return
 }
 
-ClickLoop(){
-    if GetKeyState("g")
+
+ClickLoop(){                                             ; Quick left clicking loop.
     {
-        Click
+        Send, ^{LButton}
         Sleep 30
     }
     return
 }
 
-CleanInventory(coord_list){
+
+CleanInventory(coord_list){                              ; Cleaning inventory, only 1920x1080px works.
     SplashTextOn, 100, 1, Sorting...
     WinMove Sorting..., , 1297, 451
     Loop, parse, coord_list, -
@@ -94,7 +170,8 @@ CleanInventory(coord_list){
     return
 }
 
-Activate_AutoLifeFlask(){  ; Auto Logout Toggle
+
+Activate_AutoLifeFlask(){                                ; Auto Logout Toggle.
     auto_l_flask_toggle := !auto_l_flask_toggle
     if auto_l_flask_toggle{
         AutoLifeFlaskNotice()
@@ -106,7 +183,8 @@ Activate_AutoLifeFlask(){  ; Auto Logout Toggle
     return
 }
 
-AutoLifeFlask(){  ; Main Auto Life Flask function
+
+AutoLifeFlask(){                                         ; Main Auto Life Flask function.
     while auto_l_flask_toggle
     {
         if WinActive("Path of Exile")
@@ -133,7 +211,8 @@ AutoLifeFlask(){  ; Main Auto Life Flask function
     return
 }
 
-Activate_AutoLogout(){  ; Auto Logout Toggle
+
+Activate_AutoLogout(){                                   ; Auto Logout Toggle.
     auto_logout_toggle := !auto_logout_toggle
     if auto_logout_toggle{        
         oosCommand()
@@ -146,16 +225,17 @@ Activate_AutoLogout(){  ; Auto Logout Toggle
     return
 }
 
-EventLogoutLoop(){  ; Main Auto logout function.
+
+EventLogoutLoop(){                                       ; Main Auto logout function.
     while auto_logout_toggle
     {
         if WinActive("Path of Exile")
         {
             PixelGetColor, life_pixel, logout_X, logout_Y            
-            if life_pixel != %logout_life_color% ; If life pixel not found.
+            if life_pixel != %logout_life_color%         ; If life pixel not found.
             {                
                 PixelGetColor, black_pixel, black_screen_X, black_screen_Y
-                if black_pixel = %black_screen%  ; If it's tp's screen - suspend and sleep 3s.
+                if black_pixel = %black_screen%          ; If it's tp's screen - suspend and sleep 3s.
                 {
                     Send {F2}
                     send {Pause}
@@ -164,7 +244,7 @@ EventLogoutLoop(){  ; Main Auto logout function.
                     Send {F2}
                 }
                 else{
-                    SetOfFlasks(low_life_flask_list)  ; Drink life potion before logout.
+                    SetOfFlasks(low_life_flask_list)     ; Drink life potion before logout.
                     GameLogout()
                     Sleep 150
                     Activate_AutoLogout()
@@ -177,14 +257,16 @@ EventLogoutLoop(){  ; Main Auto logout function.
     return
 }
 
-GameLogout(){  ; Closing port which POE use by cports.exe.
-    if WinActive("Path of Exile"){                              ;IfWinActive Path of Exile    
-        Run ./cports/cports.exe /close * * * * PathofExile.exe  ;PathofExile_x64.exe
+
+GameLogout(){                                            ; Closing port which POE use by cports.exe.
+    if WinActive("Path of Exile"){                                        ; old: IfWinActive Path of Exile    
+        Run ./cports/cports.exe /close * * * * PathofExile.exe            ; old: PathofExile_x64.exe
     }
     return
 }
 
-oosCommand(){  ; Cheking synchronization with server.
+
+oosCommand(){                                            ; Cheking synchronization with server.
 	BlockInput On
 	SendInput, {enter}
 	Sleep 2
@@ -194,15 +276,18 @@ oosCommand(){  ; Cheking synchronization with server.
 	return
 }
 
-AutoLogoutNotice(){  ; AutoLogout notification on screen(only windowed).
+
+AutoLogoutNotice(){                                      ; AutoLogout notification on screen(only windowed).
     SplashTextOn, 100, 1, Lg activated.
     WinMove Lg activated, , 1536, 230
 }
 
-AutoLifeFlaskNotice(){  ; AutoLifeFlask notification on screen(only windowed).
+
+AutoLifeFlaskNotice(){                                   ; AutoLifeFlask notification on screen(only windowed).
     SplashTextOn, 100, 1, F activated.
     WinMove F, , 232, 892
 }
+
 
 LootBigRegion(){
     PixelSearch, Px, Py, 100, 100, A_ScreenWidth-10, A_ScreenHeight-150, lootColor, 5, Fast
@@ -217,6 +302,7 @@ LootBigRegion(){
     }
 }
 
+
 LootSmallRegion(){
     PixelSearch, Px, Py, 896, 277, 1104, 850, lootColor, 5, Fast
     if ErrorLevel{
@@ -229,6 +315,7 @@ LootSmallRegion(){
         return True
     }
 }
+
 
 LootAll(){
     while (GetKeyState("LControl", "P") && GetKeyState("s", "P")){
@@ -250,6 +337,7 @@ LootAll(){
     }
 }
 
+
 OpenPortal(){
     BlockInput On
     MouseGetPos x, y 
@@ -263,7 +351,8 @@ OpenPortal(){
     return
 }
 
-Hideout(){  ; Hideout Command.
+
+Hideout(){                                               ; Hideout Command.
 	BlockInput On
 	SendInput, {Enter}
 	Sleep 2
@@ -273,14 +362,16 @@ Hideout(){  ; Hideout Command.
 	return
 }
 
-PartyInvite(){  ; Invite to party command.
+
+PartyInvite(){                                           ; Invite to party command.
 	BlockInput On
 	Send ^{Enter}{Home}{Delete}/invite {Enter}
 	BlockInput Off
 	return
 }
 
-PartyKick(){  ; Kick command.
+
+PartyKick(){                                             ; Kick command.
 	BlockInput On
 	Send ^{Enter}{Home}{Delete}/kick {Enter}
 	BlockInput Off

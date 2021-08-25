@@ -2,7 +2,7 @@ ReadSettings(){
     ; Set of flasks
     IniRead, set_of_flasks_active,settings.ini, settings, set_of_flasks_active,1
     IniRead, setOfFlasksHotkey,   settings.ini, settings, setOfFlasksHotkey,   a    
-    IniRead, flask_key_set,       settings.ini, settings, flask_key_set,       2-3-4-5
+    IniRead, flask_key_set,       settings.ini, settings, flask_key_set,       1-2-3-4-5
     IniRead, auto_l_flask_active, settings.ini, settings, auto_l_flask_active, 0
     IniRead, auto_l_flask_toggle, settings.ini, settings, auto_l_flask_toggle, 1
     IniRead, autoLifeFlaskHotkey, settings.ini, settings, autoLifeFlaskHotkey, ^f
@@ -11,6 +11,8 @@ ReadSettings(){
     IniRead, low_life_Y,          settings.ini, settings, low_life_Y,          937
     IniRead, life_color,          settings.ini, settings, life_color,          0x1A0D98
     IniRead, cells_coord_list,    settings.ini, settings, cells_coord_list,    1301,596-1301,648-1301,701-1301,754-1353,596-1353,649-1353,702-1353,754-1406,596-1406,649-1406,701-1406,754-1406,807-1459,596-1459,649-1459,701-1459,754-1459,807-1511,596-1511,649-1511,701-1511,754-1511,807-1563,596-1563,649-1563,701-1563,754-1563,807-1617,596-1617,649-1617,701-1617,754-1617,807-1669,596-1669,649-1669,701-1669,754-1669,807-1722,596-1722,649-1722,701-1722,754-1722,807-1775,596-1775,649-1775,701-1775,754-1775,807-1827,596-1827,649-1827,701-1827,754-1827,807-1880,596-1880,649-1880,701-1880,754-1880,807
+    IniRead, do_delirious_toggle, settings.ini, settings, do_delirious_toggle, 0
+    IniRead, deli_sub_toggle,     settings.ini, settings, deli_sub_toggle, 0
     ; Auto loot
     IniRead, auto_looting_active, settings.ini, settings, auto_looting_active, 0
     IniRead, autoLootingHotkey,   settings.ini, settings, autoLootingHotkey,   ^s
