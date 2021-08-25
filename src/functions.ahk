@@ -64,6 +64,13 @@ AutoFrostShield(){
     BlockInput on
     Send, {e}
     BlockInput Off
+    return
+}
+
+
+QuickDiscipline(){
+    Send, {t}
+    return
 }
 
 
@@ -86,14 +93,16 @@ DeliriumSubroutinesToggle(){                             ; Subroutines for DoDel
     deli_sub_toggle := !deli_sub_toggle
     if deli_sub_toggle{
         SetTimer, DeliriumFlasks, 8000
-        SetTimer, AutoDiscipline, 500
+        SetTimer, QuickDiscipline, 500
         SetTimer, AutoGuardSkill, 5000                   ; Immortal call
         SetTimer, AutoFrostShield, 2000
+        ; SetTimer, AutoDiscipline, 500
     } else {
         SetTimer, DeliriumFlasks, Off
-        SetTimer, AutoDiscipline, Off
+        SetTimer, QuickDiscipline, Off
         SetTimer, AutoGuardSkill, Off
         SetTimer, AutoFrostShield, Off
+        ; SetTimer, AutoDiscipline, Off
     }
 }
 
