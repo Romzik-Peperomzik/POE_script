@@ -55,24 +55,26 @@ DeliriumFlasks(){                                        ; Set of flasks of Deli
 
 
 AutoGuardSkill(){
-    Send, {f}
+    Send, {LButton}
     return
 }
 
 
 AutoFrostShield(){
+    BlockInput on
     Send, {e}
+    BlockInput Off
 }
 
 
 AutoDiscipline(){
-    PixelGetColor, shield_color, 102, 529
-    if shield_color != 0xFFE88E
+    PixelGetColor, shield_color, 144, 914
+    if shield_color != 0xFFD8AE
     {
         Send, {t}
     }
-    PixelGetColor, bot_shield_color, 102, 529            ; TODO enter coord and color.
-    if bot_shield_color != 0xFFE88E
+    PixelGetColor, bot_shield_color, 210, 252
+    if bot_shield_color != 0x6F72C3
     {
         Send, {t}
     }
@@ -86,7 +88,7 @@ DeliriumSubroutinesToggle(){                             ; Subroutines for DoDel
         SetTimer, DeliriumFlasks, 8000
         SetTimer, AutoDiscipline, 500
         SetTimer, AutoGuardSkill, 5000                   ; Immortal call
-        SetTimer, AutoFrostShield, 5000
+        SetTimer, AutoFrostShield, 2000
     } else {
         SetTimer, DeliriumFlasks, Off
         SetTimer, AutoDiscipline, Off
