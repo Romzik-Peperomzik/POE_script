@@ -93,7 +93,7 @@ DeliriumSubroutinesToggle(){                             ; Subroutines for DoDel
     deli_sub_toggle := !deli_sub_toggle
     if deli_sub_toggle{
         SetTimer, DeliriumFlasks, 8000
-        SetTimer, QuickDiscipline, 500
+        SetTimer, QuickDiscipline, 1500
         SetTimer, AutoGuardSkill, 5000                   ; Immortal call
         SetTimer, AutoFrostShield, 2000
         ; SetTimer, AutoDiscipline, 500
