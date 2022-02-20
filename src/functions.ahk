@@ -146,6 +146,30 @@ AutoRolling(){                        ; Roll any item at currency stash tab with
 }
 
 
+CardOpener(){
+    card_count := 10
+    Send {ShiftDown} 
+    While card_count != 0
+    {
+        card_count := card_count - 1
+        Sleep 60
+        Click
+        Sleep 60
+        MouseMove 53, 0, 2, R
+    }
+    Send {ShiftUp}
+    While card_count != 11
+    {
+        card_count := card_count + 1
+        Click, right
+        Sleep 80
+        Click
+        MouseMove -53, 0, 2, R
+    }
+    return
+}
+
+
 ClickLoop(){                                             ; Quick left clicking loop.
     {
         Send, ^{LButton}

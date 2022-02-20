@@ -99,6 +99,7 @@ RunGUI()
 ^g::ClickLoop()                       ; Ctrl+G Hold to autograb currency from currency tab.
 ^h::AutoRolling()                     ; Ctrl+H Press once to keep rolling loop up.
 !f::DoDelirious()                     ; Alt+F  Run delirium script.
+^n::CardOpener()                      ; Ctrl+N Spread stacked deck at one card and open it.
 ;-----------------------------------------------------------------------------
 
 !z::GetMouseColorPos()                ; Alt+Z  Get pixel coords and color at mouse pos.
