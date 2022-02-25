@@ -170,6 +170,36 @@ CardOpener(){
 }
 
 
+DoorSearcherToggle(){
+    door_searcher_toggle := !door_searcher_toggle
+    if door_searcher_toggle
+    {
+        DoorSearcherNotice()
+        DoorSearcher()
+    }
+    else{
+        SplashTextOff
+    }
+    return
+}
+
+
+DoorSearcher(){
+    While door_searcher_toggle
+    {  ; 652, 172, 1281, 764, d.png  ; 403, 81, 1271, 893, *20, d_hover.png
+        ImageSearch, DoorVarX, DoorVarY, 640, 182, 1281, 757, *20, d_hover.png
+        if DoorVarX
+        {
+            Click
+            Click left down  ; to keep moving after click on door lable.
+            ; MsgBox Here
+        }
+        Sleep 200
+    }
+    return
+}
+
+
 ClickLoop(){                                             ; Quick left clicking loop.
     {
         Send, ^{LButton}
@@ -321,6 +351,11 @@ AutoLogoutNotice(){                                      ; AutoLogout notificati
 AutoLifeFlaskNotice(){                                   ; AutoLifeFlask notification on screen(only windowed).
     SplashTextOn, 100, 1, F activated.
     WinMove F, , 232, 892
+}
+
+DoorSearcherNotice(){                                    ; DoorSearcher notification on screen(only windowed).
+    SplashTextOn, 100, 1, Door Searcher.
+    WinMove Door Searcher., , 234, 894
 }
 
 

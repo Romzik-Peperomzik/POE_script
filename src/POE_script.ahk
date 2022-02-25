@@ -28,6 +28,7 @@ global auto_logout_active
 global auto_logout_toggle
 global do_delirious_toggle
 global deli_sub_toggle
+global door_searcher_toggle
 
 
 ; Importing hotkeys of functions:
@@ -94,12 +95,14 @@ RunGUI()
 
 ;-----------------------------------------------------------------------------
 ; Functions that are not represented into GUI, only hotkeys.
+; ! - alt, ^ - ctrl, + - shift.
 
 !x::CleanInventory(cells_coord_list)  ; Alt+X  Clean inventory except portal and wisdom scroll. 
 ^g::ClickLoop()                       ; Ctrl+G Hold to autograb currency from currency tab.
-^h::AutoRolling()                     ; Ctrl+H Press once to keep rolling loop up.
+^j::AutoRolling()                     ; Ctrl+J Press once to keep rolling loop up.
 !f::DoDelirious()                     ; Alt+F  Run delirium script.
 ^n::CardOpener()                      ; Ctrl+N Spread stacked deck at one card and open it.
+^+d::DoorSearcherToggle()             ; Ctrl+Shift+D Search door label and click on it.
 ;-----------------------------------------------------------------------------
 
 !z::GetMouseColorPos()                ; Alt+Z  Get pixel coords and color at mouse pos.
