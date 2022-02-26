@@ -147,24 +147,34 @@ AutoRolling(){                        ; Roll any item at currency stash tab with
 
 
 CardOpener(){
-    card_count := 10
-    Send {ShiftDown} 
-    While card_count != 0
+    stacked_count := 5
+    While stacked_count != 0
     {
-        card_count := card_count - 1
-        Sleep 60
-        Click
-        Sleep 60
-        MouseMove 53, 0, 2, R
-    }
-    Send {ShiftUp}
-    While card_count != 11
-    {
-        card_count := card_count + 1
-        Click, right
-        Sleep 80
-        Click
-        MouseMove -53, 0, 2, R
+        card_count := 10
+        Send {ShiftDown} 
+        While card_count != 0
+        {
+            card_count := card_count - 1
+            Sleep 60
+            Click
+            Sleep 60
+            MouseMove 53, 0, 2, R
+        }
+        Send {ShiftUp}
+        While card_count != 11
+        {
+            card_count := card_count + 1
+            Click, right
+            Sleep 80
+            Click
+            MouseMove -53, 0, 2, R
+        }
+        if stacked_count != 1
+        {
+            MouseMove 53, 53, 2, R
+            Click, left
+        }
+        stacked_count := stacked_count - 1
     }
     return
 }
@@ -186,15 +196,16 @@ DoorSearcherToggle(){
 
 DoorSearcher(){
     While door_searcher_toggle
-    {  ; 652, 172, 1281, 764, d.png  ; 403, 81, 1271, 893, *20, d_hover.png
-        ImageSearch, DoorVarX, DoorVarY, 640, 182, 1281, 757, *20, d_hover.png
+    {  ; 652, 172, 1281, 764, d.png  ; 403, 81, 1271, 893, *20, d_hover.png  ; 640, 182, 1281, 757, *7, d_hover.png
+        ; ImageSearch, DoorVarX, DoorVarY, 571, 140, 1219, 695, *7, d_hover.png
+        PixelSearch, DoorVarX, DoorVarY, 571, 140, 1219, 695, 0xDCC8C8, 0, Fast
         if DoorVarX
         {
             Click
             Click left down  ; to keep moving after click on door lable.
             ; MsgBox Here
         }
-        Sleep 200
+        Sleep 100
     }
     return
 }
@@ -379,8 +390,8 @@ LootSmallRegion(){
         return False
     }
     else{
-        Px := Px
-        Py := Py + 11
+        Px := Px + 30
+        Py := Py + 12
         Click %Px%, %Py%
         return True
     }
