@@ -146,6 +146,45 @@ AutoRolling(){                        ; Roll any item at currency stash tab with
 }
 
 
+GwenRollToggle(){
+    gwen_roll_toggle := !gwen_roll_toggle
+    if gwen_roll_toggle
+    {
+        GwenRollNotice()
+        GwenRoll()
+    }
+    else
+    {
+        SplashTextOff
+    }
+    return
+}
+
+
+GwenRoll(){
+    Sleep 1000
+    While gwen_roll_toggle
+    {
+        PixelSearch, itemBorderColorX, itemBorderColorY, 304, 256, 942, 839, 0x77B4E7, 0, Fast
+        if itemBorderColorX
+        {
+            Px := itemBorderColorX + 30
+            Py := itemBorderColorY + 12
+            Sleep 20
+            Send {Control down}
+            Click %Px%, %Py%
+            Send {Control up}
+        }
+        else
+        {
+            Click 943, 875
+        }
+        sleep 500
+    }
+    return
+}
+
+
 CardOpener(){
     stacked_count := 5
     While stacked_count != 0
@@ -198,7 +237,9 @@ DoorSearcher(){
     While door_searcher_toggle
     {  ; 652, 172, 1281, 764, d.png  ; 403, 81, 1271, 893, *20, d_hover.png  ; 640, 182, 1281, 757, *7, d_hover.png
         ; ImageSearch, DoorVarX, DoorVarY, 571, 140, 1219, 695, *7, d_hover.png
-        PixelSearch, DoorVarX, DoorVarY, 571, 140, 1219, 695, 0xDCC8C8, 0, Fast
+        ; Expedition: 0xFEB173
+        ; Heist:      0xDCC8C8
+        PixelSearch, DoorVarX, DoorVarY, 571, 140, 1219, 695, 0xFEB173, 0, Fast
         if DoorVarX
         {
             Click
@@ -367,6 +408,12 @@ AutoLifeFlaskNotice(){                                   ; AutoLifeFlask notific
 DoorSearcherNotice(){                                    ; DoorSearcher notification on screen(only windowed).
     SplashTextOn, 100, 1, Door Searcher.
     WinMove Door Searcher., , 234, 894
+}
+
+
+GwenRollNotice(){
+    SplashTextOn, 100, 1, Gwen rolling.
+    WinMove Gwen rolling., , 234, 894
 }
 
 

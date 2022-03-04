@@ -29,6 +29,7 @@ global auto_logout_toggle
 global do_delirious_toggle
 global deli_sub_toggle
 global door_searcher_toggle
+global gwen_roll_toggle
 
 
 ; Importing hotkeys of functions:
@@ -103,6 +104,7 @@ RunGUI()
 !f::DoDelirious()                     ; Alt+F  Run delirium script.
 ^n::CardOpener()                      ; Ctrl+N Spread stacked deck at one card and open it.
 ^+d::DoorSearcherToggle()             ; Ctrl+Shift+D Search door label and click on it.
+!w::GwenRollToggle()                  ; Alt+W Gwennen interface roll.
 ;-----------------------------------------------------------------------------
 
 !z::GetMouseColorPos()                ; Alt+Z  Get pixel coords and color at mouse pos.
