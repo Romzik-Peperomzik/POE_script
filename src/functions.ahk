@@ -235,11 +235,10 @@ DoorSearcherToggle(){
 
 DoorSearcher(){
     While door_searcher_toggle
-    {  ; 652, 172, 1281, 764, d.png  ; 403, 81, 1271, 893, *20, d_hover.png  ; 640, 182, 1281, 757, *7, d_hover.png
-        ; ImageSearch, DoorVarX, DoorVarY, 571, 140, 1219, 695, *7, d_hover.png
-        ; Expedition: 0xFEB173
-        ; Heist:      0xDCC8C8
-        PixelSearch, DoorVarX, DoorVarY, 571, 140, 1219, 695, 0xFEB173, 0, Fast
+    {
+        ; Expedition: 811, 417, 1139, 660, 0xFEB173
+        ; Heist:      571, 140, 1219, 695, 0xDCC8C8
+        PixelSearch, DoorVarX, DoorVarY, 811, 417, 1139, 660, 0xFEB173, 0, Fast
         if DoorVarX
         {
             Click
