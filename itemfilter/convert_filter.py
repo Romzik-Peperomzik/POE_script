@@ -7,11 +7,12 @@ source_list = ["NeverSink's filter - 0-SOFT.filter",
                "NeverSink's filter - 3-STRICT.filter",
                "NeverSink's filter - 4-VERY-STRICT.filter",
                "NeverSink's filter - 5-UBER-STRICT.filter",
-               "NeverSink's filter - 6-UBER-PLUS-STRICT.filter"]
+               "NeverSink's filter - 6-UBER-PLUS-STRICT.filter"
+               ]
 
-target_suffix = "-quick-loot.filter"
+target_suffix = "-new.filter"
 
-loot_set = "    SetBorderColor 100 0 122 255 # for quick-loot\n"
+loot_set = "  SetBorderColor 100 0 122 255 # for quick-loot\n"
 
 loot_list = ["Class \"Maps\"", 
              "Sockets >= 6", "LinkedSockets 6",
@@ -37,8 +38,21 @@ loot_list = ["Class \"Maps\"",
              "Metamorph",
              "Quality 20",
              "Prime Alchemical Resonator", "Potent Chaotic Resonator", "Potent Alchemical Resonator", # Resonators T1-T3
-             "Contract", "Blueprint", "Heist Target" # Heist
+             "Contract", "Blueprint", "Heist Target", # Heist
+             "Chromatic Orb", "Jeweller's Orb",
+             "Artifact",
+             "Expedition Logbook", "Astragali", "Burial Medallion", "Exotic Coinage", "Scrap Metal",
+             "Grand Black Scythe Artifact", "Grand Broken Circle Artifact", "Grand Order Artifact",
+             "Greater Black Scythe Artifact", "Greater Broken Circle Artifact", "Greater Order Artifact",
+             "Greater Sun Artifact",
+             "Common Black Scythe Artifact", "Common Broken Circle Artifact", "Common Order Artifact",
+             "Common Sun Artifact", 
+             "Lesser Black Scythe Artifact", "Lesser Broken Circle Artifact","Lesser Order Artifact", 
+             "Lesser Sun Artifact"
              ] 
+
+# String with Exalted tier for tests:
+# BaseType == "Albino Rhoa Feather" "Awakener's Orb" "Crusader's Exalted Orb" "Eternal Orb" "Exalted Orb" "Hunter's Exalted Orb" "Mirror of Kalandra" "Mirror Shard" "Orb of Dominance" "Prime Regrading Lens" "Redeemer's Exalted Orb" "Sacred Orb" "Secondary Regrading Lens" "Tailoring Orb" "Tainted Divine Teardrop" "Tempering Orb" "Warlord's Exalted Orb"
 
 def convert():
     for source in source_list:
@@ -54,7 +68,8 @@ def convert():
         line = f.readline()
         flag = False
 
-        t = open(target, "w")
+        modifyed_filter_path = f'modifyed_filters\{target}'
+        t = open(modifyed_filter_path, "w")
 
         while line:
             if line == "\n":
@@ -91,5 +106,5 @@ def convert():
 
 if __name__ == '__main__':
     convert()
-    print(f"***POE_Utility: NeverSink's filter converter***\nclose in 10 seconds...")
-    sleep(10)
+    print(f"***POE_Utility: NeverSink's filter converter***\nclose in 2 seconds...")
+    sleep(2)
