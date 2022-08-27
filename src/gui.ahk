@@ -2,7 +2,7 @@ RunGUI(){
 
 global
 Gui, Font, norm, 
-;Gui, Add, Edit, x252 y20 w0 h0 , 123 ; dummy edit to avoid a mysterious bug
+Gui, Add, Edit, x1 y1 w0 h0 , 123 ; dummy edit to avoid a mysterious bug
 
 ; How to use 
 Gui, Font, S9 CDefault Bold, Verdana

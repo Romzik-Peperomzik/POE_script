@@ -15,6 +15,7 @@ ReadSettings(){
     IniRead, deli_sub_toggle,     settings.ini, settings, deli_sub_toggle, 0
     IniRead, door_searcher_toggle,settings.ini, settings, door_searcher_toggle, 0
     IniRead, gwen_roll_toggle,    settings.ini, settings, gwen_roll_toggle, 0
+    IniRead, currency_click_toggle, settings.ini, settings, currency_click_toggle, 0
     ; Auto loot
     IniRead, auto_looting_active, settings.ini, settings, auto_looting_active, 0
     IniRead, autoLootingHotkey,   settings.ini, settings, autoLootingHotkey,   ^s

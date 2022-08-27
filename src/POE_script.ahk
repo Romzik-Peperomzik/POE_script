@@ -30,7 +30,7 @@ global do_delirious_toggle
 global deli_sub_toggle
 global door_searcher_toggle
 global gwen_roll_toggle
-
+global currency_click_toggle
 
 ; Importing hotkeys of functions:
 global setOfFlasksHotkey
@@ -101,10 +101,12 @@ RunGUI()
 !x::CleanInventory(cells_coord_list)  ; Alt+X  Clean inventory except portal and wisdom scroll. 
 ^g::ClickLoop()                       ; Ctrl+G Hold to autograb currency from currency tab.
 ^j::AutoRolling()                     ; Ctrl+J Press once to keep rolling loop up.
-!f::DoDelirious()                     ; Alt+F  Run delirium script.
 ^n::CardOpener()                      ; Ctrl+N Spread stacked deck at one card and open it.
 ^+d::DoorSearcherToggle()             ; Ctrl+Shift+D Search door label and click on it.
-!w::GwenRollToggle()                  ; Alt+W Gwennen interface roll.
+^h::CurrencyClickLoop()
+; F1::Invite()
+; !f::DoDelirious()                     ; Alt+F  Run delirium script.
+; !w::GwenRollToggle()                  ; Alt+W Gwennen interface roll.
 ;-----------------------------------------------------------------------------
 
 !z::GetMouseColorPos()                ; Alt+Z  Get pixel coords and color at mouse pos.

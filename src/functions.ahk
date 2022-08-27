@@ -260,6 +260,24 @@ ClickLoop(){                                             ; Quick left clicking l
 }
 
 
+CurrencyClickLoop(){
+    currency_click_toggle := !currency_click_toggle
+    if currency_click_toggle {
+        Send, {Shift down}
+        while (currency_click_toggle) {
+            if (GetKeyState("h")) {
+                break
+            }
+            Send, {Click}
+            Sleep, 500
+        }
+        Send, {Shift up}
+        currency_click_toggle := !currency_click_toggle
+    }
+    return
+}
+
+
 CleanInventory(coord_list){                              ; Cleaning inventory, only 1920x1080px works.
     SplashTextOn, 100, 1, Sorting...
     WinMove Sorting..., , 1297, 451
@@ -501,6 +519,14 @@ PartyInvite(){                                           ; Invite to party comma
 PartyKick(){                                             ; Kick command.
 	BlockInput On
 	Send ^{Enter}{Home}{Delete}/kick {Enter}
+	BlockInput Off
+	return
+}
+
+
+Invite(){                                           ; Invite to party command.
+	BlockInput On
+	Send ^{Enter}{Home}{Shift down}{End}{Shift up}{Delete}/invite ExaltedDivineKalandra{Enter}
 	BlockInput Off
 	return
 }
