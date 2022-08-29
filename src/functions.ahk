@@ -156,14 +156,18 @@ AutoAlchScourRolling(){
             if (!alch_scour_rolling_toggle) {
                 break
             }
-            Send {Click 493 267 Right}
-            Sleep, 200
+            MouseMove, 493, 267
+            Sleep, 100
+            Send {Click Right}
+            Sleep, 100
             Send {Click 337 443}
             Sleep, 200
             PixelGetColor border_pixel_color, 291, 407
             if (border_pixel_color != 0x77B4E7) {
-                Send {Click 435 504 Right}
-                Sleep, 200
+                MouseMove, 435, 504
+                Sleep, 100
+                Send {Click Right}
+                Sleep, 100
                 Send {Click 337 443}
                 Sleep, 200
             }
