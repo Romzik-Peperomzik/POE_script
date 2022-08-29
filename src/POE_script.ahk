@@ -31,6 +31,7 @@ global deli_sub_toggle
 global door_searcher_toggle
 global gwen_roll_toggle
 global currency_click_toggle
+global alch_scour_rolling_toggle
 
 ; Importing hotkeys of functions:
 global setOfFlasksHotkey
@@ -103,7 +104,8 @@ RunGUI()
 ^j::AutoRolling()                     ; Ctrl+J Press once to keep rolling loop up.
 ^n::CardOpener()                      ; Ctrl+N Spread stacked deck at one card and open it.
 ^+d::DoorSearcherToggle()             ; Ctrl+Shift+D Search door label and click on it.
-^h::CurrencyClickLoop()
+^h::CurrencyClickLoop()               ; Ctrl+H Hold currency on cursor and click on item.
+!g::AutoAlchScourRolling()            ; Alt+G roll item with alch and scouring sequence.
 ; F1::Invite()
 ; !f::DoDelirious()                     ; Alt+F  Run delirium script.
 ; !w::GwenRollToggle()                  ; Alt+W Gwennen interface roll.

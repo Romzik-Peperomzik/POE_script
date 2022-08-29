@@ -146,6 +146,36 @@ AutoRolling(){                        ; Roll any item at currency stash tab with
 }
 
 
+AutoAlchScourRolling(){
+    alch_scour_rolling_toggle := !alch_scour_rolling_toggle
+    if (alch_scour_rolling_toggle) {
+        SplashTextOn, 100, 1, Alch n scour
+        WinMove Alch n scour, , 230, 797
+        PixelGetColor border_pixel_color, 291, 407
+        while (border_pixel_color != 0x77B4E7) {
+            if (!alch_scour_rolling_toggle) {
+                break
+            }
+            Send {Click 493 267 Right}
+            Sleep, 200
+            Send {Click 337 443}
+            Sleep, 200
+            PixelGetColor border_pixel_color, 291, 407
+            if (border_pixel_color != 0x77B4E7) {
+                Send {Click 435 504 Right}
+                Sleep, 200
+                Send {Click 337 443}
+                Sleep, 200
+            }
+            Sleep, 150
+        }
+        alch_scour_rolling_toggle := !alch_scour_rolling_toggle
+        SplashTextOff
+    }
+    return
+}
+
+
 GwenRollToggle(){
     gwen_roll_toggle := !gwen_roll_toggle
     if gwen_roll_toggle
@@ -269,7 +299,7 @@ CurrencyClickLoop(){
                 break
             }
             Send, {Click}
-            Sleep, 500
+            Sleep, 100
         }
         Send, {Shift up}
         currency_click_toggle := !currency_click_toggle
@@ -431,6 +461,12 @@ DoorSearcherNotice(){                                    ; DoorSearcher notifica
 GwenRollNotice(){
     SplashTextOn, 100, 1, Gwen rolling.
     WinMove Gwen rolling., , 234, 894
+}
+
+
+AutoAlchScourRollingNotice(){
+    SplashTextOn, 100, 1, Map rolling.
+    WinMove Map rolling., , 234, 894
 }
 
 
