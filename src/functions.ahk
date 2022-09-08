@@ -125,28 +125,36 @@ DoDelirious(){                                           ; Main Delirium script 
 }
 
 
-AutoRolling(){                        ; Roll any item at currency stash tab with highlight border as a sentiel.
-    PixelGetColor cheking_border_pixel, 290, 370
-    Send {ShiftDown} 
-    While cheking_border_pixel != 0x77B4E7
-    {
-        PixelGetColor cheking_border_pixel, 290, 370
-        if cheking_border_pixel != 0x77B4E7
-        {
-            Click
+AutoRolling() {  ; Roll any item at currency stash tab with highlight border as a sentiel.
+    auto_rolling_toggle := !auto_rolling_toggle
+    if (auto_rolling_toggle) {
+        SplashTextOn, 100, 1, Alts n Chaos
+        WinMove Alts n Chaos, , 230, 797
+        PixelGetColor border_pixel_color, 291, 395
+        Send {ShiftDown} 
+        while (border_pixel_color != 0x77B4E7) {  ; highlighted_border_color
+            if (!auto_rolling_toggle) {
+                break
+            }
+            PixelGetColor border_pixel_color, 291, 395
+            if (border_pixel_color != 0x77B4E7) {
+                Click
+                Sleep, 300
+            } else {
+                break
+            }
         }
-        else
-        {
-            Send {ShiftUp}
+        Send {ShiftUp}
+        if (auto_rolling_toggle) {
+            auto_rolling_toggle := !auto_rolling_toggle
         }
-        Sleep 300
+        SplashTextOff
     }
-    Send {ShiftUp}
     return
 }
 
 
-AutoAlchScourRolling(){
+AutoAlchScourRolling() {
     alch_scour_rolling_toggle := !alch_scour_rolling_toggle
     if (alch_scour_rolling_toggle) {
         SplashTextOn, 100, 1, Alch n scour
@@ -156,7 +164,7 @@ AutoAlchScourRolling(){
             if (!alch_scour_rolling_toggle) {
                 break
             }
-            MouseMove, 493, 267
+            MouseMove, 164, 449  ;MouseMove, 493, 267  ; bindings
             Sleep, 100
             Send {Click Right}
             Sleep, 100
@@ -173,7 +181,9 @@ AutoAlchScourRolling(){
             }
             Sleep, 150
         }
-        alch_scour_rolling_toggle := !alch_scour_rolling_toggle
+        if (alch_scour_rolling_toggle) {
+            alch_scour_rolling_toggle := !alch_scour_rolling_toggle
+        }
         SplashTextOff
     }
     return
@@ -303,7 +313,7 @@ CurrencyClickLoop(){
                 break
             }
             Send, {Click}
-            Sleep, 100
+            Sleep, 250
         }
         Send, {Shift up}
         currency_click_toggle := !currency_click_toggle
