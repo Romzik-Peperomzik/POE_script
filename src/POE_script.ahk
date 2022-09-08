@@ -1,6 +1,7 @@
 #Include functions.ahk
 #Include rw_settings.ahk
 #Include gui.ahk
+#Include delirium_afk.ahk
 
 #IfWinActive, Path of Exile ahk_class POEWindowClass
 #SingleInstance force  ; Replaces the old instance of script automatically
