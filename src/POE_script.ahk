@@ -10,12 +10,35 @@
 
 SetDefaultMouseSpeed, 0          ; Sets the mouse speed, 0 - instantly
 
-; Importing bool status of functions:
-global set_of_flasks_active
-global auto_l_flask_active
+; Hotkeys
+global setOfFlasksHotkey
+global autoLifeFlaskHotkey
+global autoLootingHotkey
+global lootOneItemHotkey
+global AutoWalkHotkey
+global openPortalHotkey
+global hideoutHotkey
+global partyInviteHotkey
+global seqSkillsHotkey
+global smokeMineHotkey
+global gameLogoutHotkey
+global autoLogoutHotkey
+global partyKickHotkey
+; Toggles
 global auto_l_flask_toggle
+global do_delirious_toggle
+global deli_sub_toggle
+global door_searcher_toggle
+global gwen_roll_toggle
+global currency_click_toggle
+global alch_scour_rolling_toggle
+global auto_logout_toggle
+global auto_rolling_toggle
+; Activators
 global auto_looting_active
 global loot_one_item_active
+global set_of_flasks_active
+global auto_l_flask_active
 global auto_walk_active
 global open_portal_active
 global hideout_active
@@ -25,49 +48,28 @@ global seq_skills_active
 global smoke_mine_active
 global game_logout_active
 global auto_logout_active
-global auto_logout_toggle
-global do_delirious_toggle
-global deli_sub_toggle
-global door_searcher_toggle
-global gwen_roll_toggle
-global currency_click_toggle
-global alch_scour_rolling_toggle
-
-; Importing hotkeys of functions:
-global setOfFlasksHotkey
-global autoLifeFlaskHotkey
-global autoLootingHotkey
-global lootOneItemHotkey
-global AutoWalkHotkey
-global openPortalHotkey
-global hideoutHotkey
-global partyInviteHotkey
-global partyKickHotkey
-global seqSkillsHotkey
-global smokeMineHotkey
-global gameLogoutHotkey
-global autoLogoutHotkey
-
-
-; Just variables:
-global flask_key_set               ; flasks and skills sequence
-global low_life_flask_list         ; list of flasks which would be used by Auto Life Flask function
-global low_life_X                  
-global low_life_Y
+; Key lists
+global flask_key_set
+global low_life_flask_list
+global seq_second_skill
+global detonate_button
+global smoke_mine_button
+; Colors
 global life_color
-global lootColor                   ; border loot icon color 
-global loot_delay                  ; delay between looting
+global logout_life_color
+global lootColor
+global black_screen
+; Delays
+global loot_delay
+global seq_castspeed_time
+global mine_laying_time
+; Any coords
+global low_life_X
+global low_life_Y
 global portalX
 global portalY
-global seq_second_skill            ; second key which would be pressed at seqSkillsHotkey 
-global seq_castspeed_time          ; delay between cast rmb skill and cast q skill
-global detonate_button             ; detonate mine key from in game settings
-global smoke_mine_button           ; smoke mine key from in game settings
-global mine_laying_time            ; delay between throw mine and detonate them
-global logout_X                    
+global logout_X
 global logout_Y
-global logout_life_color
-global black_screen
 global black_screen_X
 global black_screen_Y
 global cells_coord_list
