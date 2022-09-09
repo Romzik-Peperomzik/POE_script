@@ -4,12 +4,12 @@
 #Include delirium_afk.ahk
 
 #IfWinActive, Path of Exile ahk_class POEWindowClass
-#SingleInstance force  ; Replaces the old instance of script automatically
-#NoEnv  ; Recommended for performance
-#Persistent  ; Keeps a script permanently running
+#SingleInstance force   ; Replaces the old instance of script automatically
+#NoEnv                  ; Recommended for performance
+#Persistent             ; Keeps a script permanently running
 #MaxThreadsPerHotkey 2
 
-SetDefaultMouseSpeed, 0          ; Sets the mouse speed, 0 - instantly
+SetDefaultMouseSpeed, 0 ; Sets the mouse speed, 0 - instantly
 
 ; Hotkeys
 global setOfFlasksHotkey
@@ -104,6 +104,7 @@ RunGUI()
 ; Functions that are not represented into GUI, only hotkeys.
 ; ! - alt, ^ - ctrl, + - shift.
 
+!z::GetMouseColorPos()                ; Alt+Z  Get pixel coords and color at mouse pos.
 !x::CleanInventory(cells_coord_list)  ; Alt+X  Clean inventory except portal and wisdom scroll. 
 ^n::CardOpener()                      ; Ctrl+N Spread stacked deck at one card and open it.
 ^g::CtrlClickLoop()                   ; Ctrl+G Hold to ctrl+click (grab currency from tab).
@@ -111,52 +112,47 @@ RunGUI()
 ^j::AltChaosRolling()                 ; Ctrl+J Press once to keep rolling loop up.
 !g::AlchBindScourRolling()            ; Alt+G roll item with alch and scouring sequence.
 ; !w::GwenRoller()                    ; Alt+W Auto Gwennen roller.
-; ^+d::DoorSearcher()                   ; Ctrl+Shift+D Search door label and click on it.
+; ^+d::DoorSearcher()                 ; Ctrl+Shift+D Search door label and click on it.
 ; F1::Invite()
 ; !f::DoDelirious()                   ; Alt+F Run delirium script.
 ;-----------------------------------------------------------------------------
 
-!z::GetMouseColorPos()                ; Alt+Z  Get pixel coords and color at mouse pos.
 
-
-SetOfFlasksLabel:                  ; Pressing set of flasks and skills. 
-    if set_of_flasks_active{
+SetOfFlasksLabel:                                         ; Pressing set of flasks and skills.
+    if (set_of_flasks_active) {
         Hotkey, %setOfFlasksHotkey%, On
         SetOfFlasks(flask_key_set)
-    } 
-    else{
+    } else {
         Hotkey, %setOfFlasksHotkey%, Off
         Send, %setOfFlasksHotkey%
     }
     return
 
 
-AutoLifeFlaskLabel:                ; Auto life flask. Cannot work at the same
-    if auto_l_flask_active{        ;                     time with AutoLogout.
+AutoLifeFlaskLabel:                                 ; Auto life flask. Cannot work at the same
+    if (auto_l_flask_active) {                      ;                    time with AutoLogout.
         Hotkey, %autoLifeFlaskHotkey%, On
         Activate_AutoLifeFlask()
-    }
-    else{
+    } else {
         Hotkey, %autoLifeFlaskHotkey%, Off
         Send, %autoLifeFlaskHotkey%
     }
     return
 
 
-SmokeMineLabel:                    ; Throwing and activating Smoke mine.
-    if smoke_mine_active{
+SmokeMineLabel:                                          ; Throwing and activating Smoke mine.
+    if (smoke_mine_active) {
         Hotkey, %smokeMineHotkey%, On
         SmokeMine()
-    }
-    else{
+    } else {
         Hotkey, %smokeMineHotkey%, Off
         Send, %smokeMineHotkey%
     }
     return 
 
 
-LootOneItem:                       ; Loot one item.
-    if loot_one_item_active{
+LootOneItem:
+    if (loot_one_item_active) {
         Hotkey, %lootOneItemHotkey%, On
         LootSmallRegion()
         /*
@@ -164,116 +160,106 @@ LootOneItem:                       ; Loot one item.
             LootBigRegion()
         }
         */
-    }
-    else{
+    } else {
         Hotkey, %lootOneItemHotkey%, Off
         Send, %lootOneItemHotkey%
     }
     return
 
 
-LootAllLabel:                      ; Hold to keep looting.
-    if auto_looting_active{
+LootAllLabel:
+    if (auto_looting_active) {
         Hotkey, %autoLootingHotkey%, On
         LootAll()
-    }
-    else{
+    } else {
         Hotkey, %autoLootingHotkey%, Off
         Send, %autoLootingHotkey%
     }
     return
 
 
-HoldWalkLabel:                     ; Toggle walk (like hold lmb to walk).
-    if auto_walk_active{
+HoldWalkLabel:
+    if (auto_walk_active) {
         Hotkey, %AutoWalkHotkey%, On
         HoldWalk()
-    }
-    else{
+    } else {
         Hotkey, %AutoWalkHotkey%, Off
         Send, %AutoWalkHotkey%
     }
     return
 
 
-OpenPortalLabel:                   ; Use portal scroll 
-    if open_portal_active{
+OpenPortalLabel:
+    if (open_portal_active) {
         Hotkey, %openPortalHotkey%, On
         OpenPortal()
-    }
-    else{
+    } else {
         Hotkey, %openPortalHotkey%, Off
         Send, %openPortalHotkey%
     }
     return
 
 
-GameLogoutLabel:                   ; `- Logout, SC029 is Tilda's id.
-    if game_logout_active{
+GameLogoutLabel:                                             ; `- Logout, SC029 is Tilda's id.
+    if (game_logout_active) {
         Hotkey, %gameLogoutHotkey%, On
         GameLogout()
-    }
-    else{
+    } else {
         Hotkey, %gameLogoutHotkey%, Off
         Send, %gameLogoutHotkey%
     }
     return 
 
 
-AutoLogoutLabel:                   ; AutoLogout. Cannot work at the same time
-    if auto_logout_active{         ;                       with AutoLifeFlask.
+AutoLogoutLabel:                                    ; AutoLogout. Cannot work at the same time
+    if (auto_logout_active) {                       ;                      with AutoLifeFlask.
         Hotkey, %autoLogoutHotkey%, On
         Activate_AutoLogout()
-    }
-    else{
+    } else {
         Hotkey, %autoLogoutHotkey%, Off
         Send, %autoLogoutHotkey%
     }
     return 
 
 
-HideoutLabel:                      ; Hideout.
-    if hideout_active{
+HideoutLabel:
+    if (hideout_active) {
         Hotkey, %hideoutHotkey%, On
         Hideout()
-    }
-    else{
+    } else {
         Hotkey, %hideoutHotkey%, Off
         Send, %hideoutHotkey%
     }
     return 
 
 
-PartyInviteLabel:                  ; Invite to party by last received player message.
-    if party_invite_active{
+PartyInviteLabel:                           ; Invite to party by last received player message.
+    if (party_invite_active) {
         Hotkey, %partyInviteHotkey%, On
         PartyInvite()
-    }
-    else{
+    } else {
         Hotkey, %partyInviteHotkey%, Off
         Send, %partyInviteHotkey%
     }
     return 
 
 
-PartyKickLabel:                    ; Kick from party by last received player message.
-    if hideout_active{
+PartyKickLabel:                             ; Kick from party by last received player message.
+    if (hideout_active) {
         Hotkey, %hideoutHotkey%, On
         PartyKick()
-    }
-    else{
+    } else {
         Hotkey, %hideoutHotkey%, Off
         Send, %hideoutHotkey%
     }
     return
 
 
-SequenceOfSkillsLabel:             ; Cremation delay Desecrate, BF delay BB and etc.
-    if seq_skills_active{
+SequenceOfSkillsLabel:                        ; Cremation delay Desecrate, BF delay BB and etc.
+    if (seq_skills_active) {
         Hotkey, %seqSkillsHotkey%, On
         SequenceOfSkills()
-    }
-    else{
+    } else {
         Hotkey, %seqSkillsHotkey%, Off
         Send, %seqSkillsHotkey%
     }
