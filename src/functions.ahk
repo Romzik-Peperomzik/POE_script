@@ -162,12 +162,12 @@ AltChaosRolling() {  ; Roll any item at currency stash tab with highlight border
 
         PixelGetColor border_pixel_color, 291, 395
         Send {ShiftDown} 
-        while (border_pixel_color != 0x77B4E7) {  ; highlighted_border_color
+        while (border_pixel_color != highlighted_border) {  ; highlighted_border_color
             if (!auto_rolling_toggle) {
                 break
             }
             PixelGetColor border_pixel_color, 291, 395
-            if (border_pixel_color != 0x77B4E7) {
+            if (border_pixel_color != highlighted_border) {
                 Click
                 Sleep, 300
             } else {
@@ -191,19 +191,29 @@ AlchBindScourRolling() {
         WinMove Alch n scour, , 230, 797
 
         PixelGetColor border_pixel_color, 291, 407
-        while (border_pixel_color != 0x77B4E7) {
+        while (border_pixel_color != highlighted_border) {
             if (!alch_scour_rolling_toggle) {
                 break
             }
-            MouseMove, 164, 449  ;MouseMove, 493, 267  ; bindings
-            Sleep, 100
-            Send {Click Right}
-            Sleep, 100
-            Send {Click 337 443}
-            Sleep, 200
+            if (alch) {
+                MouseMove, 493, 267
+                Sleep, 100
+                Send {Click Right}
+                Sleep, 100
+                Send {Click 337 443}
+                Sleep, 200
+            }
+            if (bind) {
+                MouseMove, 164, 449
+                Sleep, 100
+                Send {Click Right}
+                Sleep, 100
+                Send {Click 337 443}
+                Sleep, 200
+            }
 
             PixelGetColor border_pixel_color, 291, 407
-            if (border_pixel_color != 0x77B4E7) {
+            if (border_pixel_color != highlighted_border) {
                 MouseMove, 435, 504
                 Sleep, 100
                 Send {Click Right}
@@ -233,7 +243,7 @@ GwenRoller() {
             if (!gwen_roll_toggle) {
                 break
             }
-            PixelSearch, itemBorderColorX, itemBorderColorY, 304, 256, 942, 839, 0x77B4E7, 0, Fast
+            PixelSearch, itemBorderColorX, itemBorderColorY, 304, 256, 942, 839, highlighted_border, 0, Fast
             if (itemBorderColorX) {
                 Px := itemBorderColorX + 30
                 Py := itemBorderColorY + 12
@@ -438,9 +448,11 @@ PartyKick() {                                                                  ;
 }
 
 
-Invite() {                                                          ; Invite to party command.
-	BlockInput On
-	Send ^{Enter}{Home}{Shift down}{End}{Shift up}{Delete}/invite ExaltedDivineKalandra{Enter}
+CustomChatCommand() {                                                          ; Invite to party command.
+	BlockInput, On
+    Suspend, On
+	Send ^{Enter}{Home}{Shift down}{End}{Shift up}{Delete}%chat_command%{Enter}
+    Suspend, Off
 	BlockInput Off
 	return
 }

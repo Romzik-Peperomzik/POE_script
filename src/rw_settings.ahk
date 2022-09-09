@@ -50,6 +50,7 @@ ReadSettings() {
     IniRead, lootColor,           settings.ini, settings, lootColor,           0x790062
     IniRead, logout_life_color,   settings.ini, settings, logout_life_color,   0x160C92
     IniRead, black_screen,        settings.ini, settings, black_screen,        0x000000
+    IniRead, highlighted_border,  settings.ini, settings, highlighted_border,  0x77B4E7
     ; Delays
     IniRead, loot_delay,          settings.ini, settings, loot_delay,          300
     IniRead, seq_castspeed_time,  settings.ini, settings, seq_castspeed_time,  340
@@ -64,6 +65,11 @@ ReadSettings() {
     IniRead, black_screen_X,      settings.ini, settings, black_screen_X,      0
     IniRead, black_screen_Y,      settings.ini, settings, black_screen_Y,      51
     IniRead, cells_coord_list,    settings.ini, settings, cells_coord_list,    1301,596-1301,648-1301,701-1301,754-1353,596-1353,649-1353,702-1353,754-1406,596-1406,649-1406,701-1406,754-1406,807-1459,596-1459,649-1459,701-1459,754-1459,807-1511,596-1511,649-1511,701-1511,754-1511,807-1563,596-1563,649-1563,701-1563,754-1563,807-1617,596-1617,649-1617,701-1617,754-1617,807-1669,596-1669,649-1669,701-1669,754-1669,807-1722,596-1722,649-1722,701-1722,754-1722,807-1775,596-1775,649-1775,701-1775,754-1775,807-1827,596-1827,649-1827,701-1827,754-1827,807-1880,596-1880,649-1880,701-1880,754-1880,807
+    ; States
+    IniRead, alch,                settings.ini, settings, alch,                1
+    IniRead, bind,                settings.ini, settings, bind,                0
+    ; Commands
+    IniRead, chat_command,        settings.ini, settings, chat_command,        /invite Username
     return
 }
 
@@ -120,5 +126,9 @@ SaveSettings() {
     IniWrite, %logout_Y%,            settings.ini, settings, logout_Y
     IniWrite, %black_screen_X%,      settings.ini, settings, black_screen_X
     IniWrite, %black_screen_Y%,      settings.ini, settings, black_screen_Y
+    ; States
+    IniWrite, %alch%,                 settings.ini, settings, alch
+    IniWrite, %bind%,                 settings.ini, settings, bind
+    IniWrite, %chat_command%,         settings.ini, settings, chat_command
     return
 }

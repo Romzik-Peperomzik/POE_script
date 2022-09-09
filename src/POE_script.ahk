@@ -3,7 +3,7 @@
 #Include gui.ahk
 #Include delirium_afk.ahk
 
-#IfWinActive, Path of Exile ahk_class POEWindowClass
+; #IfWinActive, Path of Exile ahk_class POEWindowClass
 #SingleInstance force   ; Replaces the old instance of script automatically
 #NoEnv                  ; Recommended for performance
 #Persistent             ; Keeps a script permanently running
@@ -62,6 +62,7 @@ global life_color
 global logout_life_color
 global lootColor
 global black_screen
+global highlighted_border
 ; Delays
 global loot_delay
 global seq_castspeed_time
@@ -76,7 +77,11 @@ global logout_Y
 global black_screen_X
 global black_screen_Y
 global cells_coord_list
-
+; States
+global alch
+global bind
+; Commands
+global chat_command
 
 ;-----------------------------------------------------------------------------
 ReadSettings()
@@ -110,11 +115,11 @@ RunGUI()
 ^g::CtrlClickLoop()                   ; Ctrl+G Hold to ctrl+click (grab currency from tab).
 ^h::FuseJewellerClickLoop()           ; Ctrl+H Hold currency on cursor and click on item.
 ^j::AltChaosRolling()                 ; Ctrl+J Press once to keep rolling loop up.
-!g::AlchBindScourRolling()            ; Alt+G roll item with alch and scouring sequence.
-; !w::GwenRoller()                    ; Alt+W Auto Gwennen roller.
+!g::AlchBindScourRolling()            ; Alt+G  Roll item with alch and scouring sequence.
+F1::CustomChatCommand()               ; F1     Enter custom chat command in game.
+!e::GwenRoller()                      ; Alt+E  Auto Gwennen roller.
 ; ^+d::DoorSearcher()                 ; Ctrl+Shift+D Search door label and click on it.
-; F1::Invite()
-; !f::DoDelirious()                   ; Alt+F Run delirium script.
+; !f::DoDelirious()                   ; Alt+F  Run delirium script.
 ;-----------------------------------------------------------------------------
 
 

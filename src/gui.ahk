@@ -1,10 +1,10 @@
-RunGUI(){
+RunGUI() {
 
 global
 Gui, Font, norm, 
 Gui, Add, Edit, x1 y1 w0 h0 , 123 ; dummy edit to avoid a mysterious bug
 
-; How to use 
+; How to use section
 Gui, Font, S9 CDefault Bold, Verdana
 Gui, Add, GroupBox, x32 y4 w840 h70 , How to use script
 Gui, Font, S8 norm, Verdana
@@ -12,7 +12,7 @@ Gui, Add, Text, x42 y23 w820 h15 , Choose and checkbox hotkeys functions whichev
 Gui, Add, Text, x42 y38 w820 h15 , ATTENTION, Auto Logout and Auto Life Flask work only windowed game mode.
 Gui, Add, Text, x42 y53 w820 h15 , IF U NEED TO CHATTING OR JUST WANT TO PAUSE UR HOTKEYS PRESS F2 AND ALL HOTKEYS WILL BE BLOCKED.
 
-; Set of Flasks
+; Set of Flasks section
 Gui, Font, S9 CDefault Bold, Verdana
 Gui, Add, GroupBox, x32 y79 w420 h110 , Set of Flasks
 Gui, Font, norm, Verdana
@@ -21,12 +21,12 @@ Gui, Add, Hotkey, x212 y99 w60 h20 vsetOfFlasksHotkey, %setOfFlasksHotkey%
 Gui, Add, CheckBox, x282 y99 w30 h20 Checked%set_of_flasks_active% vset_of_flasks_active, 
 Gui, Add, Text, x42 y129 w150 h20 , Set of flasks and skills:
 Gui, Add, Edit, x212 y129 w120 h20 vflask_key_set, %flask_key_set%
-
+; Set of Flasks tips
 Gui, Font, S7 CDefault, Verdana
 Gui, Add, Text, x42 y153 w260 h13 , To make sequence, separate keys by -, 1-2-q-w-e
 Gui, Add, Text, x42 y169 w400 h13 , For Shift, Alt or Ctrl key combination use: Shift +s, Alt !s, Ctrl ^s:    +q-!w-^e
 
-; Auto Life Flask
+; Auto Life Flask section
 Gui, Font, S9 CDefault Bold, Verdana
 Gui, Add, GroupBox, x32 y199 w240 h160 , Auto Life Flask
 Gui, Font, norm, Verdana
@@ -42,10 +42,11 @@ Gui, Add, Text, x42 y219 w110 h20 , Toggle AutoLF:
 Gui, Add, Hotkey, x162 y219 w60 h20 vautoLifeFlaskHotkey, %autoLifeFlaskHotkey%
 Gui, Add, CheckBox, x232 y219 w30 h20 Checked%auto_l_flask_active% vauto_l_flask_active, 
 
+; Auto Life Flask tips
 Gui, Font, S7 CDefault, Verdana
 Gui, Add, Text, x36 y339 w235 h15 , To make sequence, separate keys by -, 1-2-3
 
-; Auto Loot
+; Auto Loot section
 Gui, Font, S9 CDefault Bold, Verdana
 Gui, Add, GroupBox, x32 y369 w240 h140 , Auto Loot
 Gui, Font, norm, Verdana
@@ -60,7 +61,7 @@ Gui, Add, CheckBox, x232 y419 w30 h20 Checked%auto_looting_active% vauto_looting
 Gui, Add, Edit, x162 y479 w40 h20 vloot_delay, %loot_delay%
 Gui, Add, Text, x42 y479 w75 h20 , delay (ms):
 
-; Misc
+; Misc text
 Gui, Font, S9 CDefault Bold, Verdana
 Gui, Add, GroupBox, x292 y199 w300 h310 , Misc
 Gui, Font, norm, Verdana
@@ -75,6 +76,7 @@ Gui, Add, Text, x482 y249 w20 h20 , F2
 Gui, Add, Text, x482 y279 w40 h20 , RCtrl
 ;Gui, Add, Text, x482 y309 w40 h20 , Pause
 
+; Misc section
 Gui, Font, norm, Verdana
 Gui, Add, Text, x302 y309 w150 h20 , Auto Walk (lmb hold)
 Gui, Add, Hotkey, x482 y309 w60 h20 vAutoWalkHotkey, %AutoWalkHotkey%
@@ -91,14 +93,14 @@ Gui, Add, CheckBox, x552 y399 w35 h20 Checked%party_kick_active% vparty_kick_act
 Gui, Add, Text, x302 y429 w130 h20 , Game Logout
 Gui, Add, Edit, x482 y429 w52 h20 vgameLogoutHotkey, %gameLogoutHotkey%
 Gui, Add, CheckBox, x552 y429 w35 h20 Checked%game_logout_active% vgame_logout_active, 
-
+; Misc tips
 Gui, Font, S8 CDefault, Verdana
 Gui, Add, Text, x302 y449 w288 h13 , If u want quick logout at `` key, try to enter ``
 Gui, Add, Text, x302 y462 w288 h13 , key at the field or if it's not work, use KeyHooker
 Gui, Add, Text, x302 y475 w288 h13 , to identify id of `` key on ur keyboard and put it id
 Gui, Add, Text, x302 y488 w288 h13 , at the field below instead of `` key.
 
-; Open Portal
+; Open Portal section
 Gui, Font, S9 CDefault Bold, Verdana
 Gui, Add, GroupBox, x472 y79 w400 h110 , Open Portal
 Gui, Font, norm, Verdana
@@ -109,7 +111,7 @@ Gui, Add, Text, x482 y129 w20 h20 , X:
 Gui, Add, Edit, x562 y129 w50 h20 vportalX, %portalX%
 Gui, Add, Text, x482 y159 w10 h20 , Y:
 Gui, Add, Edit, x562 y159 w50 h20 vportalY, %portalY%
-
+; Open Portal tips
 Gui, Font, S8 CDefault, Verdana
 Gui, Add, Text, x682 y110 w180 h13 , Get a portal scroll coords from
 Gui, Add, Text, x675 y126 w190 h13 , your inventory, point coursor at
@@ -117,6 +119,7 @@ Gui, Add, Text, x632 y142 w230 h13 , a portal scroll and press Alt + Z hotkey.
 Gui, Add, Text, x677 y159 w190 h15 , Put X and Y coords at edit form.
 
 ; Abilities sequences
+; Smoke mine and detonate button tips
 Gui, Font, S9 CDefault Bold, Verdana
 Gui, Add, GroupBox, x612 y199 w260 h510 , Abilities sequences
 Gui, Font, S8 CDefault Bold, Verdana
@@ -126,7 +129,7 @@ Gui, Add, Text, x622 y249 w230 h12 , Put Smoke and Detonate mine keys from
 Gui, Add, Text, x622 y269 w230 h12 , game at form below. It should be same
 Gui, Add, Text, x622 y289 w110 h20 , keys as at skill panel.
 Gui, Add, Text, x622 y389 w240 h20 , And choose hotkey to activate r -> d sequence.
-
+; Smoke mine and detonate button section
 Gui, Font, S9 norm, Verdana
 Gui, Add, Text, x622 y329 w110 h20 , Smoke mine key:
 Gui, Add, Edit, x772 y329 w40 h20 vsmoke_mine_button, %smoke_mine_button%
@@ -138,15 +141,7 @@ Gui, Add, CheckBox, x842 y409 w20 h20 Checked%smoke_mine_active% vsmoke_mine_act
 Gui, Add, Text, x622 y434 w150 h14 , Smoke mine laying
 Gui, Add, Text, x682 y449 w150 h14 , time(ms):
 Gui, Add, Edit, x772 y439 w40 h20 vmine_laying_time, %mine_laying_time%
-
-Gui, Add, Text, x622 y579 w150 h20 , First key skill (trigger)
-Gui, Add, Hotkey, x772 y579 w60 h20 vseqSkillsHotkey, %seqSkillsHotkey%
-Gui, Add, CheckBox, x842 y579 w20 h20 Checked%seq_skills_active% vseq_skills_active, 
-Gui, Add, Text, x622 y609 w120 h20 , Second key skill
-Gui, Add, Edit, x772 y609 w60 h20 vseq_second_skill, %seq_second_skill%
-Gui, Add, Text, x622 y639 w180 h20 , Delay between skills (ms):
-Gui, Add, Edit, x792 y639 w40 h20 vseq_castspeed_time, %seq_castspeed_time%
-
+; Skills sequence tips
 Gui, Font, S8 CDefault Bold, Verdana
 Gui, Add, Text, x622 y479 w180 h20 , 1 key -> 2 skills sequence
 Gui, Font, S7 CDefault norm, Verdana
@@ -154,6 +149,14 @@ Gui, Add, Text, x622 y499 w240 h12 , For example put Desecrate at RMB key in gam
 Gui, Add, Text, x622 y519 w230 h12 , and Cremation at q key then put cast speed
 Gui, Add, Text, x622 y539 w220 h12 , time of Desecrate skill from in game tooltip.
 Gui, Add, Text, x622 y669 w230 h12 , Put cast time value from in game tooltip here.
+; Skills sequence section
+Gui, Add, Text, x622 y579 w150 h20 , First key skill (trigger)
+Gui, Add, Hotkey, x772 y579 w60 h20 vseqSkillsHotkey, %seqSkillsHotkey%
+Gui, Add, CheckBox, x842 y579 w20 h20 Checked%seq_skills_active% vseq_skills_active, 
+Gui, Add, Text, x622 y609 w120 h20 , Second key skill
+Gui, Add, Edit, x772 y609 w60 h20 vseq_second_skill, %seq_second_skill%
+Gui, Add, Text, x622 y639 w180 h20 , Delay between skills (ms):
+Gui, Add, Edit, x792 y639 w40 h20 vseq_castspeed_time, %seq_castspeed_time%
 
 ; Auto Logout
 Gui, Font, S9 CDefault Bold, Verdana
@@ -168,7 +171,7 @@ Gui, Add, Text, x142 y579 w10 h20 , Y:
 Gui, Add, Edit, x162 y579 w50 h20 vlogout_Y, %logout_Y%
 Gui, Add, Text, x42 y609 w150 h20 , Pixel Life/ES color:
 Gui, Add, Edit, x162 y609 w77 h20 vlogout_life_color, %logout_life_color%
-
+; Instruction to auto logout
 Gui, Font, S9 CDefault Bold, Verdana
 Gui, Add, Text, x428 y539 w153 h20 , How to use autologout:
 Gui, Font, S8 CDefault norm, Verdana
@@ -181,16 +184,85 @@ Gui, Add, Text, x367 y659 w220 h14 , If ur build low life ES based, pick blue
 Gui, Add, Text, x376 y679 w210 h20 , pixel from edge of orb, but not gray!
 Gui, Add, Text, x42 y719 w210 h20 , When u toggle logout hotkey u'll see
 Gui, Add, Text, x42 y734 w280 h13 , notice that it's activated (works only windowed).
-
+; Tip for auto logout
 Gui, Font, S8 CDefault bold, Verdana
 Gui, Add, Text, x42 y649 w290 h20 , Every time if u changes any logout params,
 Gui, Add, Text, x42 y669 w260 h20 , check autologout in ur hideout by using
 Gui, Add, Text, x42 y689 w320 h20 , Righteous fire or Blood rage to imitate life leak.
 
+
+; Utils box
+Gui, Font, S9 CDefault Bold, Verdana
+Gui, Add, GroupBox, x893 y4 w295 h766 , Utility
+
+; Fuctions utils section
+Gui, Font, norm, Verdana
+Gui, Add, Text, x905 y30 w170 h20 , CleanInventory:
+Gui, Add, Text, x905 y100 w170 h20 , CardOpener:
+Gui, Add, Text, x905 y185 w170 h20 , CtrlClickLoop:
+Gui, Add, Text, x905 y255 w170 h20 , FuseJewellerClickLoop:
+Gui, Add, Text, x905 y340 w170 h20 , AltChaosRolling:
+Gui, Add, Text, x905 y470 w170 h20 , AlchBindScourRolling:
+Gui, Add, Text, x905 y630 w170 h20 , Custom chat command:
+Gui, Add, Text, x905 y690 w170 h20 , GwenRoller:
+
+; Input fields utils section
+Gui, Add, Radio, x915 y495 w51 h20 Checked%alch% valch, alch
+Gui, Add, Radio, x970 y495 w55 h20 Checked%bind% vbind, bind
+Gui, Add, Edit, x915 y650 w200 h20 vchat_command, %chat_command%
+
+; List of Chords utils section
+Gui, Font, S9 CDefault Bold, Verdana
+Gui, Add, Text, x1130 y30 w50 h20 , Alt + X
+Gui, Add, Text, x1125 y100 w60 h20 , Ctrl + N
+Gui, Add, Text, x1125 y185 w60 h20 , Ctrl + G
+Gui, Add, Text, x1125 y255 w60 h20 , Ctrl + H
+Gui, Add, Text, x1125 y340 w60 h20 , Ctrl + J
+Gui, Add, Text, x1130 y470 w50 h20 , Alt + G
+Gui, Add, Text, x1155 y630 w20 h20 , F1
+Gui, Add, Text, x1130 y690 w50 h20 , Alt + E
+
+; Decriptions utils section
+Gui, Font, S8 norm CDefault, Verdana
+; CleanInventory tips
+Gui, Add, Text, x915 y50 w270 h15 , Ctrl+Click on inventory cell if its not empty.
+Gui, Add, Text, x915 y65 w270 h15 , Open stash or trade window before use it.
+; CardOpener tips
+Gui, Add, Text, x915 y120 w270 h15 , Put 5 stacked decks into column, click lmb on
+Gui, Add, Text, x915 y135 w270 h15 , first one when it decompose all deck and 
+Gui, Add, Text, x915 y150 w270 h15 , open it one by one.
+; CtrlClickLoop tips
+Gui, Add, Text, x915 y205 w270 h15 , Hover mouse to currency in stash tab and 
+Gui, Add, Text, x915 y220 w270 h15 , hold Ctrl+G to grab currency in loop.
+; FuseJewellerClickLoop tips
+Gui, Add, Text, x915 y275 w270 h15 , Grab fusing or jewellers orb and hover
+Gui, Add, Text, x915 y290 w270 h15 , on item, when press Ctrl+H and wait till
+Gui, Add, Text, x915 y305 w270 h15 , it done. To turn off press Ctrl+H again.
+; AltChaosRolling tips
+Gui, Add, Text, x915 y360 w270 h15 , Put regexp in search field in stash. Place
+Gui, Add, Text, x915 y375 w270 h15 , item in currency stash tab. Grab chaos or
+Gui, Add, Text, x915 y390 w270 h15 , alteration orb, hover on item, when press
+Gui, Add, Text, x915 y405 w270 h15 , Ctrl+J and wait till item would be highlighted 
+Gui, Add, Text, x915 y420 w270 h15 , or press Ctrl+J again to stop. Stop trigger 
+Gui, Add, Text, x915 y435 w270 h15 , are highlight border around item.
+; AlchBindScourRolling tips
+Gui, Add, Text, x915 y520 w270 h15 , Choose alchemy or bindings orb use to
+Gui, Add, Text, x915 y535 w270 h15 , rolling. Put item in currency stash tab
+Gui, Add, Text, x915 y550 w270 h15 , (map for example) put regexp in search 
+Gui, Add, Text, x915 y565 w270 h15 , field in stash. Press Alt+G to start 
+Gui, Add, Text, x915 y580 w270 h15 , rolling, press it again to stop. 
+Gui, Add, Text, x915 y595 w270 h15 , Stop trigger are highlight border around item.
+; GwenRoller tips
+Gui, Add, Text, x915 y710 w270 h15 , Put regexp in search field in Gwennen roll
+Gui, Add, Text, x915 y725 w270 h15 , window. Press Alt+E to start rolling.
+Gui, Add, Text, x915 y740 w270 h15 , And again to stop.
+
+
+; Apply button
 Gui, Font, norm, Verdana
 Gui, Add, Button, x772 y729 w100 h30 , Apply change
-; Generated using SmartGUI Creator 4.0
-Gui, Show, x285 y119 h778 w908, Script
+; Main window params
+Gui, Show, x285 y119 h778 w1208, Script
 Return
 
 GuiClose:
@@ -200,14 +272,14 @@ ExitApp
 }
 
 
-ButtonApplyChange(){
+ButtonApplyChange() {
     TurnOffAllHotkey()
     Gui, Submit, NoHide
     TurnOnAllHotkey()
     MsgBox , 0, , change applied, 0.5
 }
 
-TurnOffAllHotkey(){
+TurnOffAllHotkey() {
     TurnOffHotkey(setOfFlasksHotkey)
     TurnOffHotkey(autoLifeFlaskHotkey)
     TurnOffHotkey(autoLootingHotkey)
@@ -222,7 +294,7 @@ TurnOffAllHotkey(){
     TurnOffHotkey(seqSkillsHotkey)
 }
 
-TurnOnAllHotkey(){
+TurnOnAllHotkey() {
     TurnOnHotkey(setOfFlasksHotkey, "SetOfFlasksLabel")
     TurnOnHotkey(autoLifeFlaskHotkey, "AutoLifeFlaskLabel")
     TurnOnHotkey(autoLootingHotkey, "LootAllLabel")
@@ -237,18 +309,17 @@ TurnOnAllHotkey(){
     TurnOnHotkey(seqSkillsHotkey, "SequenceOfSkillsLabel")
 }
 
-TurnOffHotkey(key){
-    if %key%{
+TurnOffHotkey(key) {
+    if (key) {
         Hotkey, %key%, Off
     }
     return
 }
 
 TurnOnHotkey(key, label){
-    if key{
+    if (key) {
         Hotkey, %key%, %label%, On
-    }
-    else{
+    } else {
         ;Msgbox, %key%
     }
     return
