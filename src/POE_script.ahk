@@ -117,6 +117,7 @@ RunGUI()
 !g::AlchBindScourRolling()            ; Alt+G  Roll item with alch and scouring sequence.
 F1::CustomChatCommand()               ; F1     Enter custom chat command in game.
 !e::GwenRoller()                      ; Alt+E  Auto Gwennen roller.
+^+F::UpdateHealTreshold()             ; Ctrl+Shift+F Set new heal treshold.
 ; ^+d::DoorSearcher()                 ; Ctrl+Shift+D Search door label and click on it.
 ; !f::DoDelirious()                   ; Alt+F  Run delirium script.
 ;-----------------------------------------------------------------------------

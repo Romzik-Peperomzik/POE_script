@@ -314,6 +314,20 @@ Activate_AutoHeal() {
 }
 
 
+UpdateHealTreshold() {
+    MouseGetPos, new_low_life_X, new_low_life_Y
+    PixelGetColor, new_life_color, %MouseX%, %MouseY%
+    life_color := new_life_color
+    low_life_X := new_low_life_X
+    low_life_Y := new_low_life_Y
+    IniWrite, %life_color%, settings.ini, settings, life_color
+    IniWrite, %low_life_X%, settings.ini, settings, low_life_X
+    IniWrite, %low_life_Y%, settings.ini, settings, low_life_Y
+    MsgBox, New heal treshold setted.
+    Reload
+}
+
+
 Activate_AutoLogout() {                                                  ; Auto Logout Toggle.
     auto_logout_toggle := !auto_logout_toggle
     if (auto_logout_toggle) {

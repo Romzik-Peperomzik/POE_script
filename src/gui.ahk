@@ -44,8 +44,8 @@ Gui, Add, CheckBox, x232 y219 w30 h20 Checked%auto_heal_active% vauto_heal_activ
 
 ; Auto Life Flask tips
 Gui, Font, S7 CDefault, Verdana
-Gui, Add, Text, x36 y339 w235 h15 , To make sequence, separate keys by /, 1/2/3
-
+Gui, Add, Text, x40 y336 w220 h15 , To update X, Y, Color press: Ctrl+Shift+F
+;To make sequence, separate keys by /, 1/2/3
 ; Auto Loot section
 Gui, Font, S9 CDefault Bold, Verdana
 Gui, Add, GroupBox, x32 y369 w240 h140 , Auto Loot
@@ -296,7 +296,7 @@ TurnOffAllHotkey() {
 
 TurnOnAllHotkey() {
     TurnOnHotkey(setOfFlasksHotkey, "SetOfFlasksLabel")
-    TurnOnHotkey(autoHealHotkey, "AutoLifeFlaskLabel")
+    TurnOnHotkey(autoHealHotkey, "AutoHealLabel")
     TurnOnHotkey(autoLootingHotkey, "LootAllLabel")
     TurnOnHotkey(lootOneItemHotkey, "LootOneItem")
     TurnOnHotkey(AutoWalkHotkey, "HoldWalkLabel")
