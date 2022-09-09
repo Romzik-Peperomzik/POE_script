@@ -303,7 +303,7 @@ Activate_AutoLifeFlask() {
                 if (black_pixel = black_screen) {
                     sleep 3000
                 } else {
-                    SetOfFlasks(low_life_flask_list)
+                    SetOfFlasks(heal_keys_list)
                     Sleep 150
                 }
             }
@@ -328,7 +328,7 @@ Activate_AutoLogout() {                                                  ; Auto 
                 if (black_pixel = black_screen) {
                     sleep 3000
                 } else {
-                    SetOfFlasks(low_life_flask_list)        ; Drink life potion before logout.
+                    SetOfFlasks(heal_keys_list)        ; Drink life potion before logout.
                     GameLogout()
                     Sleep 150
                     Activate_AutoLogout()

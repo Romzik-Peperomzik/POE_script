@@ -1,7 +1,7 @@
 ReadSettings() {
     ; Hotkeys
     IniRead, setOfFlasksHotkey,   settings.ini, settings, setOfFlasksHotkey,   a    
-    IniRead, autoLifeFlaskHotkey, settings.ini, settings, autoLifeFlaskHotkey, ^f
+    IniRead, autoHealHotkey,      settings.ini, settings, autoHealHotkey,      ^f
     IniRead, autoLootingHotkey,   settings.ini, settings, autoLootingHotkey,   ^s
     IniRead, lootOneItemHotkey,   settings.ini, settings, lootOneItemHotkey,   s
     IniRead, AutoWalkHotkey,      settings.ini, settings, AutoWalkHotkey,      ^d 
@@ -29,7 +29,7 @@ ReadSettings() {
     IniRead, auto_looting_active, settings.ini, settings, auto_looting_active, 0
     IniRead, loot_one_item_active,settings.ini, settings, loot_one_item_active,0
     IniRead, set_of_flasks_active,settings.ini, settings, set_of_flasks_active,1
-    IniRead, auto_l_flask_active, settings.ini, settings, auto_l_flask_active, 0
+    IniRead, auto_heal_active,    settings.ini, settings, auto_heal_active,    0
     IniRead, auto_walk_active,    settings.ini, settings, auto_walk_active,    0
     IniRead, open_portal_active,  settings.ini, settings, open_portal_active,  0
     IniRead, hideout_active,      settings.ini, settings, hideout_active,      1
@@ -41,7 +41,7 @@ ReadSettings() {
     IniRead, auto_logout_active,  settings.ini, settings, auto_logout_active,  0
     ; Key lists
     IniRead, flask_key_set,       settings.ini, settings, flask_key_set,       1-2-3-4-5
-    IniRead, low_life_flask_list, settings.ini, settings, low_life_flask_list, 1 
+    IniRead, heal_keys_list,      settings.ini, settings, heal_keys_list,      1 
     IniRead, seq_second_skill,    settings.ini, settings, seq_second_skill,    q
     IniRead, detonate_button,     settings.ini, settings, detonate_button,     d
     IniRead, smoke_mine_button,   settings.ini, settings, smoke_mine_button,   r
@@ -76,7 +76,7 @@ ReadSettings() {
 SaveSettings() {
     ; Hotkeys
     IniWrite, %setOfFlasksHotkey%,   settings.ini, settings, setOfFlasksHotkey
-    IniWrite, %autoLifeFlaskHotkey%, settings.ini, settings, autoLifeFlaskHotkey
+    IniWrite, %autoHealHotkey%,      settings.ini, settings, autoHealHotkey
     IniWrite, %autoLootingHotkey%,   settings.ini, settings, autoLootingHotkey
     IniWrite, %lootOneItemHotkey%,   settings.ini, settings, lootOneItemHotkey
     IniWrite, %AutoWalkHotkey%,      settings.ini, settings, AutoWalkHotkey
@@ -90,7 +90,7 @@ SaveSettings() {
     IniWrite, %autoLogoutHotkey%,    settings.ini, settings, autoLogoutHotkey
     ; Activators
     IniWrite, %set_of_flasks_active%,settings.ini, settings, set_of_flasks_active
-    IniWrite, %auto_l_flask_active%, settings.ini, settings, auto_l_flask_active
+    IniWrite, %auto_heal_active%,    settings.ini, settings, auto_heal_active
     IniWrite, %auto_looting_active%, settings.ini, settings, auto_looting_active
     IniWrite, %loot_one_item_active%,settings.ini, settings, loot_one_item_active
     IniWrite, %auto_walk_active%,    settings.ini, settings, auto_walk_active
@@ -104,7 +104,7 @@ SaveSettings() {
     IniWrite, %auto_logout_active%,  settings.ini, settings, auto_logout_active
     ; Key lists
     IniWrite, %flask_key_set%,       settings.ini, settings, flask_key_set
-    IniWrite, %low_life_flask_list%, settings.ini, settings, low_life_flask_list
+    IniWrite, %heal_keys_list%,      settings.ini, settings, heal_keys_list
     IniWrite, %seq_second_skill%,    settings.ini, settings, seq_second_skill
     IniWrite, %detonate_button%,     settings.ini, settings, detonate_button
     IniWrite, %smoke_mine_button%,   settings.ini, settings, smoke_mine_button

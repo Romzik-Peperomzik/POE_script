@@ -9,7 +9,7 @@ Gui, Font, S9 CDefault Bold, Verdana
 Gui, Add, GroupBox, x32 y4 w840 h70 , How to use script
 Gui, Font, S8 norm, Verdana
 Gui, Add, Text, x42 y23 w820 h15 , Choose and checkbox hotkeys functions whichever u need. If u want to change hotkey, click to field and tap at key or combination keys.
-Gui, Add, Text, x42 y38 w820 h15 , ATTENTION, Auto Logout and Auto Life Flask work only windowed game mode.
+Gui, Add, Text, x42 y38 w820 h15 , ATTENTION, Auto Logout and Auto Heal work only windowed game mode.
 Gui, Add, Text, x42 y53 w820 h15 , IF U NEED TO CHATTING OR JUST WANT TO PAUSE UR HOTKEYS PRESS F2 AND ALL HOTKEYS WILL BE BLOCKED.
 
 ; Set of Flasks section
@@ -23,12 +23,12 @@ Gui, Add, Text, x42 y129 w150 h20 , Set of flasks and skills:
 Gui, Add, Edit, x212 y129 w120 h20 vflask_key_set, %flask_key_set%
 ; Set of Flasks tips
 Gui, Font, S7 CDefault, Verdana
-Gui, Add, Text, x42 y153 w260 h13 , To make sequence, separate keys by -, 1-2-q-w-e
-Gui, Add, Text, x42 y169 w400 h13 , For Shift, Alt or Ctrl key combination use: Shift +s, Alt !s, Ctrl ^s:    +q-!w-^e
+Gui, Add, Text, x42 y153 w260 h13 , To make sequence, separate keys by /, 1/2/q/w/e
+Gui, Add, Text, x42 y169 w400 h13 , For Shift, Alt or Ctrl key combination use: Shift +s, Alt !s, Ctrl ^s:    +q/!w/^e
 
-; Auto Life Flask section
+; Auto Heal section
 Gui, Font, S9 CDefault Bold, Verdana
-Gui, Add, GroupBox, x32 y199 w240 h160 , Auto Life Flask
+Gui, Add, GroupBox, x32 y199 w240 h160 , Auto Heal
 Gui, Font, norm, Verdana
 Gui, Add, Text, x42 y249 w20 h20 , X:
 Gui, Add, Edit, x62 y249 w47 h20 vlow_life_X, %low_life_X%
@@ -37,14 +37,14 @@ Gui, Add, Edit, x162 y249 w47 h20 vlow_life_Y, %low_life_Y%
 Gui, Add, Text, x42 y279 w100 h20 , X, Y pixel color:
 Gui, Add, Edit, x162 y279 w77 h20 vlife_color, %life_color%
 Gui, Add, Text, x42 y309 w100 h20 , list of keys:
-Gui, Add, Edit, x162 y309 w40 h20 vlow_life_flask_list, %low_life_flask_list%
-Gui, Add, Text, x42 y219 w110 h20 , Toggle AutoLF:
-Gui, Add, Hotkey, x162 y219 w60 h20 vautoLifeFlaskHotkey, %autoLifeFlaskHotkey%
-Gui, Add, CheckBox, x232 y219 w30 h20 Checked%auto_l_flask_active% vauto_l_flask_active, 
+Gui, Add, Edit, x162 y309 w40 h20 vheal_keys_list, %heal_keys_list%
+Gui, Add, Text, x42 y219 w110 h20 , Toggle AutoHeal:
+Gui, Add, Hotkey, x162 y219 w60 h20 vautoHealHotkey, %autoHealHotkey%
+Gui, Add, CheckBox, x232 y219 w30 h20 Checked%auto_heal_active% vauto_heal_active,
 
 ; Auto Life Flask tips
 Gui, Font, S7 CDefault, Verdana
-Gui, Add, Text, x36 y339 w235 h15 , To make sequence, separate keys by -, 1-2-3
+Gui, Add, Text, x36 y339 w235 h15 , To make sequence, separate keys by /, 1/2/3
 
 ; Auto Loot section
 Gui, Font, S9 CDefault Bold, Verdana
@@ -281,7 +281,7 @@ ButtonApplyChange() {
 
 TurnOffAllHotkey() {
     TurnOffHotkey(setOfFlasksHotkey)
-    TurnOffHotkey(autoLifeFlaskHotkey)
+    TurnOffHotkey(autoHealHotkey)
     TurnOffHotkey(autoLootingHotkey)
     TurnOffHotkey(lootOneItemHotkey)
     TurnOffHotkey(AutoWalkHotkey)
@@ -296,7 +296,7 @@ TurnOffAllHotkey() {
 
 TurnOnAllHotkey() {
     TurnOnHotkey(setOfFlasksHotkey, "SetOfFlasksLabel")
-    TurnOnHotkey(autoLifeFlaskHotkey, "AutoLifeFlaskLabel")
+    TurnOnHotkey(autoHealHotkey, "AutoLifeFlaskLabel")
     TurnOnHotkey(autoLootingHotkey, "LootAllLabel")
     TurnOnHotkey(lootOneItemHotkey, "LootOneItem")
     TurnOnHotkey(AutoWalkHotkey, "HoldWalkLabel")

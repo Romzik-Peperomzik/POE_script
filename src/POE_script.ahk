@@ -13,7 +13,7 @@ SetDefaultMouseSpeed, 0 ; Sets the mouse speed, 0 - instantly
 
 ; Hotkeys
 global setOfFlasksHotkey
-global autoLifeFlaskHotkey
+global autoHealHotkey
 global autoLootingHotkey
 global lootOneItemHotkey
 global AutoWalkHotkey
@@ -41,7 +41,7 @@ global clean_inventory_toggle
 global auto_looting_active
 global loot_one_item_active
 global set_of_flasks_active
-global auto_l_flask_active
+global auto_heal_active
 global auto_walk_active
 global open_portal_active
 global hideout_active
@@ -53,7 +53,7 @@ global game_logout_active
 global auto_logout_active
 ; Key lists
 global flask_key_set
-global low_life_flask_list
+global heal_keys_list
 global seq_second_skill
 global detonate_button
 global smoke_mine_button
@@ -98,7 +98,7 @@ Hotkey, %hideoutHotkey%, HideoutLabel
 Hotkey, %partyInviteHotkey%, PartyInviteLabel
 Hotkey, %partyKickHotkey%, PartyKickLabel 
 Hotkey, %seqSkillsHotkey%, SequenceOfSkillsLabel 
-Hotkey, %autoLifeFlaskHotkey%, AutoLifeFlaskLabel
+Hotkey, %autoHealHotkey%, AutoLifeFlaskLabel
 Hotkey, %autoLogoutHotkey%, AutoLogoutLabel
 
 RunGUI()
@@ -135,12 +135,12 @@ SetOfFlasksLabel:                                         ; Pressing set of flas
 
 
 AutoLifeFlaskLabel:                                 ; Auto life flask. Cannot work at the same
-    if (auto_l_flask_active) {                      ;                    time with AutoLogout.
-        Hotkey, %autoLifeFlaskHotkey%, On
+    if (auto_heal_active) {                      ;                    time with AutoLogout.
+        Hotkey, %autoHealHotkey%, On
         Activate_AutoLifeFlask()
     } else {
-        Hotkey, %autoLifeFlaskHotkey%, Off
-        Send, %autoLifeFlaskHotkey%
+        Hotkey, %autoHealHotkey%, Off
+        Send, %autoHealHotkey%
     }
     return
 
