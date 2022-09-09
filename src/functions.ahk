@@ -1,4 +1,4 @@
-GetMouseColorPos(){                                      ; Picking color and coords at mouse position.
+GetMouseColorPos() {                             ; Picking color and coords at mouse position.
     MouseGetPos, MouseX, MouseY
     PixelGetColor, color, %MouseX%, %MouseY%
     MsgBox The current cursor position is x=%MouseX%, y=%MouseY%, color is %color%.
@@ -6,7 +6,7 @@ GetMouseColorPos(){                                      ; Picking color and coo
 }
 
 
-SmokeMine(){
+SmokeMine() {
     Send %detonate_button%
     Send %smoke_mine_button%
     sleep %mine_laying_time%
@@ -17,7 +17,7 @@ SmokeMine(){
 }
 
 
-SequenceOfSkills(){
+SequenceOfSkills() {
     Click, right
     sleep %seq_castspeed_time%
     Send %seq_second_skill%
@@ -26,7 +26,7 @@ SequenceOfSkills(){
 }
 
 
-HoldWalk(){                                              ; Just holding LMB.
+HoldWalk() {                                                               ; Just holding LMB.
     if GetKeyState("d", "p")
 	    Click left down
 	    sleep 100
@@ -34,8 +34,8 @@ HoldWalk(){                                              ; Just holding LMB.
 }
 
 
-SetOfFlasks(list){                                 ; Iterating on string and send its substings which delim by -.
-    Loop, parse, list, -
+SetOfFlasks(list) {             ; Iterating on string and send its substings which delim by -.
+    Loop, parse, list, /
     {        
         Send %A_LoopField%
         Sleep 50
@@ -44,92 +44,122 @@ SetOfFlasks(list){                                 ; Iterating on string and sen
 }
 
 
-DeliriumFlasks(){                                        ; Set of flasks of Delirium script.
-    Loop, parse, flask_key_set, -
-    {        
-        Send %A_LoopField%
-        Sleep 50
-    }
+CtrlClickLoop() {                                                   ; Hold to loop ctrl click.
+    Send, ^{LButton}
+    Sleep 30
     return
 }
 
 
-AutoGuardSkill(){
-    Send, {LButton}
-    return
-}
+CleanInventory(coord_list) {                     ; Cleaning inventory, only 1920x1080px works.
+    clean_inventory_toggle := !clean_inventory_toggle
+    if (clean_inventory_toggle) {
+        SplashTextOn, 100, 1, Sorting...
+        WinMove Sorting..., , 1297, 451
 
-
-AutoFrostShield(){
-    BlockInput on
-    Send, {e}
-    BlockInput Off
-    return
-}
-
-
-QuickDiscipline(){
-    Send, {t}
-    return
-}
-
-
-AutoDiscipline(){
-    PixelGetColor, shield_color, 144, 914
-    if shield_color != 0xFFD8AE
-    {
-        Send, {t}
-    }
-    PixelGetColor, bot_shield_color, 210, 252
-    if bot_shield_color != 0x6F72C3
-    {
-        Send, {t}
-    }
-    return
-}
-
-
-DeliriumSubroutinesToggle(){                             ; Subroutines for DoDelirious function.
-    deli_sub_toggle := !deli_sub_toggle
-    if deli_sub_toggle{
-        SetTimer, DeliriumFlasks, 8000
-        SetTimer, QuickDiscipline, 1500
-        SetTimer, AutoGuardSkill, 5000                   ; Immortal call
-        SetTimer, AutoFrostShield, 2000
-        ; SetTimer, AutoDiscipline, 500
-    } else {
-        SetTimer, DeliriumFlasks, Off
-        SetTimer, QuickDiscipline, Off
-        SetTimer, AutoGuardSkill, Off
-        SetTimer, AutoFrostShield, Off
-        ; SetTimer, AutoDiscipline, Off
-    }
-}
-
-
-DoDelirious(){                                           ; Main Delirium script function.
-    do_delirious_toggle := !do_delirious_toggle
-    if do_delirious_toggle{
-        SplashTextOn, 100, 1, Do Delirious...
-        WinMove Do Delirious..., , 1522, 312
-        DeliriumSubroutinesToggle()                      ; Turn On Delirium subroutines.
-        Send, {RButton down}                             ; Hold Spark key.
-    } else {
-        if deli_sub_toggle{                              ; Turn Off Delirium subroutines.
-            DeliriumSubroutinesToggle()
+        Loop, parse, coord_list, /
+        {
+            if (!clean_inventory_toggle) {
+                break
+            }
+            arr := StrSplit(A_LoopField, ",")
+            inv_point_x := arr[1]
+            inv_point_y := arr[2]
+            PixelGetColor, inv_curr_point, inv_point_x, inv_point_y
+            if (inv_curr_point = 0x000000) {
+                continue            
+            } else {
+                Sleep 20
+                Send {Control down}
+                MouseMove inv_point_x, inv_point_y
+                Click
+                Send {Control up}
+            }
         }
-        Send, {RButton up}                               ; Release Spark key.
-        SplashTextOff, 100, 1, Do Delirious...
+        if (clean_inventory_toggle) {
+            clean_inventory_toggle := !clean_inventory_toggle
+        }
+        SplashTextOff, 100, 1, Sorting...
     }
     return
 }
 
 
-AutoRolling() {  ; Roll any item at currency stash tab with highlight border as a sentiel.
+CardOpener() {                    ; Can stop processing only when current deck are decomposed.
+    card_opener_toggle := !card_opener_toggle
+    if (card_opener_toggle) {
+        SplashTextOn, 100, 1, Opening decks
+        WinMove Opening decks, , 1310, 494
+
+        decks_count := 5
+        while (decks_count != 0) {
+            if (!card_opener_toggle) {
+                break
+            }
+            cards_count := 10
+            Send {ShiftDown} 
+            while (cards_count != 0) {
+                if (!card_opener_toggle) {
+                    break
+                }
+                cards_count := cards_count - 1
+                Sleep, 60
+                Click
+                Sleep, 60
+                MouseMove 53, 0, 2, R
+            }
+            Send {ShiftUp}
+            while (cards_count != 11) {
+                if (!card_opener_toggle) {
+                    break
+                }
+                cards_count := cards_count + 1
+                Click, right
+                Sleep, 80
+                Click
+                MouseMove -53, 0, 2, R
+            }
+            if (decks_count != 1) {
+                MouseMove 53, 53, 2, R
+                Click, left
+            }
+            decks_count := decks_count - 1
+        }
+        if (card_opener_toggle) {
+            card_opener_toggle := !card_opener_toggle
+        }
+        SplashTextOff
+    }
+    return
+}
+
+
+FuseJewellerClickLoop() {                                    ; Hold h button to stop clicking.
+    currency_click_toggle := !currency_click_toggle
+    if currency_click_toggle {
+        Send, {Shift down}
+        while (currency_click_toggle) {
+            if (GetKeyState("h")) {
+                break
+            }
+            Send, {Click}
+            Sleep, 250
+        }
+        Send, {Shift up}
+        if (currency_click_toggle) {
+            currency_click_toggle := !currency_click_toggle
+        }
+    }
+    return
+}
+
+
+AltChaosRolling() {  ; Roll any item at currency stash tab with highlight border as a sentiel.
     auto_rolling_toggle := !auto_rolling_toggle
     if (auto_rolling_toggle) {
         SplashTextOn, 100, 1, Alts n Chaos
         WinMove Alts n Chaos, , 230, 797
+
         PixelGetColor border_pixel_color, 291, 395
         Send {ShiftDown} 
         while (border_pixel_color != 0x77B4E7) {  ; highlighted_border_color
@@ -154,11 +184,12 @@ AutoRolling() {  ; Roll any item at currency stash tab with highlight border as 
 }
 
 
-AutoAlchScourRolling() {
+AlchBindScourRolling() {
     alch_scour_rolling_toggle := !alch_scour_rolling_toggle
     if (alch_scour_rolling_toggle) {
         SplashTextOn, 100, 1, Alch n scour
         WinMove Alch n scour, , 230, 797
+
         PixelGetColor border_pixel_color, 291, 407
         while (border_pixel_color != 0x77B4E7) {
             if (!alch_scour_rolling_toggle) {
@@ -170,6 +201,7 @@ AutoAlchScourRolling() {
             Sleep, 100
             Send {Click 337 443}
             Sleep, 200
+
             PixelGetColor border_pixel_color, 291, 407
             if (border_pixel_color != 0x77B4E7) {
                 MouseMove, 435, 504
@@ -190,253 +222,116 @@ AutoAlchScourRolling() {
 }
 
 
-GwenRollToggle(){
+GwenRoller() {
     gwen_roll_toggle := !gwen_roll_toggle
-    if gwen_roll_toggle
-    {
-        GwenRollNotice()
-        GwenRoll()
-    }
-    else
-    {
-        SplashTextOff
-    }
-    return
-}
+    if (gwen_roll_toggle) {
+        SplashTextOn, 100, 1, Gwen rolling.
+        WinMove Gwen rolling., , 234, 894
+        Sleep 1000
 
-
-GwenRoll(){
-    Sleep 1000
-    While gwen_roll_toggle
-    {
-        PixelSearch, itemBorderColorX, itemBorderColorY, 304, 256, 942, 839, 0x77B4E7, 0, Fast
-        if itemBorderColorX
-        {
-            Px := itemBorderColorX + 30
-            Py := itemBorderColorY + 12
-            Sleep 20
-            Send {Control down}
-            Click %Px%, %Py%
-            Send {Control up}
-        }
-        else
-        {
-            Click 943, 875
-        }
-        sleep 500
-    }
-    return
-}
-
-
-CardOpener(){
-    stacked_count := 5
-    While stacked_count != 0
-    {
-        card_count := 10
-        Send {ShiftDown} 
-        While card_count != 0
-        {
-            card_count := card_count - 1
-            Sleep 60
-            Click
-            Sleep 60
-            MouseMove 53, 0, 2, R
-        }
-        Send {ShiftUp}
-        While card_count != 11
-        {
-            card_count := card_count + 1
-            Click, right
-            Sleep 80
-            Click
-            MouseMove -53, 0, 2, R
-        }
-        if stacked_count != 1
-        {
-            MouseMove 53, 53, 2, R
-            Click, left
-        }
-        stacked_count := stacked_count - 1
-    }
-    return
-}
-
-
-DoorSearcherToggle(){
-    door_searcher_toggle := !door_searcher_toggle
-    if door_searcher_toggle
-    {
-        DoorSearcherNotice()
-        DoorSearcher()
-    }
-    else{
-        SplashTextOff
-    }
-    return
-}
-
-
-DoorSearcher(){
-    While door_searcher_toggle
-    {
-        ; Expedition: 811, 417, 1139, 660, 0xFEB173
-        ; Heist:      571, 140, 1219, 695, 0xDCC8C8
-        PixelSearch, DoorVarX, DoorVarY, 811, 417, 1139, 660, 0xFEB173, 0, Fast
-        if DoorVarX
-        {
-            Click
-            Click left down  ; to keep moving after click on door lable.
-            ; MsgBox Here
-        }
-        Sleep 100
-    }
-    return
-}
-
-
-ClickLoop(){                                             ; Quick left clicking loop.
-    {
-        Send, ^{LButton}
-        Sleep 30
-    }
-    return
-}
-
-
-CurrencyClickLoop(){
-    currency_click_toggle := !currency_click_toggle
-    if currency_click_toggle {
-        Send, {Shift down}
-        while (currency_click_toggle) {
-            if (GetKeyState("h")) {
+        while (gwen_roll_toggle) {
+            if (!gwen_roll_toggle) {
                 break
             }
-            Send, {Click}
-            Sleep, 250
+            PixelSearch, itemBorderColorX, itemBorderColorY, 304, 256, 942, 839, 0x77B4E7, 0, Fast
+            if (itemBorderColorX) {
+                Px := itemBorderColorX + 30
+                Py := itemBorderColorY + 12
+                Sleep 20
+                Send {Control down}
+                Click %Px%, %Py%
+                Send {Control up}
+            } else {
+                Click 943, 875  ; Click reroll items button
+            }
+            sleep 500
         }
-        Send, {Shift up}
-        currency_click_toggle := !currency_click_toggle
-    }
-    return
-}
-
-
-CleanInventory(coord_list){                              ; Cleaning inventory, only 1920x1080px works.
-    SplashTextOn, 100, 1, Sorting...
-    WinMove Sorting..., , 1297, 451
-    Loop, parse, coord_list, -
-    {
-        arr := StrSplit(A_LoopField, ",")
-        inv_point_x := arr[1]
-        inv_point_y := arr[2]
-        PixelGetColor, inv_curr_point, inv_point_x, inv_point_y
-        if inv_curr_point = 0x000000
-        {
-            continue            
+        if (gwen_roll_toggle) {
+            gwen_roll_toggle := !gwen_roll_toggle
         }
-        else
-        {
-            Sleep 20
-            Send {Control down}
-            MouseMove inv_point_x, inv_point_y
-            Click
-            Send {Control up}
-        }
-    }
-    SplashTextOff, 100, 1, Sorting...
-    return
-}
-
-
-Activate_AutoLifeFlask(){                                ; Auto Logout Toggle.
-    auto_l_flask_toggle := !auto_l_flask_toggle
-    if auto_l_flask_toggle{
-        AutoLifeFlaskNotice()
-        AutoLifeFlask()
-    }
-    else{
         SplashTextOff
     }
     return
 }
 
 
-AutoLifeFlask(){                                         ; Main Auto Life Flask function.
-    while auto_l_flask_toggle
-    {
-        if WinActive("Path of Exile")
-        {
+DoorSearcher() {
+    door_searcher_toggle := !door_searcher_toggle
+    if (door_searcher_toggle) {
+        SplashTextOn, 100, 1, Door Searcher.
+        WinMove Door Searcher., , 234, 894
+
+        while (door_searcher_toggle) {
+            ; Expedition: 811, 417, 1139, 660, 0xFEB173
+            ; Heist:      571, 140, 1219, 695, 0xDCC8C8
+            PixelSearch, DoorVarX, DoorVarY, 571, 140, 1219, 695, 0xDCC8C8, 0, Fast
+            if (DoorVarX) {
+                Click
+                Click left down  ; to keep moving after click on door lable.
+            }
+            Sleep 100
+        }
+        if (door_searcher_toggle) {
+            door_searcher_toggle := !door_searcher_toggle
+        }
+        SplashTextOff
+    }
+    return
+}
+
+
+Activate_AutoLifeFlask() {
+    auto_l_flask_toggle := !auto_l_flask_toggle
+    if (auto_l_flask_toggle) {
+        SplashTextOn, 100, 1, F activated.
+        WinMove F, , 232, 892
+        
+        while (auto_l_flask_toggle) {
             PixelGetColor, life_color_for_flask, low_life_X, low_life_Y
-            if life_color_for_flask != %life_color%
-            {
+            if (life_color_for_flask != life_color) {
                 PixelGetColor, black_pixel, black_screen_X, black_screen_Y
-                if black_pixel = %black_screen%  ; If it's tp's screen - suspend and sleep 3s.
-                {
-                    Send {F2}
-                    send {Pause}
+                if (black_pixel = black_screen) {
                     sleep 3000
-                    send {Pause}
-                    Send {F2}
-                }
-                else{
+                } else {
                     SetOfFlasks(low_life_flask_list)
                     Sleep 150
                 }
             }
         }
-    }    
-    return
-}
-
-
-Activate_AutoLogout(){                                   ; Auto Logout Toggle.
-    auto_logout_toggle := !auto_logout_toggle
-    if auto_logout_toggle{        
-        oosCommand()
-        AutoLogoutNotice()
-        EventLogoutLoop()
-    }
-    else{
         SplashTextOff
     }
     return
 }
 
 
-EventLogoutLoop(){                                       ; Main Auto logout function.
-    while auto_logout_toggle
-    {
-        if WinActive("Path of Exile")
-        {
-            PixelGetColor, life_pixel, logout_X, logout_Y            
-            if life_pixel != %logout_life_color%         ; If life pixel not found.
-            {                
+Activate_AutoLogout() {                                                  ; Auto Logout Toggle.
+    auto_logout_toggle := !auto_logout_toggle
+    if (auto_logout_toggle) {
+        oosCommand()
+        SplashTextOn, 100, 1, Lg activated.
+        WinMove Lg activated, , 1536, 230
+
+        while (auto_logout_toggle) {
+            PixelGetColor, life_pixel, logout_X, logout_Y
+            if (life_pixel != logout_life_color) {
                 PixelGetColor, black_pixel, black_screen_X, black_screen_Y
-                if black_pixel = %black_screen%          ; If it's tp's screen - suspend and sleep 3s.
-                {
-                    Send {F2}
-                    send {Pause}
+                if (black_pixel = black_screen) {
                     sleep 3000
-                    send {Pause}
-                    Send {F2}
-                }
-                else{
-                    SetOfFlasks(low_life_flask_list)     ; Drink life potion before logout.
+                } else {
+                    SetOfFlasks(low_life_flask_list)        ; Drink life potion before logout.
                     GameLogout()
                     Sleep 150
                     Activate_AutoLogout()
-                    ; MsgBox %black_pixel%, %life_pixel%
                 }
             }
-
         }
-    }    
+        SplashTextOff
+    }
     return
 }
 
 
-GameLogout(){                                            ; Closing port which POE use by cports.exe.
+GameLogout() {                                            ; Closing port which POE use by cports.exe.
     if WinActive("Path of Exile"){                                        ; old: IfWinActive Path of Exile    
         Run ./cports/cports.exe /close * * * * PathofExile.exe            ; old: PathofExile_x64.exe
     }
@@ -444,7 +339,54 @@ GameLogout(){                                            ; Closing port which PO
 }
 
 
-oosCommand(){                                            ; Cheking synchronization with server.
+LootBigRegion() {
+    PixelSearch, Px, Py, 100, 100, A_ScreenWidth-10, A_ScreenHeight-150, lootColor, 5, Fast
+    if (ErrorLevel) {
+        return False
+    } else {
+        Px := Px + 53
+        Py := Py + 23
+        Click %Px%, %Py%
+        return True
+    }
+}
+
+
+LootSmallRegion() {
+    PixelSearch, Px, Py, 896, 277, 1104, 850, lootColor, 5, Fast
+    if (ErrorLevel) {
+        return False
+    } else {
+        Px := Px + 30
+        Py := Py + 12
+        Click %Px%, %Py%
+        return True
+    }
+}
+
+
+LootAll() {
+    while (GetKeyState("LControl", "P") && GetKeyState("s", "P")) {
+        if (!LootSmallRegion()) {
+            break
+        }
+        Sleep loot_delay
+    }
+
+    while (GetKeyState("LControl", "P") && GetKeyState("s", "P")) {
+        LootBigRegion()
+        Sleep 1200
+        while (GetKeyState("LControl", "P") && GetKeyState("s", "P")) {
+            if (!LootSmallRegion()) {
+                break
+            }
+            Sleep loot_delay
+        }
+    }
+}
+
+
+oosCommand() {                                           ; Cheking synchronization with server.
 	BlockInput On
 	SendInput, {enter}
 	Sleep 2
@@ -455,85 +397,7 @@ oosCommand(){                                            ; Cheking synchronizati
 }
 
 
-AutoLogoutNotice(){                                      ; AutoLogout notification on screen(only windowed).
-    SplashTextOn, 100, 1, Lg activated.
-    WinMove Lg activated, , 1536, 230
-}
-
-
-AutoLifeFlaskNotice(){                                   ; AutoLifeFlask notification on screen(only windowed).
-    SplashTextOn, 100, 1, F activated.
-    WinMove F, , 232, 892
-}
-
-DoorSearcherNotice(){                                    ; DoorSearcher notification on screen(only windowed).
-    SplashTextOn, 100, 1, Door Searcher.
-    WinMove Door Searcher., , 234, 894
-}
-
-
-GwenRollNotice(){
-    SplashTextOn, 100, 1, Gwen rolling.
-    WinMove Gwen rolling., , 234, 894
-}
-
-
-AutoAlchScourRollingNotice(){
-    SplashTextOn, 100, 1, Map rolling.
-    WinMove Map rolling., , 234, 894
-}
-
-
-LootBigRegion(){
-    PixelSearch, Px, Py, 100, 100, A_ScreenWidth-10, A_ScreenHeight-150, lootColor, 5, Fast
-    if ErrorLevel{
-        return False
-    }
-    else{
-        Px := Px + 53
-        Py := Py + 23
-        Click %Px%, %Py%
-        return True
-    }
-}
-
-
-LootSmallRegion(){
-    PixelSearch, Px, Py, 896, 277, 1104, 850, lootColor, 5, Fast
-    if ErrorLevel{
-        return False
-    }
-    else{
-        Px := Px + 30
-        Py := Py + 12
-        Click %Px%, %Py%
-        return True
-    }
-}
-
-
-LootAll(){
-    while (GetKeyState("LControl", "P") && GetKeyState("s", "P")){
-        if !LootSmallRegion(){
-            break
-        }
-        Sleep loot_delay
-    }
-
-    while (GetKeyState("LControl", "P") && GetKeyState("s", "P")){
-        LootBigRegion()
-        Sleep 1200
-        while (GetKeyState("LControl", "P") && GetKeyState("s", "P")){
-            if !LootSmallRegion(){
-                break
-            }
-            Sleep loot_delay
-        }
-    }
-}
-
-
-OpenPortal(){
+OpenPortal() {
     BlockInput On
     MouseGetPos x, y 
     Send {tab}
@@ -547,7 +411,7 @@ OpenPortal(){
 }
 
 
-Hideout(){                                               ; Hideout Command.
+Hideout() {                                                                 ; Hideout Command.
 	BlockInput On
 	SendInput, {Enter}
 	Sleep 2
@@ -558,7 +422,7 @@ Hideout(){                                               ; Hideout Command.
 }
 
 
-PartyInvite(){                                           ; Invite to party command.
+PartyInvite() {                                                     ; Invite to party command.
 	BlockInput On
 	Send ^{Enter}{Home}{Delete}/invite {Enter}
 	BlockInput Off
@@ -566,7 +430,7 @@ PartyInvite(){                                           ; Invite to party comma
 }
 
 
-PartyKick(){                                             ; Kick command.
+PartyKick() {                                                                  ; Kick command.
 	BlockInput On
 	Send ^{Enter}{Home}{Delete}/kick {Enter}
 	BlockInput Off
@@ -574,7 +438,7 @@ PartyKick(){                                             ; Kick command.
 }
 
 
-Invite(){                                           ; Invite to party command.
+Invite() {                                                          ; Invite to party command.
 	BlockInput On
 	Send ^{Enter}{Home}{Shift down}{End}{Shift up}{Delete}/invite ExaltedDivineKalandra{Enter}
 	BlockInput Off

@@ -35,6 +35,8 @@ global currency_click_toggle
 global alch_scour_rolling_toggle
 global auto_logout_toggle
 global auto_rolling_toggle
+global card_opener_toggle
+global clean_inventory_toggle
 ; Activators
 global auto_looting_active
 global loot_one_item_active
@@ -103,15 +105,15 @@ RunGUI()
 ; ! - alt, ^ - ctrl, + - shift.
 
 !x::CleanInventory(cells_coord_list)  ; Alt+X  Clean inventory except portal and wisdom scroll. 
-^g::ClickLoop()                       ; Ctrl+G Hold to autograb currency from currency tab.
-^j::AutoRolling()                     ; Ctrl+J Press once to keep rolling loop up.
 ^n::CardOpener()                      ; Ctrl+N Spread stacked deck at one card and open it.
-^+d::DoorSearcherToggle()             ; Ctrl+Shift+D Search door label and click on it.
-^h::CurrencyClickLoop()               ; Ctrl+H Hold currency on cursor and click on item.
-!g::AutoAlchScourRolling()            ; Alt+G roll item with alch and scouring sequence.
+^g::CtrlClickLoop()                   ; Ctrl+G Hold to ctrl+click (grab currency from tab).
+^h::FuseJewellerClickLoop()           ; Ctrl+H Hold currency on cursor and click on item.
+^j::AltChaosRolling()                 ; Ctrl+J Press once to keep rolling loop up.
+!g::AlchBindScourRolling()            ; Alt+G roll item with alch and scouring sequence.
+; !w::GwenRoller()                    ; Alt+W Auto Gwennen roller.
+; ^+d::DoorSearcher()                   ; Ctrl+Shift+D Search door label and click on it.
 ; F1::Invite()
-; !f::DoDelirious()                     ; Alt+F  Run delirium script.
-; !w::GwenRollToggle()                  ; Alt+W Gwennen interface roll.
+; !f::DoDelirious()                   ; Alt+F Run delirium script.
 ;-----------------------------------------------------------------------------
 
 !z::GetMouseColorPos()                ; Alt+Z  Get pixel coords and color at mouse pos.
@@ -126,7 +128,7 @@ SetOfFlasksLabel:                  ; Pressing set of flasks and skills.
         Hotkey, %setOfFlasksHotkey%, Off
         Send, %setOfFlasksHotkey%
     }
-return
+    return
 
 
 AutoLifeFlaskLabel:                ; Auto life flask. Cannot work at the same

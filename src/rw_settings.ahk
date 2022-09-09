@@ -23,6 +23,8 @@ ReadSettings() {
     IniRead, alch_scour_rolling_toggle,settings.ini, settings, alch_scour_rolling_toggle, 0
     IniRead, auto_logout_toggle,  settings.ini, settings, auto_logout_toggle,  0
     IniRead, auto_rolling_toggle, settings.ini, settings, auto_rolling_toggle, 0
+    IniRead, card_opener_toggle,  settings.ini, settings, card_opener_toggle,  0
+    IniRead, clean_inventory_toggle,  settings.ini, settings, clean_inventory_toggle, 0
     ; Activators
     IniRead, auto_looting_active, settings.ini, settings, auto_looting_active, 0
     IniRead, loot_one_item_active,settings.ini, settings, loot_one_item_active,0
