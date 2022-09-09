@@ -3,7 +3,7 @@
 #Include gui.ahk
 #Include delirium_afk.ahk
 
-; #IfWinActive, Path of Exile ahk_class POEWindowClass
+#IfWinActive, Path of Exile ahk_class POEWindowClass
 #SingleInstance force   ; Replaces the old instance of script automatically
 #NoEnv                  ; Recommended for performance
 #Persistent             ; Keeps a script permanently running
