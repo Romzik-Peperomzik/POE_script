@@ -290,15 +290,15 @@ DoorSearcher() {
 }
 
 
-Activate_AutoLifeFlask() {
-    auto_l_flask_toggle := !auto_l_flask_toggle
-    if (auto_l_flask_toggle) {
+Activate_AutoHeal() {
+    auto_heal_active := !auto_heal_active
+    if (auto_heal_active) {
         SplashTextOn, 100, 1, F activated.
         WinMove F, , 232, 892
         
-        while (auto_l_flask_toggle) {
-            PixelGetColor, life_color_for_flask, low_life_X, low_life_Y
-            if (life_color_for_flask != life_color) {
+        while (auto_heal_active) {
+            PixelGetColor, life_color_for_heal, low_life_X, low_life_Y
+            if (life_color_for_heal != life_color) {
                 PixelGetColor, black_pixel, black_screen_X, black_screen_Y
                 if (black_pixel = black_screen) {
                     sleep 3000

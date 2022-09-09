@@ -98,11 +98,10 @@ Hotkey, %hideoutHotkey%, HideoutLabel
 Hotkey, %partyInviteHotkey%, PartyInviteLabel
 Hotkey, %partyKickHotkey%, PartyKickLabel 
 Hotkey, %seqSkillsHotkey%, SequenceOfSkillsLabel 
-Hotkey, %autoHealHotkey%, AutoLifeFlaskLabel
+Hotkey, %autoHealHotkey%, AutoHealLabel
 Hotkey, %autoLogoutHotkey%, AutoLogoutLabel
 
 RunGUI()
-;-----------------------------------------------------------------------------
 
 
 ;-----------------------------------------------------------------------------
@@ -134,10 +133,10 @@ SetOfFlasksLabel:                                         ; Pressing set of flas
     return
 
 
-AutoLifeFlaskLabel:                                 ; Auto life flask. Cannot work at the same
-    if (auto_heal_active) {                      ;                    time with AutoLogout.
+AutoHealLabel:                                            ; Auto Heal. Cannot work at the same
+    if (auto_heal_active) {                               ;              time with AutoLogout.
         Hotkey, %autoHealHotkey%, On
-        Activate_AutoLifeFlask()
+        Activate_AutoHeal()
     } else {
         Hotkey, %autoHealHotkey%, Off
         Send, %autoHealHotkey%
