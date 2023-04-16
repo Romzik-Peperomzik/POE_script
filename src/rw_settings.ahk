@@ -14,7 +14,6 @@ ReadSettings() {
     IniRead, autoLogoutHotkey,    settings.ini, settings, autoLogoutHotkey,    F3
     IniRead, partyKickHotkey,     settings.ini, settings, partyKickHotkey,     F7
     ; Toggles
-    IniRead, auto_l_flask_toggle, settings.ini, settings, auto_l_flask_toggle, 1
     IniRead, do_delirious_toggle, settings.ini, settings, do_delirious_toggle, 0
     IniRead, deli_sub_toggle,     settings.ini, settings, deli_sub_toggle, 0
     IniRead, door_searcher_toggle,settings.ini, settings, door_searcher_toggle, 0

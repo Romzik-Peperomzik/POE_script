@@ -163,7 +163,7 @@ AltChaosRolling() {  ; Roll any item at currency stash tab with highlight border
         PixelGetColor border_pixel_color, 291, 395
         Send {ShiftDown} 
         while (border_pixel_color != highlighted_border) {  ; highlighted_border_color
-            if (!auto_rolling_toggle) {
+            if (auto_rolling_toggle != 1) {
                 break
             }
             PixelGetColor border_pixel_color, 291, 395

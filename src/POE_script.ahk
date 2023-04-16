@@ -26,7 +26,6 @@ global gameLogoutHotkey
 global autoLogoutHotkey
 global partyKickHotkey
 ; Toggles
-global auto_l_flask_toggle
 global do_delirious_toggle
 global deli_sub_toggle
 global door_searcher_toggle
