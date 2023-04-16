@@ -470,3 +470,17 @@ CustomChatCommand() {                                                          ;
 	BlockInput Off
 	return
 }
+
+
+ResetAllToggles() {
+    do_delirious_toggle := 0
+    deli_sub_toggle := 0
+    door_searcher_toggle := 0
+    gwen_roll_toggle := 0
+    currency_click_toggle := 0
+    alch_scour_rolling_toggle := 0
+    auto_logout_toggle := 0
+    auto_rolling_toggle := 0
+    card_opener_toggle := 0
+    clean_inventory_toggle := 0
+}

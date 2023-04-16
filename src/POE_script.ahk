@@ -117,6 +117,7 @@ RunGUI()
 F1::CustomChatCommand()               ; F1     Enter custom chat command in game.
 !e::GwenRoller()                      ; Alt+E  Auto Gwennen roller.
 ^+F::UpdateHealTreshold()             ; Ctrl+Shift+F Set new heal treshold.
+^+s::ResetAllToggles()                ; Reset all toggle vars to 0.
 ; ^+d::DoorSearcher()                 ; Ctrl+Shift+D Search door label and click on it.
 ; !f::DoDelirious()                   ; Alt+F  Run delirium script.
 ;-----------------------------------------------------------------------------
