@@ -377,13 +377,14 @@ LootBigRegion() {
 
 
 LootSmallRegion() {
-    PixelSearch, Px, Py, 896, 277, 1104, 850, lootColor, 5, Fast
+    PixelSearch, Px, Py, 855, 341, 1050, 600, lootColor, 5, Fast
     if (ErrorLevel) {
         return False
     } else {
         Px := Px + 30
         Py := Py + 12
-        Click %Px%, %Py%
+        MouseMove, %Px%, %Py%
+        Click
         return True
     }
 }
