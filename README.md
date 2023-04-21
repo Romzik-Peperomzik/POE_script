@@ -13,3 +13,4 @@ AutoHotkey v1.1.34.04
 - Move d_hover.png in imgs/ and all other images.
 - Add DoorSearcher() to GUI, improve it functional.
 - Refactor DoDelirious() and decide do you need this fuctional or not.
+- Create GUI section for choice currency type for AlchBindScourOnce(). Split vars `alch` and `bind` with AlchBindScourRolling()?
