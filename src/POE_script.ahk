@@ -114,6 +114,7 @@ RunGUI()
 ^h::FuseJewellerClickLoop()           ; Ctrl+H Hold currency on cursor and click on item.
 ^j::AltChaosRolling()                 ; Ctrl+J Press once to keep rolling loop up.
 !g::AlchBindScourRolling()            ; Alt+G  Roll item with alch and scouring sequence.
+!c::AlchBindScourOnce()               ; Alt+C  Roll alch or bind and scoruring once.
 F1::CustomChatCommand()               ; F1     Enter custom chat command in game.
 !e::GwenRoller()                      ; Alt+E  Auto Gwennen roller.
 ^+F::UpdateHealTreshold()             ; Ctrl+Shift+F Set new heal treshold.

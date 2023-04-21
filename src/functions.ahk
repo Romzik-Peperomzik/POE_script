@@ -231,6 +231,35 @@ AlchBindScourRolling() {
     return
 }
 
+AlchBindScourOnce() {
+    if (alch) {
+        MouseMove, 431, 503
+        Sleep, 100
+        Send {Click Right}
+        Send {Click 337 443}
+
+        MouseMove, 493, 267
+        Sleep, 100
+        Send {Click Right}
+        Sleep, 100
+        Send {Click 337 443}
+        Sleep, 200
+    }
+    if (bind) {
+        MouseMove, 431, 503
+        Sleep, 100
+        Send {Click Right}
+        Send {Click 337 443}
+
+        MouseMove, 164, 449
+        Sleep, 100
+        Send {Click Right}
+        Sleep, 100
+        Send {Click 337 443}
+        Sleep, 200
+    }
+}
+
 
 GwenRoller() {
     gwen_roll_toggle := !gwen_roll_toggle
