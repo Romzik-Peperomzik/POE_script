@@ -75,10 +75,17 @@ global logout_X
 global logout_Y
 global black_screen_X
 global black_screen_Y
-global cells_coord_list
+global inv_list_X_dflt
+global inv_list_Y_dflt
+global coords_exclude_dflt
+global inv_list_X_wide
+global inv_list_Y_wide
+global coords_exclude_wide
 ; States
 global alch
 global bind
+global default_screen_mode
+global wide_screen_mode
 ; Commands
 global chat_command
 
@@ -102,13 +109,25 @@ Hotkey, %autoLogoutHotkey%, AutoLogoutLabel
 
 RunGUI()
 
+;-----------------------------------------------------------------------------
+; Screen mode vars initialization.
+
+if (default_screen_mode) {
+    x_coords := inv_list_X_dflt
+    y_coords := inv_list_Y_dflt
+    exclude_coords := coords_exclude_dflt
+} else if (wide_screen_mode) {
+    x_coords := inv_list_X_wide
+    y_coords := inv_list_Y_wide
+    exclude_coords := coords_exclude_wide
+}
 
 ;-----------------------------------------------------------------------------
 ; Functions that are not represented into GUI, only hotkeys.
 ; ! - alt, ^ - ctrl, + - shift.
 
 !z::GetMouseColorPos()                ; Alt+Z  Get pixel coords and color at mouse pos.
-!x::CleanInventory(cells_coord_list)  ; Alt+X  Clean inventory except portal and wisdom scroll. 
+!x::CleanInventory(x_coords, y_coords, exclude_coords)  ; Alt+X  Clean inventory except portal and wisdom scroll.
 ^n::CardOpener()                      ; Ctrl+N Spread stacked deck at one card and open it.
 ^g::CtrlClickLoop()                   ; Ctrl+G Hold to ctrl+click (grab currency from tab).
 ^h::FuseJewellerClickLoop()           ; Ctrl+H Hold currency on cursor and click on item.
@@ -272,6 +291,12 @@ SequenceOfSkillsLabel:                        ; Cremation delay Desecrate, BF de
     return
 
 
-RCtrl::reload                      ; Hotkeys for script handling.
+RCtrl::reloadNsave()               ; Hotkeys for script handling.
 Pause:: pause                      ; ^
 $F2:: suspend                      ; ^
+
+
+reloadNsave() {
+    SaveSettings()
+    reload
+}

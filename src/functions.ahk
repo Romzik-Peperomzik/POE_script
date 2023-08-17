@@ -28,8 +28,8 @@ SequenceOfSkills() {
 
 HoldWalk() {                                                               ; Just holding LMB.
     if GetKeyState("d", "p")
-	    Click left down
-	    sleep 100
+        Click left down
+        sleep 100
     return
 }
 
@@ -51,29 +51,43 @@ CtrlClickLoop() {                                                   ; Hold to lo
 }
 
 
-CleanInventory(coord_list) {                     ; Cleaning inventory, only 1920x1080px works.
+CleanInventory(x_coords, y_coords, exclude_coords) {
+    /*  Known issues: for now, skip every blueprint and contract from
+        Heist. Sometimes skip skill gems in both default and wide screen_mode.
+    */
     clean_inventory_toggle := !clean_inventory_toggle
     if (clean_inventory_toggle) {
         SplashTextOn, 100, 1, Sorting...
         WinMove Sorting..., , 1297, 451
 
-        Loop, parse, coord_list, /
+        Loop, parse, x_coords, `, 
         {
             if (!clean_inventory_toggle) {
                 break
             }
-            arr := StrSplit(A_LoopField, ",")
-            inv_point_x := arr[1]
-            inv_point_y := arr[2]
-            PixelGetColor, inv_curr_point, inv_point_x, inv_point_y
-            if (inv_curr_point = 0x000000) {
-                continue            
-            } else {
-                Sleep 20
-                Send {Control down}
-                MouseMove inv_point_x, inv_point_y
-                Click
-                Send {Control up}
+            inv_point_x := A_LoopField
+
+            Loop, parse, y_coords, `,
+            {
+                if (!clean_inventory_toggle) {
+                    break
+                }
+                inv_point_y := A_LoopField
+                Needle = %inv_point_x%-%inv_point_y%
+                if (InStr(exclude_coords, Needle)) {
+                    break
+                }
+                PixelGetColor, inv_pix_color, inv_point_x, inv_point_y
+                reg_result := RegExMatch(inv_pix_color, "^0x0[0-6]0")
+                if (reg_result = 1) {
+                    continue
+                } else {
+                    Sleep, 75
+                    Send {Control down}
+                    MouseMove inv_point_x, inv_point_y
+                    Click
+                    Send {Control up}
+                }
             }
         }
         if (clean_inventory_toggle) {

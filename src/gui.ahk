@@ -160,7 +160,7 @@ Gui, Add, Edit, x792 y639 w40 h20 vseq_castspeed_time, %seq_castspeed_time%
 
 ; Auto Logout
 Gui, Font, S9 CDefault Bold, Verdana
-Gui, Add, GroupBox, x32 y519 w560 h240 , Auto Logout
+Gui, Add, GroupBox, x32 y519 w560 h250 , Auto Logout
 Gui, Font, norm, Verdana
 Gui, Add, Text, x42 y549 w70 h20 , Toggle AL:
 Gui, Add, Hotkey, x162 y549 w60 h20 vautoLogoutHotkey, %autoLogoutHotkey%
@@ -257,10 +257,17 @@ Gui, Add, Text, x915 y710 w270 h15 , Put regexp in search field in Gwennen roll
 Gui, Add, Text, x915 y725 w270 h15 , window. Press Alt+E to start rolling.
 Gui, Add, Text, x915 y740 w270 h15 , And again to stop.
 
+; Screen mode section
+Gui, Font, S9 CDefault Bold, Verdana
+Gui, Add, GroupBox, x612 y710 w150 h59 , Screen mode
+Gui, Font, norm, Verdana
+; Screen mode radio button
+Gui, Add, Radio, x620 y732 w65 h20 Checked%default_screen_mode% vdefault_screen_mode, default
+Gui, Add, Radio, x692 y732 w65 h20 Checked%wide_screen_mode% vwide_screen_mode, wide
 
 ; Apply button
 Gui, Font, norm, Verdana
-Gui, Add, Button, x772 y729 w100 h30 , Apply change
+Gui, Add, Button, x772 y738 w100 h30 , Apply change
 ; Main window params
 Gui, Show, x285 y119 h778 w1208, Script
 Return
