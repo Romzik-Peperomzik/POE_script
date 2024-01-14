@@ -8,16 +8,15 @@ ReadSettings() {
     IniRead, openPortalHotkey,    settings.ini, settings, openPortalHotkey,    ^b
     IniRead, hideoutHotkey,       settings.ini, settings, hideoutHotkey,       F5
     IniRead, partyInviteHotkey,   settings.ini, settings, partyInviteHotkey,   F6
-    IniRead, seqSkillsHotkey,     settings.ini, settings, seqSkillsHotkey,     Right
+    IniRead, seqSkillsHotkey,     settings.ini, settings, seqSkillsHotkey,     w
     IniRead, smokeMineHotkey,     settings.ini, settings, smokeMineHotkey,     r
     IniRead, gameLogoutHotkey,    settings.ini, settings, gameLogoutHotkey,    SC029
     IniRead, autoLogoutHotkey,    settings.ini, settings, autoLogoutHotkey,    F3
     IniRead, partyKickHotkey,     settings.ini, settings, partyKickHotkey,     F7
     ; Toggles
-    IniRead, do_delirious_toggle, settings.ini, settings, do_delirious_toggle, 0
-    IniRead, deli_sub_toggle,     settings.ini, settings, deli_sub_toggle, 0
-    IniRead, door_searcher_toggle,settings.ini, settings, door_searcher_toggle, 0
-    IniRead, gwen_roll_toggle,    settings.ini, settings, gwen_roll_toggle, 0
+    IniRead, auto_heal_toggle,    settings.ini, settings, auto_heal_toggle,    0
+    IniRead, door_searcher_toggle,settings.ini, settings, door_searcher_toggle,0
+    IniRead, gwen_roll_toggle,    settings.ini, settings, gwen_roll_toggle,    0
     IniRead, currency_click_toggle, settings.ini, settings, currency_click_toggle, 0
     IniRead, alch_scour_rolling_toggle,settings.ini, settings, alch_scour_rolling_toggle, 0
     IniRead, auto_logout_toggle,  settings.ini, settings, auto_logout_toggle,  0
@@ -29,6 +28,7 @@ ReadSettings() {
     IniRead, loot_one_item_active,settings.ini, settings, loot_one_item_active,0
     IniRead, set_of_flasks_active,settings.ini, settings, set_of_flasks_active,1
     IniRead, auto_heal_active,    settings.ini, settings, auto_heal_active,    0
+    IniRead, heal_key_duo_active, settings.ini, settings, heal_key_duo_active, 0
     IniRead, auto_walk_active,    settings.ini, settings, auto_walk_active,    0
     IniRead, open_portal_active,  settings.ini, settings, open_portal_active,  0
     IniRead, hideout_active,      settings.ini, settings, hideout_active,      1
@@ -40,23 +40,29 @@ ReadSettings() {
     IniRead, auto_logout_active,  settings.ini, settings, auto_logout_active,  0
     ; Key lists
     IniRead, flask_key_set,       settings.ini, settings, flask_key_set,       1-2-3-4-5
-    IniRead, heal_keys_list,      settings.ini, settings, heal_keys_list,      1 
     IniRead, seq_second_skill,    settings.ini, settings, seq_second_skill,    q
     IniRead, detonate_button,     settings.ini, settings, detonate_button,     d
     IniRead, smoke_mine_button,   settings.ini, settings, smoke_mine_button,   r
+    IniRead, heal_key_1,          settings.ini, settings, heal_key_1,          1
+    IniRead, heal_key_2,          settings.ini, settings, heal_key_2,          w
     ; Colors
-    IniRead, life_color,          settings.ini, settings, life_color,          0x1A0D98
-    IniRead, lootColor,           settings.ini, settings, lootColor,           0x790062
-    IniRead, logout_life_color,   settings.ini, settings, logout_life_color,   0x160C92
+    IniRead, low_health_color,    settings.ini, settings, low_health_color,    0x1A0D98
+    IniRead, loot_color,          settings.ini, settings, loot_color,          0x790062
+    IniRead, logout_health_color, settings.ini, settings, logout_health_color, 0x160C92
     IniRead, black_screen,        settings.ini, settings, black_screen,        0x000000
     IniRead, highlighted_border,  settings.ini, settings, highlighted_border,  0x77B4E7
+    IniRead, flask_bar_color,     settings.ini, settings, flask_bar_color,     0x99D7F9
     ; Delays
     IniRead, loot_delay,          settings.ini, settings, loot_delay,          300
     IniRead, seq_castspeed_time,  settings.ini, settings, seq_castspeed_time,  340
     IniRead, mine_laying_time,    settings.ini, settings, mine_laying_time,    250
+    IniRead, auto_heal_delay,     settings.ini, settings, auto_heal_delay,     250
+    IniRead, auto_logout_delay,   settings.ini, settings, auto_logout_delay,   100
     ; Any coords
-    IniRead, low_life_X,          settings.ini, settings, low_life_X,          158
-    IniRead, low_life_Y,          settings.ini, settings, low_life_Y,          937
+    IniRead, health_X,            settings.ini, settings, health_X,            158
+    IniRead, health_Y,            settings.ini, settings, health_Y,            937
+    IniRead, life_flask_bar_X,    settings.ini, settings, life_flask_bar_X,    000
+    IniRead, life_flask_bar_Y,    settings.ini, settings, life_flask_bar_Y,    000
     IniRead, portalX,             settings.ini, settings, portalX,             1303
     IniRead, portalY,             settings.ini, settings, portalY,             816
     IniRead, logout_X,            settings.ini, settings, logout_X,            161
@@ -74,8 +80,12 @@ ReadSettings() {
     IniRead, bind,                settings.ini, settings, bind,                0
     IniRead, default_screen_mode, settings.ini, settings, default_screen_mode, 0
     IniRead, wide_screen_mode,    settings.ini, settings, wide_screen_mode,    1
+    IniRead, heal_key_1_are_flask,settings.ini, settings, heal_key_1_are_flask,0
+    IniRead, life_base,           settings.ini, settings, life_base,           1
+    IniRead, es_based,            settings.ini, settings, es_based,            0
     ; Commands
     IniRead, chat_command,        settings.ini, settings, chat_command,        /invite Username
+
     return
 }
 
@@ -97,6 +107,7 @@ SaveSettings() {
     ; Activators
     IniWrite, %set_of_flasks_active%,settings.ini, settings, set_of_flasks_active
     IniWrite, %auto_heal_active%,    settings.ini, settings, auto_heal_active
+    IniWrite, %heal_key_duo_active%, settings.ini, settings, heal_key_duo_active
     IniWrite, %auto_looting_active%, settings.ini, settings, auto_looting_active
     IniWrite, %loot_one_item_active%,settings.ini, settings, loot_one_item_active
     IniWrite, %auto_walk_active%,    settings.ini, settings, auto_walk_active
@@ -110,22 +121,22 @@ SaveSettings() {
     IniWrite, %auto_logout_active%,  settings.ini, settings, auto_logout_active
     ; Key lists
     IniWrite, %flask_key_set%,       settings.ini, settings, flask_key_set
-    IniWrite, %heal_keys_list%,      settings.ini, settings, heal_keys_list
+    IniWrite, %heal_key_1%,          settings.ini, settings, heal_key_1
     IniWrite, %seq_second_skill%,    settings.ini, settings, seq_second_skill
     IniWrite, %detonate_button%,     settings.ini, settings, detonate_button
     IniWrite, %smoke_mine_button%,   settings.ini, settings, smoke_mine_button
     ; Colors
-    IniWrite, %life_color%,          settings.ini, settings, life_color
-    IniWrite, %lootColor%,           settings.ini, settings, lootColor
-    IniWrite, %logout_life_color%,   settings.ini, settings, logout_life_color
+    IniWrite, %low_health_color%,    settings.ini, settings, low_health_color
+    IniWrite, %loot_color%,          settings.ini, settings, loot_color
+    IniWrite, %logout_health_color%, settings.ini, settings, logout_health_color
     IniWrite, %black_screen%,        settings.ini, settings, black_screen
     ; Delays
     IniWrite, %loot_delay%,          settings.ini, settings, loot_delay
     IniWrite, %seq_castspeed_time%,  settings.ini, settings, seq_castspeed_time
     IniWrite, %mine_laying_time%,    settings.ini, settings, mine_laying_time
     ; Any coords
-    IniWrite, %low_life_X%,          settings.ini, settings, low_life_X
-    IniWrite, %low_life_Y%,          settings.ini, settings, low_life_Y
+    IniWrite, %health_X%,            settings.ini, settings, health_X
+    IniWrite, %health_Y%,            settings.ini, settings, health_Y
     IniWrite, %portalX%,             settings.ini, settings, portalX
     IniWrite, %portalY%,             settings.ini, settings, portalY
     IniWrite, %logout_X%,            settings.ini, settings, logout_X
@@ -138,6 +149,8 @@ SaveSettings() {
     IniWrite, %chat_command%,         settings.ini, settings, chat_command
     IniWrite, %default_screen_mode%,  settings.ini, settings, default_screen_mode
     IniWrite, %wide_screen_mode%,     settings.ini, settings, wide_screen_mode
+    IniWrite, %life_base%,            settings.ini, settings, life_base
+    IniWrite, %es_based%,             settings.ini, settings, es_based
 
     return
 }

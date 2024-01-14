@@ -1,93 +1,18 @@
 #Include functions.ahk
 #Include rw_settings.ahk
 #Include gui.ahk
-#Include delirium_afk.ahk
+#Include global_vars.ahk
+#Include utils.ahk
+#Include toggles.ahk
+#Include rollers.ahk
 
 ; #IfWinActive, Path of Exile ahk_class POEWindowClass
 #SingleInstance force   ; Replaces the old instance of script automatically
 #NoEnv                  ; Recommended for performance
 #Persistent             ; Keeps a script permanently running
 #MaxThreadsPerHotkey 2
-
 SetDefaultMouseSpeed, 0 ; Sets the mouse speed, 0 - instantly
 
-; Hotkeys
-global setOfFlasksHotkey
-global autoHealHotkey
-global autoLootingHotkey
-global lootOneItemHotkey
-global AutoWalkHotkey
-global openPortalHotkey
-global hideoutHotkey
-global partyInviteHotkey
-global seqSkillsHotkey
-global smokeMineHotkey
-global gameLogoutHotkey
-global autoLogoutHotkey
-global partyKickHotkey
-; Toggles
-global do_delirious_toggle
-global deli_sub_toggle
-global door_searcher_toggle
-global gwen_roll_toggle
-global currency_click_toggle
-global alch_scour_rolling_toggle
-global auto_logout_toggle
-global auto_rolling_toggle
-global card_opener_toggle
-global clean_inventory_toggle
-; Activators
-global auto_looting_active
-global loot_one_item_active
-global set_of_flasks_active
-global auto_heal_active
-global auto_walk_active
-global open_portal_active
-global hideout_active
-global party_invite_active
-global party_kick_active
-global seq_skills_active
-global smoke_mine_active
-global game_logout_active
-global auto_logout_active
-; Key lists
-global flask_key_set
-global heal_keys_list
-global seq_second_skill
-global detonate_button
-global smoke_mine_button
-; Colors
-global life_color
-global logout_life_color
-global lootColor
-global black_screen
-global highlighted_border
-; Delays
-global loot_delay
-global seq_castspeed_time
-global mine_laying_time
-; Any coords
-global low_life_X
-global low_life_Y
-global portalX
-global portalY
-global logout_X
-global logout_Y
-global black_screen_X
-global black_screen_Y
-global inv_list_X_dflt
-global inv_list_Y_dflt
-global coords_exclude_dflt
-global inv_list_X_wide
-global inv_list_Y_wide
-global coords_exclude_wide
-; States
-global alch
-global bind
-global default_screen_mode
-global wide_screen_mode
-; Commands
-global chat_command
 
 ;-----------------------------------------------------------------------------
 ReadSettings()
@@ -122,31 +47,29 @@ if (default_screen_mode) {
     exclude_coords := coords_exclude_wide
 }
 
-;-----------------------------------------------------------------------------
-; Functions that are not represented into GUI, only hotkeys.
+
 ; ! - alt, ^ - ctrl, + - shift.
-
-!z::GetMouseColorPos()                ; Alt+Z  Get pixel coords and color at mouse pos.
-!x::CleanInventory(x_coords, y_coords, exclude_coords)  ; Alt+X  Clean inventory except portal and wisdom scroll.
-^n::CardOpener()                      ; Ctrl+N Spread stacked deck at one card and open it.
-^g::CtrlClickLoop()                   ; Ctrl+G Hold to ctrl+click (grab currency from tab).
-^h::FuseJewellerClickLoop()           ; Ctrl+H Hold currency on cursor and click on item.
-^j::AltChaosRolling()                 ; Ctrl+J Press once to keep rolling loop up.
-!g::AlchBindScourRolling()            ; Alt+G  Roll item with alch and scouring sequence.
-!c::AlchBindScourOnce()               ; Alt+C  Roll alch or bind and scoruring once.
-F1::CustomChatCommand()               ; F1     Enter custom chat command in game.
-!e::GwenRoller()                      ; Alt+E  Auto Gwennen roller.
-^+F::UpdateHealTreshold()             ; Ctrl+Shift+F Set new heal treshold.
-^+s::ResetAllToggles()                ; Reset all toggle vars to 0.
-; ^+d::DoorSearcher()                 ; Ctrl+Shift+D Search door label and click on it.
-; !f::DoDelirious()                   ; Alt+F  Run delirium script.
+; Functions that are not represented into GUI, only hotkeys.
+!z::GetMouseColorPos()
+!x::CleanInventory(x_coords, y_coords, exclude_coords)
+^n::CardOpenerToggle()
+^g::CtrlClickLoop()
+^h::FuseJewellerClickLoop()
+^j::AltChaosRolling()
+!g::AlchBindScourRolling()
+!c::AlchBindScourOnce()
+F1::CustomChatCommand()
+!e::GwenRoller()
+^+F::UpdateHealTreshold()
+^+s::ResetAllToggles()
+; ^+d::DoorSearcherToggle()
 ;-----------------------------------------------------------------------------
 
 
-SetOfFlasksLabel:                                         ; Pressing set of flasks and skills.
+SetOfFlasksLabel:
     if (set_of_flasks_active) {
         Hotkey, %setOfFlasksHotkey%, On
-        SetOfFlasks(flask_key_set)
+        SetOfFlasks()
     } else {
         Hotkey, %setOfFlasksHotkey%, Off
         Send, %setOfFlasksHotkey%
@@ -154,10 +77,10 @@ SetOfFlasksLabel:                                         ; Pressing set of flas
     return
 
 
-AutoHealLabel:                                            ; Auto Heal. Cannot work at the same
-    if (auto_heal_active) {                               ;              time with AutoLogout.
+AutoHealLabel:
+    if (auto_heal_active) {
         Hotkey, %autoHealHotkey%, On
-        Activate_AutoHeal()
+        AutoHealToggle()
     } else {
         Hotkey, %autoHealHotkey%, Off
         Send, %autoHealHotkey%
@@ -165,7 +88,7 @@ AutoHealLabel:                                            ; Auto Heal. Cannot wo
     return
 
 
-SmokeMineLabel:                                          ; Throwing and activating Smoke mine.
+SmokeMineLabel:
     if (smoke_mine_active) {
         Hotkey, %smokeMineHotkey%, On
         SmokeMine()
@@ -195,7 +118,7 @@ LootOneItem:
 LootAllLabel:
     if (auto_looting_active) {
         Hotkey, %autoLootingHotkey%, On
-        LootAll()
+        LootToggle()
     } else {
         Hotkey, %autoLootingHotkey%, Off
         Send, %autoLootingHotkey%
@@ -225,7 +148,7 @@ OpenPortalLabel:
     return
 
 
-GameLogoutLabel:                                             ; `- Logout, SC029 is Tilda's id.
+GameLogoutLabel:
     if (game_logout_active) {
         Hotkey, %gameLogoutHotkey%, On
         GameLogout()
@@ -236,10 +159,10 @@ GameLogoutLabel:                                             ; `- Logout, SC029 
     return 
 
 
-AutoLogoutLabel:                                    ; AutoLogout. Cannot work at the same time
-    if (auto_logout_active) {                       ;                      with AutoLifeFlask.
+AutoLogoutLabel:
+    if (auto_logout_active) {
         Hotkey, %autoLogoutHotkey%, On
-        Activate_AutoLogout()
+        AutoLogoutToggle()
     } else {
         Hotkey, %autoLogoutHotkey%, Off
         Send, %autoLogoutHotkey%
@@ -258,7 +181,7 @@ HideoutLabel:
     return 
 
 
-PartyInviteLabel:                           ; Invite to party by last received player message.
+PartyInviteLabel:
     if (party_invite_active) {
         Hotkey, %partyInviteHotkey%, On
         PartyInvite()
@@ -269,18 +192,18 @@ PartyInviteLabel:                           ; Invite to party by last received p
     return 
 
 
-PartyKickLabel:                             ; Kick from party by last received player message.
-    if (hideout_active) {
-        Hotkey, %hideoutHotkey%, On
+PartyKickLabel:
+    if (party_kick_active) {
+        Hotkey, %partyKickHotkey%, On
         PartyKick()
     } else {
-        Hotkey, %hideoutHotkey%, Off
-        Send, %hideoutHotkey%
+        Hotkey, %partyKickHotkey%, Off
+        Send, %partyKickHotkey%
     }
     return
 
 
-SequenceOfSkillsLabel:                        ; Cremation delay Desecrate, BF delay BB and etc.
+SequenceOfSkillsLabel:
     if (seq_skills_active) {
         Hotkey, %seqSkillsHotkey%, On
         SequenceOfSkills()
@@ -291,9 +214,10 @@ SequenceOfSkillsLabel:                        ; Cremation delay Desecrate, BF de
     return
 
 
-RCtrl::reloadNsave()               ; Hotkeys for script handling.
-Pause:: pause                      ; ^
-$F2:: suspend                      ; ^
+; Hotkeys for script handling.
+RCtrl::reloadNsave()               
+Pause:: pause
+$F2:: suspend
 
 
 reloadNsave() {
