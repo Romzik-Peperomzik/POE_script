@@ -1,7 +1,8 @@
 CleanInventoryToggle() {
-    clean_inventory_toggle := !clean_inventory_toggle
-    if (clean_inventory_toggle) {
+    clean_inv_toggle := !clean_inv_toggle
+    if (clean_inv_toggle) {
         DisplayNotice(1, "Sorting", "Sorting", 1297, 451, 0, 50)
+        ; TODO где вызов? CleanInventory() как передать координаты?
     } else {
         DisplayNotice(0, "Sorting", "Sorting", 1297, 451, 0, 50)
     }
@@ -78,6 +79,62 @@ LootToggle() {
                 break
             }
             Sleep loot_delay
+        }
+    }
+}
+
+
+FlaskTimersToggle() {
+    ; TODO: Координаты
+    flask_timers_toggle := !flask_timers_toggle
+    if (flask_timers_toggle) {
+        DisplayNotice(1, "FlaskTimers", "FlaskTimers", 234, 894, 0, 70)
+        if (flask_key_1_active) {
+            if (flask_timers_start_press_active) {
+                Send, {%flask_key_1%}
+            }
+            SetTimer, AutoFlask1, %flask_key_1_delay%
+        }
+        if (flask_key_2_active) {
+            if (flask_timers_start_press_active) {
+                Send, {%flask_key_2%}
+            }
+            SetTimer, AutoFlask2, %flask_key_2_delay%
+        }
+        if (flask_key_3_active) {
+            if (flask_timers_start_press_active) {
+                Send, {%flask_key_3%}
+            }
+            SetTimer, AutoFlask3, %flask_key_3_delay%
+        }
+        if (flask_key_4_active) {
+            if (flask_timers_start_press_active) {
+                Send, {%flask_key_4%}
+            }
+            SetTimer, AutoFlask4, %flask_key_4_delay%
+        }
+        if (flask_key_5_active) {
+            if (flask_timers_start_press_active) {
+                Send, {%flask_key_5%}
+            }
+            SetTimer, AutoFlask5, %flask_key_5_delay%
+        }
+    } else {
+        DisplayNotice(0, "FlaskTimers", "FlaskTimers", 234, 894, 0, 50)
+        if (flask_key_1_active) {
+            SetTimer, AutoFlask1, Delete
+        }
+        if (flask_key_2_active) {
+            SetTimer, AutoFlask2, Delete
+        }
+        if (flask_key_3_active) {
+            SetTimer, AutoFlask3, Delete
+        }
+        if (flask_key_4_active) {
+            SetTimer, AutoFlask4, Delete
+        }
+        if (flask_key_5_active) {
+            SetTimer, AutoFlask5, Delete
         }
     }
 }

@@ -126,14 +126,14 @@ AlchBindScourOnce() {
 
 
 GwenRoller() {
-    gwen_roll_toggle := !gwen_roll_toggle
-    if (gwen_roll_toggle) {
+    gwen_roller_toggle := !gwen_roller_toggle
+    if (gwen_roller_toggle) {
         SplashTextOn, 100, 1, Gwen rolling.
         WinMove Gwen rolling., , 234, 894
         Sleep 1000
 
-        while (gwen_roll_toggle) {
-            if (!gwen_roll_toggle) {
+        while (gwen_roller_toggle) {
+            if (!gwen_roller_toggle) {
                 break
             }
             PixelSearch, itemBorderColorX, itemBorderColorY, 304, 256, 942, 839, highlighted_border, 0, Fast
@@ -149,8 +149,8 @@ GwenRoller() {
             }
             Sleep 500
         }
-        if (gwen_roll_toggle) {
-            gwen_roll_toggle := !gwen_roll_toggle
+        if (gwen_roller_toggle) {
+            gwen_roller_toggle := !gwen_roller_toggle
         }
         SplashTextOff
     }

@@ -19,18 +19,29 @@ ReadSettings()
 
 ; Binding hotkeys to functions of callback
 Hotkey, %setOfFlasksHotkey%, SetOfFlasksLabel
-Hotkey, %smokeMineHotkey%, SmokeMineLabel
 Hotkey, %autoLootingHotkey%, LootAllLabel 
 Hotkey, %lootOneItemHotkey%, LootOneItem 
-Hotkey, %AutoWalkHotkey%, HoldWalkLabel 
+Hotkey, %holdWalkHotkey%, HoldWalkLabel 
 Hotkey, %openPortalHotkey%, OpenPortalLabel 
 Hotkey, %gameLogoutHotkey%, GameLogoutLabel 
 Hotkey, %hideoutHotkey%, HideoutLabel
 Hotkey, %partyInviteHotkey%, PartyInviteLabel
 Hotkey, %partyKickHotkey%, PartyKickLabel 
-Hotkey, %seqSkillsHotkey%, SequenceOfSkillsLabel 
+Hotkey, %triggerSeqHotkey%, SequenceOfSkillsLabel 
 Hotkey, %autoHealHotkey%, AutoHealLabel
 Hotkey, %autoLogoutHotkey%, AutoLogoutLabel
+Hotkey, %customChatCommandHotkey%, CustomChatCommandLabel
+Hotkey, %flaskTimersHotkey%, FlaskTimersLabel
+Hotkey, %updateHealTresholdHotkey%, UpdateHealTresholdLabel
+Hotkey, %cleanInvHotkey%, CleanInventoryLabel
+Hotkey, %deckOpenerHotkey%, DeckOpenerLabel
+Hotkey, %clickRollerHotkey%, ClickRollerLabel
+Hotkey, %scourRollerHotkey%, ScourRollerLabel
+Hotkey, %gwenRollerHotkey%, GwenRollerLabel
+
+; Prevents single any key tap blocking when script launched.
+TurnOffAllHotkey()
+TurnOnAllHotkey()
 
 RunGUI()
 
@@ -51,18 +62,19 @@ if (default_screen_mode) {
 ; ! - alt, ^ - ctrl, + - shift.
 ; Functions that are not represented into GUI, only hotkeys.
 !z::GetMouseColorPos()
-!x::CleanInventory(x_coords, y_coords, exclude_coords)
-^n::CardOpenerToggle()
-^g::CtrlClickLoop()
-^h::FuseJewellerClickLoop()
-^j::AltChaosRolling()
-!g::AlchBindScourRolling()
-!c::AlchBindScourOnce()
-F1::CustomChatCommand()
-!e::GwenRoller()
-^+F::UpdateHealTreshold()
-^+s::ResetAllToggles()
+; ^g::CtrlClickLoop()
+; !x::CleanInventory(x_coords, y_coords, exclude_coords)
+; ^+F::UpdateHealTreshold()
+; ^n::CardOpenerToggle()
+
+; ^h::FuseJewellerClickLoop()
+; ^j::AltChaosRolling()
+; !g::AlchBindScourRolling()
+; !c::AlchBindScourOnce()
+; !e::GwenRoller()
 ; ^+d::DoorSearcherToggle()
+
+; ^+s::ResetAllToggles() ; TODO удалить за ненадобностью
 ;-----------------------------------------------------------------------------
 
 
@@ -86,17 +98,6 @@ AutoHealLabel:
         Send, %autoHealHotkey%
     }
     return
-
-
-SmokeMineLabel:
-    if (smoke_mine_active) {
-        Hotkey, %smokeMineHotkey%, On
-        SmokeMine()
-    } else {
-        Hotkey, %smokeMineHotkey%, Off
-        Send, %smokeMineHotkey%
-    }
-    return 
 
 
 LootOneItem:
@@ -127,12 +128,12 @@ LootAllLabel:
 
 
 HoldWalkLabel:
-    if (auto_walk_active) {
-        Hotkey, %AutoWalkHotkey%, On
+    if (hold_walk_active) {
+        Hotkey, %holdWalkHotkey%, On
         HoldWalk()
     } else {
-        Hotkey, %AutoWalkHotkey%, Off
-        Send, %AutoWalkHotkey%
+        Hotkey, %holdWalkHotkey%, Off
+        Send, %holdWalkHotkey%
     }
     return
 
@@ -204,18 +205,108 @@ PartyKickLabel:
 
 
 SequenceOfSkillsLabel:
+    ; TODO: Выяснить почему триггерит срабатывание и появляется ввод Right в виде текста, так же блочит нажатие rArrow
+    ; RMB он же Right в settings.ini не корректно парсится, из-за чего 
     if (seq_skills_active) {
-        Hotkey, %seqSkillsHotkey%, On
+        Hotkey, %triggerSeqHotkey%, On
         SequenceOfSkills()
     } else {
-        Hotkey, %seqSkillsHotkey%, Off
-        Send, %seqSkillsHotkey%
+        Hotkey, %triggerSeqHotkey%, Off
+        Send, %triggerSeqHotkey%
+    }
+    return
+
+
+CustomChatCommandLabel:
+    if (custom_chat_command_active) {
+        Hotkey, %customChatCommandHotkey%, On
+        CustomChatCommand()
+    } else {
+        Hotkey, %customChatCommandHotkey%, Off
+        Send, %customChatCommandHotkey%
+    }
+    return
+
+
+FlaskTimersLabel:
+    if (flask_timers_key_active) {
+        Hotkey, %flaskTimersHotkey%, On
+        FlaskTimersToggle()
+    } else {
+        Hotkey, %flaskTimersHotkey%, Off
+        Send, %flaskTimersHotkey%
+    }
+    return
+
+
+UpdateHealTresholdLabel:
+    if (update_heal_treshold_active) {
+        Hotkey, %updateHealTresholdHotkey%, On
+        UpdateHealTreshold()
+    } else {
+        Hotkey, %updateHealTresholdHotkey%, Off
+        Send, %updateHealTresholdHotkey%
+    }
+    return
+
+
+CleanInventoryLabel:
+    if (clean_inv_key_active) {
+        Hotkey, %cleanInvHotkey%, On
+        CleanInventoryToggle()
+    } else {
+        Hotkey, %cleanInvHotkey%, Off
+        Send, %cleanInvHotkey%
+    }
+    return
+
+
+DeckOpenerLabel:
+    if (deck_opener_key_active) {
+        Hotkey, %deckOpenerHotkey%, On
+        CardOpenerToggle()
+    } else {
+        Hotkey, %deckOpenerHotkey%, Off
+        Send, %deckOpenerHotkey%
+    }
+    return
+
+
+ClickRollerLabel:
+    if (click_roller_key_active) {
+        Hotkey, %clickRollerHotkey%, On
+        ; clickRollerToggle()
+    } else {
+        Hotkey, %clickRollerHotkey%, Off
+        Send, %clickRollerHotkey%
+    }
+    return
+
+
+ScourRollerLabel:
+    if (scour_roller_key_active) {
+        Hotkey, %scourRollerHotkey%, On
+        ; scourRollerToggle()
+    } else {
+        Hotkey, %scourRollerHotkey%, Off
+        Send, %scourRollerHotkey%
+    }
+    return
+
+
+GwenRollerLabel:
+    if (gwen_roller_key_active) {
+        Hotkey, %gwenRollerHotkey%, On
+        ; gwenRoller()
+    } else {
+        Hotkey, %gwenRollerHotkey%, Off
+        Send, %gwenRollerHotkey%
     }
     return
 
 
 ; Hotkeys for script handling.
-RCtrl::reloadNsave()               
+RCtrl::reloadNsave()
 Pause:: pause
 $F2:: suspend
 

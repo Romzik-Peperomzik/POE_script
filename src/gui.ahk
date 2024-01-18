@@ -1,287 +1,411 @@
 RunGUI() {
-    Gui, Margin , 10, 0
-    Gui, Add, Tab3, Choose1, General|Auto|Rollers
+    Gui, Margin , 0, 0
+    Gui, Add, Tab2, Choose3 w901 h701, General|Auto|Rollers
 
+
+    ; General tab
+    Gui, Tab, General
     ; How to use section
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x32 y4 w840 h70 , How to use script
-    Gui, Font, S8 norm, Verdana
-    Gui, Add, Text, x42 y23 w820 h15 , Choose and checkbox hotkeys functions whichever u need. If u want to change hotkey, click to field and tap at key or combination keys.
-    Gui, Add, Text, x42 y38 w820 h15 , ATTENTION, Auto Logout and Auto Heal work only windowed game mode.
-    Gui, Add, Text, x42 y53 w820 h15 , IF U NEED TO CHATTING OR JUST WANT TO PAUSE UR HOTKEYS PRESS F2 AND ALL HOTKEYS WILL BE BLOCKED.
-
-
-    ; Set of Flasks section
+    Gui, Add, GroupBox, x25 y25 w845 h160 , How to use
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Text, x40 y45 w810 h15 , Click on checkboxes whichever you need. If you want to change activation key, enter a key or combination keys in input field.
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x32 y79 w420 h110 , Set of Flasks
-    Gui, Font, norm, Verdana
-    Gui, Add, Text, x42 y99 w170 h20 , Flasks and skills hotkey:
-    Gui, Add, Hotkey, x212 y99 w60 h20 vsetOfFlasksHotkey, %setOfFlasksHotkey%
-    Gui, Add, CheckBox, x282 y99 w30 h20 Checked%set_of_flasks_active% vset_of_flasks_active, 
-    Gui, Add, Text, x42 y129 w150 h20 , Set of flasks and skills:
-    Gui, Add, Edit, x212 y129 w120 h20 vflask_key_set, %flask_key_set%
-    Gui, Font, S7 CDefault, Verdana
-    Gui, Add, Text, x42 y153 w260 h13 , To make sequence, separate keys by /, 1/2/q/w/e
-    Gui, Add, Text, x42 y169 w400 h13 , For Shift, Alt or Ctrl key combination use: Shift +s, Alt !s, Ctrl ^s:    +q/!w/^e
-
-
-    ; Auto Heal section
+    Gui, Add, Text, x40 y65 w100 h15 , ATTENTION
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Text, x120 y65 w740 h15 , , Logout and Heal features works only in windowed game mode. (Any pixelsearch fn works only in windowed mode)
+    Gui, Add, Text, x40 y85 w810 h15 , F2 key toggling PAUSE/START hotkey binds by default.
+    Gui, Add, Text, x40 y105 w810 h15 , Supports only
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x32 y199 w240 h160 , Auto Heal
-    Gui, Font, norm, Verdana
-    Gui, Add, Text, x42 y249 w20 h20 , X:
-    Gui, Add, Edit, x62 y249 w47 h20 vhealth_X, %health_X%
-    Gui, Add, Text, x142 y249 w10 h20 , Y:
-    Gui, Add, Edit, x162 y249 w47 h20 vhealth_Y, %health_Y%
-    Gui, Add, Text, x42 y279 w100 h20 , X, Y pixel color:
-    Gui, Add, Edit, x162 y279 w77 h20 vlow_health_color, %low_health_color%
-    Gui, Add, Text, x42 y309 w100 h20 , list of keys:
-    Gui, Add, Edit, x162 y309 w40 h20 vheal_key_1, %heal_key_1%
-    Gui, Add, Text, x42 y219 w110 h20 , Toggle AutoHeal:
-    Gui, Add, Hotkey, x162 y219 w60 h20 vautoHealHotkey, %autoHealHotkey%
-    Gui, Add, CheckBox, x232 y219 w30 h20 Checked%auto_heal_active% vauto_heal_active,
-
-    ; Auto Life Flask tips
-    Gui, Font, S7 CDefault, Verdana
-    Gui, Add, Text, x40 y336 w220 h15 , To update X, Y, Color press: Ctrl+Shift+F
-    ;To make sequence, separate keys by /, 1/2/3
-
-
-    ; Auto Loot section
-    Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x32 y369 w240 h140 , Auto Loot
-    Gui, Font, norm, Verdana
-    Gui, Add, Text, x42 y449 w120 h20 , Border loot color:
-    Gui, Add, Edit, x162 y449 w77 h20 vloot_color, %loot_color%
-    Gui, Add, Text, x42 y389 w80 h20 , Loot 1 item
-    Gui, Add, Hotkey, x162 y389 w60 h20 vlootOneItemHotkey, %lootOneItemHotkey%
-    Gui, Add, CheckBox, x232 y389 w30 h20 Checked%loot_one_item_active% vloot_one_item_active, 
-    Gui, Add, Text, x42 y419 w120 h20 , Loot all (hold key)
-    Gui, Add, Hotkey, x162 y419 w60 h20 vautoLootingHotkey, %autoLootingHotkey%
-    Gui, Add, CheckBox, x232 y419 w30 h20 Checked%auto_looting_active% vauto_looting_active, 
-    Gui, Add, Edit, x162 y479 w40 h20 vloot_delay, %loot_delay%
-    Gui, Add, Text, x42 y479 w75 h20 , delay (ms):
+    Gui, Add, Text, x130 y105 w600 h15 , 1920x1080 (default_screen) and 1907x800 (wide_screen)
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Text, x537 y105 w200 h15 , resolutions.
+    Gui, Add, Text, x40 y125 w620 h15 , For detailed instruction see README.md.
+    Gui, Add, Text, x40 y145 w810 h15 , To create a chord keys add sign before key: + for Shift,! for Alt,^ for Ctrl. Example: Ctrl + d are ^d. Ctrl + Shift + d are ^+d.
+    Gui, Add, Text, x40 y165 w810 h15 , Quick navigation between tabs Ctrl + Tab or Ctrl + PgDn, Ctrl + PgUp.
 
 
     ; Misc section
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x292 y199 w300 h310 , Misc
+    Gui, Add, GroupBox, x25 y190 w845 h220 , Misc
     Gui, Font, norm, Verdana
-    Gui, Add, Text, x302 y219 w190 h20 , Get Pixel Color and Coords:
-    Gui, Add, Text, x302 y249 w160 h20 , Suspend Hotkeys Bind:
-    Gui, Add, Text, x302 y279 w110 h20 , Reload script:
-    ;Gui, Add, Text, x302 y309 w120 h20 , Pause script:
+    Gui, Add, Text, x40 y210 w190 h20 , Get Pixel Color and Coords:
+    Gui, Add, Text, x40 y240 w160 h20 , Suspend Hotkeys Bind:
+    Gui, Add, Text, x40 y270 w250 h20 , Reload script (save any changes):
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, Text, x482 y219 w50 h20 , Alt + Z
-    Gui, Add, Text, x482 y249 w20 h20 , F2
-    Gui, Add, Text, x482 y279 w40 h20 , RCtrl
-    ;Gui, Add, Text, x482 y309 w40 h20 , Pause
-
-    ; Misc edit
+    Gui, Add, Text, x300 y210 w50 h20 , Alt + Z
+    Gui, Add, Text, x300 y240 w20 h20 , F2
+    Gui, Add, Text, x300 y270 w40 h20 , RCtrl
+    Gui, Add, Text, x300 y300 w150 h20 , Ctrl + G
     Gui, Font, norm, Verdana
-    Gui, Add, Text, x302 y309 w150 h20 , Auto Walk (lmb hold)
-    Gui, Add, Hotkey, x482 y309 w60 h20 vAutoWalkHotkey, %AutoWalkHotkey%
-    Gui, Add, CheckBox, x552 y309 w35 h20 Checked%auto_walk_active% vauto_walk_active,
-    Gui, Add, Text, x302 y339 w90 h20 , Go to Hideout
-    Gui, Add, Hotkey, x482 y339 w60 h20 vhideoutHotkey, %hideoutHotkey%
-    Gui, Add, CheckBox, x552 y339 w35 h20 Checked%hideout_active% vhideout_active, 
-    Gui, Add, Text, x302 y369 w220 h20 , Invite to Party by Last Msg
-    Gui, Add, Hotkey, x482 y369 w60 h20 vpartyInviteHotkey, %partyInviteHotkey%
-    Gui, Add, CheckBox, x552 y369 w35 h20 Checked%party_invite_active% vparty_invite_active, 
-    Gui, Add, Text, x302 y399 w220 h20 , Kick from Party by Last Msg
-    Gui, Add, Hotkey, x482 y399 w60 h20 vpartyKickHotkey, %partyKickHotkey%
-    Gui, Add, CheckBox, x552 y399 w35 h20 Checked%party_kick_active% vparty_kick_active, 
-    Gui, Add, Text, x302 y429 w130 h20 , Game Logout
-    Gui, Add, Edit, x482 y429 w52 h20 vgameLogoutHotkey, %gameLogoutHotkey%
-    Gui, Add, CheckBox, x552 y429 w35 h20 Checked%game_logout_active% vgame_logout_active, 
-
-    ; Misc tips
+    Gui, Add, Text, x40 y300 w150 h20 , Ctrl + LMB Clicker:
+    Gui, Add, Text, x40 y330 w150 h20 , Custom chat command:
+    Gui, Add, CheckBox, x270 y330 w15 h15 Checked%custom_chat_command_active% vcustom_chat_command_active,
+    Gui, Add, Edit, x300 y330 w40 h20 vcustomChatCommandHotkey, %customChatCommandHotkey%
+    Gui, Add, Edit, x350 y330 w100 h20 vchat_command, %chat_command%
+    Gui, Add, Text, x500 y210 w150 h20 , Hold Walk (LMB hold):
+    Gui, Add, CheckBox, x700 y210 w15 h15 Checked%hold_walk_active% vhold_walk_active,
+    Gui, Add, Edit, x740 y210 w60 h20 vholdWalkHotkey, %holdWalkHotkey%
+    Gui, Add, Text, x500 y240 w150 h20 , Go to Hideout:
+    Gui, Add, CheckBox, x700 y240 w15 h15 Checked%hideout_active% vhideout_active, 
+    Gui, Add, Edit, x740 y240 w60 h20 vhideoutHotkey, %hideoutHotkey%
+    Gui, Add, Text, x500 y270 w220 h20 , Invite to Party by Last Msg:
+    Gui, Add, CheckBox, x700 y270 w15 h15 Checked%party_invite_active% vparty_invite_active, 
+    Gui, Add, Edit, x740 y270 w60 h20 vpartyInviteHotkey, %partyInviteHotkey%
+    Gui, Add, Text, x500 y300 w220 h20 , Kick from Party by Last Msg:
+    Gui, Add, CheckBox, x700 y300 w15 h15 Checked%party_kick_active% vparty_kick_active, 
+    Gui, Add, Edit, x740 y300 w60 h20 vpartyKickHotkey, %partyKickHotkey%
+    Gui, Add, Text, x500 y330 w130 h20 , Logout:
+    Gui, Add, CheckBox, x700 y330 w15 h15 Checked%game_logout_active% vgame_logout_active, 
+    Gui, Add, Edit, x740 y330 w60 h20 vgameLogoutHotkey, %gameLogoutHotkey%
     Gui, Font, S8 CDefault, Verdana
-    Gui, Add, Text, x302 y449 w288 h13 , If u want quick logout at `` key, try to enter ``
-    Gui, Add, Text, x302 y462 w288 h13 , key at the field or if it's not work, use KeyHooker
-    Gui, Add, Text, x302 y475 w288 h13 , to identify id of `` key on ur keyboard and put it id
-    Gui, Add, Text, x302 y488 w288 h13 , at the field below instead of `` key.
-
-
-    ; Open Portal section
-    Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x472 y79 w400 h110 , Open Portal
-    Gui, Font, norm, Verdana
-    Gui, Add, Text, x482 y99 w60 h20 , Quick TP
-    Gui, Add, Hotkey, x562 y99 w60 h20 vopenPortalHotkey, %openPortalHotkey%
-    Gui, Add, CheckBox, x632 y99 w20 h20 Checked%open_portal_active% vopen_portal_active, 
-    Gui, Add, Text, x482 y129 w20 h20 , X:
-    Gui, Add, Edit, x562 y129 w50 h20 vportalX, %portalX%
-    Gui, Add, Text, x482 y159 w10 h20 , Y:
-    Gui, Add, Edit, x562 y159 w50 h20 vportalY, %portalY%
-
-    ; Open Portal tips
-    Gui, Font, S8 CDefault, Verdana
-    Gui, Add, Text, x682 y110 w180 h13 , Get a portal scroll coords from
-    Gui, Add, Text, x675 y126 w190 h13 , your inventory, point coursor at
-    Gui, Add, Text, x632 y142 w230 h13 , a portal scroll and press Alt + Z hotkey.
-    Gui, Add, Text, x677 y159 w190 h15 , Put X and Y coords at edit form.
-
-
-    ; Ability sequence
-    Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x612 y199 w260 h510 , Abilities sequences
-    Gui, Font, S8 CDefault Bold, Verdana
-    Gui, Add, Text, x622 y229 w170 h20 , Smoke mine -> Detonate
-    Gui, Font, S7 norm CDefault, Verdana
-    Gui, Add, Text, x622 y249 w230 h12 , Put Smoke and Detonate mine keys from
-    Gui, Add, Text, x622 y269 w230 h12 , game at form below. It should be same
-    Gui, Add, Text, x622 y289 w110 h20 , keys as at skill panel.
-    Gui, Add, Text, x622 y389 w240 h20 , And choose hotkey to activate r -> d sequence.
-    Gui, Font, S9 norm, Verdana
-    Gui, Add, Text, x622 y329 w110 h20 , Smoke mine key:
-    Gui, Add, Edit, x772 y329 w40 h20 vsmoke_mine_button, %smoke_mine_button%
-    Gui, Add, Text, x622 y359 w150 h20 , Detonate mine key:
-    Gui, Add, Edit, x772 y359 w40 h20 vdetonate_button, %detonate_button%
-    Gui, Add, Text, x622 y409 w120 h20 , Quick Smoke mine
-    Gui, Add, Hotkey, x772 y409 w60 h20 vsmokeMineHotkey, %smokeMineHotkey%
-    Gui, Add, CheckBox, x842 y409 w20 h20 Checked%smoke_mine_active% vsmoke_mine_active, 
-    Gui, Add, Text, x622 y434 w150 h14 , Smoke mine laying
-    Gui, Add, Text, x682 y449 w150 h14 , time(ms):
-    Gui, Add, Edit, x772 y439 w40 h20 vmine_laying_time, %mine_laying_time%
-
-    ; Skills sequence tips
-    Gui, Font, S8 CDefault Bold, Verdana
-    Gui, Add, Text, x622 y479 w180 h20 , 1 key -> 2 skills sequence
-    Gui, Font, S7 CDefault norm, Verdana
-    Gui, Add, Text, x622 y499 w240 h12 , For example put Desecrate at RMB key in game
-    Gui, Add, Text, x622 y519 w230 h12 , and Cremation at q key then put cast speed
-    Gui, Add, Text, x622 y539 w220 h12 , time of Desecrate skill from in game tooltip.
-    Gui, Add, Text, x622 y669 w230 h12 , Put cast time value from in game tooltip here.
-
-    ; Skills sequence section
-    Gui, Add, Text, x622 y579 w150 h20 , First key skill (trigger)
-    Gui, Add, Hotkey, x772 y579 w60 h20 vseqSkillsHotkey, %seqSkillsHotkey%
-    Gui, Add, CheckBox, x842 y579 w20 h20 Checked%seq_skills_active% vseq_skills_active, 
-    Gui, Add, Text, x622 y609 w120 h20 , Second key skill
-    Gui, Add, Edit, x772 y609 w60 h20 vseq_second_skill, %seq_second_skill%
-    Gui, Add, Text, x622 y639 w180 h20 , Delay between skills (ms):
-    Gui, Add, Edit, x792 y639 w40 h20 vseq_castspeed_time, %seq_castspeed_time%
-
-
-    ; Auto Logout section
-    Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x32 y519 w560 h250 , Auto Logout
-    Gui, Font, norm, Verdana
-    Gui, Add, Text, x42 y549 w70 h20 , Toggle AL:
-    Gui, Add, Hotkey, x162 y549 w60 h20 vautoLogoutHotkey, %autoLogoutHotkey%
-    Gui, Add, CheckBox, x232 y549 w20 h20 Checked%auto_logout_active% vauto_logout_active, 
-    Gui, Add, Text, x42 y579 w20 h20 , X:
-    Gui, Add, Edit, x62 y579 w50 h20 vlogout_X, %logout_X%
-    Gui, Add, Text, x142 y579 w10 h20 , Y:
-    Gui, Add, Edit, x162 y579 w50 h20 vlogout_Y, %logout_Y%
-    Gui, Add, Text, x42 y609 w150 h20 , Pixel Life/ES color:
-    Gui, Add, Edit, x162 y609 w77 h20 vlogout_health_color, %logout_health_color%
-
-    ; Auto logout tips
-    Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, Text, x428 y539 w153 h20 , How to use autologout:
-    Gui, Font, S8 CDefault norm, Verdana
-    Gui, Add, Text, x352 y559 w235 h15 , Get pixel coords and color by use Alt+Z.
-    Gui, Add, Text, x408 y579 w180 h20 , Choose visual point on life orb
-    Gui, Add, Text, x354 y599 w235 h20 , where autologout should been triggered.
-    Gui, Add, Text, x385 y639 w203 h20 , If ur build HP based, pick red pixel.
-    Gui, Add, Text, x379 y619 w208 h20 , If ur build ES based, pick blue pixel.
-    Gui, Add, Text, x367 y659 w220 h14 , If ur build low life ES based, pick blue
-    Gui, Add, Text, x376 y679 w210 h20 , pixel from edge of orb, but not gray!
-    Gui, Add, Text, x42 y719 w210 h20 , When u toggle logout hotkey u'll see
-    Gui, Add, Text, x42 y734 w280 h13 , notice that it's activated (works only windowed).
-    Gui, Font, S8 CDefault bold, Verdana
-    Gui, Add, Text, x42 y649 w290 h20 , Every time if u changes any logout params,
-    Gui, Add, Text, x42 y669 w260 h20 , check autologout in ur hideout by using
-    Gui, Add, Text, x42 y689 w320 h20 , Righteous fire or Blood rage to imitate life leak.
-
-
-    ; Rollers
-    Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x893 y4 w295 h766 , Utility
-    Gui, Font, norm, Verdana
-    Gui, Add, Text, x905 y30 w170 h20 , CleanInventory:
-    Gui, Add, Text, x905 y100 w170 h20 , CardOpener:
-    Gui, Add, Text, x905 y185 w170 h20 , CtrlClickLoop:
-    Gui, Add, Text, x905 y255 w170 h20 , FuseJewellerClickLoop:
-    Gui, Add, Text, x905 y340 w170 h20 , AltChaosRolling:
-    Gui, Add, Text, x905 y470 w170 h20 , AlchBindScourRolling:
-    Gui, Add, Text, x905 y630 w170 h20 , Custom chat command:
-    Gui, Add, Text, x905 y690 w170 h20 , GwenRoller:
-
-    ; Input fields utils section
-    Gui, Add, Radio, x915 y495 w51 h20 Checked%alch% valch, alch
-    Gui, Add, Radio, x970 y495 w55 h20 Checked%bind% vbind, bind
-    Gui, Add, Edit, x915 y650 w200 h20 vchat_command, %chat_command%
-
-    ; List of Chords utils section
-    Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, Text, x1130 y30 w50 h20 , Alt + X
-    Gui, Add, Text, x1125 y100 w60 h20 , Ctrl + N
-    Gui, Add, Text, x1125 y185 w60 h20 , Ctrl + G
-    Gui, Add, Text, x1125 y255 w60 h20 , Ctrl + H
-    Gui, Add, Text, x1125 y340 w60 h20 , Ctrl + J
-    Gui, Add, Text, x1130 y470 w50 h20 , Alt + G
-    Gui, Add, Text, x1155 y630 w20 h20 , F1
-    Gui, Add, Text, x1130 y690 w50 h20 , Alt + E
-
-    ; Decriptions utils section
-    Gui, Font, S8 norm CDefault, Verdana
-    ; CleanInventory tips
-    Gui, Add, Text, x915 y50 w270 h15 , Ctrl+Click on inventory cell if its not empty.
-    Gui, Add, Text, x915 y65 w270 h15 , Open stash or trade window before use it.
-    ; CardOpener tips
-    Gui, Add, Text, x915 y120 w270 h15 , Put 5 stacked decks into column, click lmb on
-    Gui, Add, Text, x915 y135 w270 h15 , first one when it decompose all deck and 
-    Gui, Add, Text, x915 y150 w270 h15 , open it one by one.
-    ; CtrlClickLoop tips
-    Gui, Add, Text, x915 y205 w270 h15 , Hover mouse to currency in stash tab and 
-    Gui, Add, Text, x915 y220 w270 h15 , hold Ctrl+G to grab currency in loop.
-    ; FuseJewellerClickLoop tips
-    Gui, Add, Text, x915 y275 w270 h15 , Grab fusing or jewellers orb and hover
-    Gui, Add, Text, x915 y290 w270 h15 , on item, when press Ctrl+H and wait till
-    Gui, Add, Text, x915 y305 w270 h15 , it done. To turn off press Ctrl+H again.
-    ; AltChaosRolling tips
-    Gui, Add, Text, x915 y360 w270 h15 , Put regexp in search field in stash. Place
-    Gui, Add, Text, x915 y375 w270 h15 , item in currency stash tab. Grab chaos or
-    Gui, Add, Text, x915 y390 w270 h15 , alteration orb, hover on item, when press
-    Gui, Add, Text, x915 y405 w270 h15 , Ctrl+J and wait till item would be highlighted 
-    Gui, Add, Text, x915 y420 w270 h15 , or press Ctrl+J again to stop. Stop trigger 
-    Gui, Add, Text, x915 y435 w270 h15 , are highlight border around item.
-    ; AlchBindScourRolling tips
-    Gui, Add, Text, x915 y520 w270 h15 , Choose alchemy or bindings orb use to
-    Gui, Add, Text, x915 y535 w270 h15 , rolling. Put item in currency stash tab
-    Gui, Add, Text, x915 y550 w270 h15 , (map for example) put regexp in search 
-    Gui, Add, Text, x915 y565 w270 h15 , field in stash. Press Alt+G to start 
-    Gui, Add, Text, x915 y580 w270 h15 , rolling, press it again to stop. 
-    Gui, Add, Text, x915 y595 w270 h15 , Stop trigger are highlight border around item.
-    ; GwenRoller tips
-    Gui, Add, Text, x915 y710 w270 h15 , Put regexp in search field in Gwennen roll
-    Gui, Add, Text, x915 y725 w270 h15 , window. Press Alt+E to start rolling.
-    Gui, Add, Text, x915 y740 w270 h15 , And again to stop.
+    Gui, Add, Text, x500 y360 w288 h30 , For specific logout bind key use key_hooker.ahk to determinate keys id and past it to input field.
 
 
     ; Screen mode section
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x612 y710 w150 h59 , Screen mode
+    Gui, Add, GroupBox, x25 y415 w300 h70 , Screen mode
     Gui, Font, norm, Verdana
-    Gui, Add, Radio, x620 y732 w65 h20 Checked%default_screen_mode% vdefault_screen_mode, default
-    Gui, Add, Radio, x692 y732 w65 h20 Checked%wide_screen_mode% vwide_screen_mode, wide
+    Gui, Add, Radio, x40 y435 w140 h20 Checked%default_screen_mode% vdefault_screen_mode, default 1920x1080
+    Gui, Add, Radio, x190 y435 w120 h20 Checked%wide_screen_mode% vwide_screen_mode, wide 1907x800
+
+
+    ; Character state
+    Gui, Font, S9 Bold, Verdana
+    Gui, Add, GroupBox, x340 y415 w230 h70 , Character state
+    Gui, Font, norm, Verdana
+    Gui, Add, Radio, x350 y435 w40 h20 Checked%life_based% vlife_based, life
+    Gui, Add, Radio, x400 y435 w40 h20 Checked%es_based% ves_based, es
+    Gui, Add, Text, x350 y460 w110 h20 , ES or Life based?
 
 
     ; Apply button
+    Gui, Font, S9 Bold, Verdana
+    Gui, Add, GroupBox, x585 y415 w285 h70 , Save settings
     Gui, Font, norm, Verdana
-    Gui, Add, Button, x772 y738 w100 h30 , Apply change
+    Gui, Add, Text, x600 y435 w120 h40 , Press it after any changes in all tabs.
+    Gui, Add, Button, x760 y450 w100 h30 , Apply change
+
+
+    ; Auto tab
+    Gui, Tab, Auto
+    Gui, Add, Edit, x0 y0 w1 h0 ; Fix against forced input "a" to Edit field.
+
+
+    ; Sequence create tip
+    Gui, Font, S9 Bold, Verdana
+    Gui, Add, GroupBox, x25 y25 w430 h70 , Sequence create tip
+    Gui, Font, norm, Verdana
+    Gui, Add, Text, x40 y45 w400 h15 , To make sequence, separate keys by slash "/" example: e/f/^t
+    Gui, Add, Text, x40 y65 w400 h15 , Shift +, Alt !, Ctrl ^ or sequence in input field: +q/!w/^e
+
+
+    ; Open Portal section
+    Gui, Font, S9 CDefault Bold, Verdana
+    Gui, Add, GroupBox, x472 y25 w400 h110 , Open Portal
+    Gui, Font, norm, Verdana
+    Gui, Add, Text, x482 y45 w60 h20 , Quick TP:
+    Gui, Add, CheckBox, x555 y45 w15 h15 Checked%open_portal_active% vopen_portal_active, 
+    Gui, Add, Edit, x582 y45 w60 h20 vopenPortalHotkey, %openPortalHotkey%
+    Gui, Add, Text, x482 y75 w20 h20 , X:
+    Gui, Add, Edit, x502 y75 w50 h20 vportalX, %portalX%
+    Gui, Add, Text, x572 y75 w10 h20 , Y:
+    Gui, Add, Edit, x592 y75 w50 h20 vportalY, %portalY%
+    Gui, Font, S8 CDefault, Verdana
+    Gui, Add, Text, x675 y45 w180 h80 , Click on a portal scroll for coords in your inventory. To setup coords move cursor at a portal scroll in inventory and press Alt + Z hotkey.
+    Gui, Add, Text, x482 y110 w200 h15 , Put X and Y coords in input fields.
+
+
+    ; Flasks section
+    Gui, Font, S9 CDefault Bold, Verdana
+    Gui, Add, GroupBox, x25 y100 w430 h300 , Flasks
+    Gui, Font, norm, Verdana
+    Gui, Add, Text, x42 y120 w170 h20 , Flasks and skills hotkey:
+    Gui, Add, CheckBox, x212 y120 w15 h15 Checked%set_of_flasks_active% vset_of_flasks_active, 
+    Gui, Add, Edit, x242 y120 w50 h20 vsetOfFlasksHotkey, %setOfFlasksHotkey%
+    Gui, Add, Text, x42 y150 w150 h20 , Set of flasks and skills:
+    Gui, Add, Edit, x212 y150 w80 h20 vflask_key_set, %flask_key_set%
+    Gui, Font, Bold, Verdana
+    Gui, Add, Text, x35 y180 w300 h20 , Each flask separately with timers:
+    Gui, Font, norm, Verdana
+    Gui, Add, Text, x42 y210 w180 h20 , Activate timers:
+    Gui, Add, CheckBox, x192 y210 w15 h15 Checked%flask_timers_key_active% vflask_timers_key_active,
+    Gui, Add, Edit, x232 y210 w50 h20 vflaskTimersHotkey, %flaskTimersHotkey%
+    Gui, Add, Text, x300 y210 w100 h40 , Press once at start?:
+    Gui, Add, CheckBox, x400 y210 w15 h15 Checked%flask_timers_start_press_active% vflask_timers_start_press_active,
+    Gui, Add, Text, x42 y240 w180 h20 , Flask 1
+    Gui, Add, CheckBox, x110 y240 w15 h15 Checked%flask_key_1_active% vflask_key_1_active,
+    Gui, Add, Text, x150 y240 w70 h20 , Delay:
+    Gui, Add, Edit, x212 y240 w70 h20 vflask_key_1_delay, %flask_key_1_delay%
+    Gui, Add, Text, x42 y270 w180 h20 , Flask 2
+    Gui, Add, CheckBox, x110 y270 w15 h15 Checked%flask_key_2_active% vflask_key_2_active,
+    Gui, Add, Text, x150 y270 w70 h20 , Delay:
+    Gui, Add, Edit, x212 y270 w70 h20 vflask_key_2_delay, %flask_key_2_delay%
+    Gui, Add, Text, x42 y300 w180 h20 , Flask 3
+    Gui, Add, CheckBox, x110 y300 w15 h15 Checked%flask_key_3_active% vflask_key_3_active,
+    Gui, Add, Text, x150 y300 w70 h20 , Delay:
+    Gui, Add, Edit, x212 y300 w70 h20 vflask_key_3_delay, %flask_key_3_delay%
+    Gui, Add, Text, x42 y330 w180 h20 , Flask 4
+    Gui, Add, CheckBox, x110 y330 w15 h15 Checked%flask_key_4_active% vflask_key_4_active,
+    Gui, Add, Text, x150 y330 w70 h20 , Delay:
+    Gui, Add, Edit, x212 y330 w70 h20 vflask_key_4_delay, %flask_key_4_delay%
+    Gui, Add, Text, x42 y360 w180 h20 , Flask 5
+    Gui, Add, CheckBox, x110 y360 w15 h15 Checked%flask_key_5_active% vflask_key_5_active,
+    Gui, Add, Text, x150 y360 w70 h20 , Delay:
+    Gui, Add, Edit, x212 y360 w70 h20 vflask_key_5_delay, %flask_key_5_delay%
+    Gui, Add, Text, x300 y265 w140 h100 , Tip: Make sure that flask sequence and each flask separately are not intersect.
+
+
+    ; Heal section
+    Gui, Font, S9 CDefault Bold, Verdana
+    Gui, Add, GroupBox, x472 y140 w400 h260 , Heal
+    Gui, Font, norm, Verdana
+    Gui, Add, Text, x482 y160 w190 h20 , Heal Key 1:
+    Gui, Add, CheckBox, x570 y160 w15 h15 Checked%auto_heal_active% vauto_heal_active,
+    Gui, Add, Edit, x600 y160 w30 h20 vheal_key_1, %heal_key_1%
+    Gui, Add, Text, x650 y160 w70 h15 , Delay:
+    Gui, Add, Edit, x700 y160 w50 h17 vauto_heal_delay, %auto_heal_delay%
+    Gui, Add, Text, x760 y160 w80 h20 , Hotkey:
+    Gui, Add, Edit, x820 y160 w40 h20 vautoHealHotkey, %autoHealHotkey%
+    Gui, Add, Text, x482 y190 w200 h15 , First heal key are flask?
+    Gui, Add, CheckBox, x650 y190 w15 h15 Checked%heal_key_1_are_flask% vheal_key_1_are_flask, 
+    Gui, Font, S7  Verdana
+    Gui, Add, Text, x482 y210 w250 h20 , (Have check when life flask duration ends)
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Text, x482 y245 w120 h20 , Heal Key 2:
+    Gui, Add, CheckBox, x570 y245 w20 h20 Checked%heal_key_duo_active% vheal_key_duo_active, 
+    Gui, Add, Edit, x600 y245 w30 h20 vheal_key_2, %heal_key_2%
+    Gui, Add, Text, x482 y275 w100 h20 , Health color:
+    Gui, Add, Edit, x600 y275 w80 h20 vlow_health_color, %low_health_color%
+    Gui, Add, Text, x482 y305 w20 h20 , X:
+    Gui, Add, Edit, x502 y305 w47 h20 vhealth_X, %health_X%
+    Gui, Add, Text, x580 y305 w10 h20 , Y:
+    Gui, Add, Edit, x600 y305 w47 h20 vhealth_Y, %health_Y%
+    Gui, Font, S9 Bold, Verdana
+    Gui, Add, Text, x482 y335 w300 h15 , Health chord updater: ;To update X, Y, Color press: Ctrl+Shift+F
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, CheckBox, x650 y335 w20 h20 Checked%update_heal_treshold_active% vupdate_heal_treshold_active, 
+    Gui, Add, Edit, x680 y335 w50 h17 vupdateHealTresholdHotkey, %updateHealTresholdHotkey%
+    Gui, Add, Text, x482 y360 w370 h30 , Hover mouse on health orb ingame, and press binded chord to update Health Color, X and Y vars.
+
+
+    ; Auto Logout section
+    Gui, Font, S9 CDefault Bold, Verdana
+    Gui, Add, GroupBox, x472 y410 w400 h270 , Logout
+    Gui, Font, norm, Verdana
+    Gui, Add, Text, x482 y430 w110 h20 , AutoLogout:
+    Gui, Add, CheckBox, x572 y430 w15 h15 Checked%auto_logout_active% vauto_logout_active, 
+    Gui, Add, Edit, x600 y430 w40 h20 vautoLogoutHotkey, %autoLogoutHotkey%
+    Gui, Add, Text, x650 y430 w70 h15 , Delay:
+    Gui, Add, Edit, x700 y430 w50 h17 vauto_logout_delay, %auto_logout_delay%
+    Gui, Add, Text, x482 y460 w190 h20 , Health AutoLogout color:
+    Gui, Add, Edit, x642 y460 w77 h20 vlogout_health_color, %logout_health_color%
+    Gui, Add, Text, x482 y490 w10 h20 , X:
+    Gui, Add, Edit, x502 y490 w40 h20 vlogout_X, %logout_X%
+    Gui, Add, Text, x552 y490 w10 h20 , Y:
+    Gui, Add, Edit, x572 y490 w40 h20 vlogout_Y, %logout_Y%
+    Gui, Font, S9 CDefault Bold, Verdana
+    Gui, Add, Text, x482 y515 w190 h20 , How to use AutoLogout:
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Text, x482 y535 w380 h60 , Hover mouse on health orb ingame, visually choose bound on orb where AutoLogout should be triggered and press Alt + Z. Paste X, Y, and Color to input fields^. When pixel color changes, AutoLogout would be triggered.
+    Gui, Add, Text, x482 y605 w380 h60 , Make sure that Logout feature works properly, see General tab -> Misc -> Logout, its require to run cports.exe and maybe need to run as admin.
+
+
+    ; Auto Loot section
+    Gui, Font, S9 CDefault Bold, Verdana
+    Gui, Add, GroupBox, x25 y410 w430 h110 , Loot
+    Gui, Font, norm, Verdana
+    Gui, Add, Text, x42 y430 w80 h20 , Loot 1 item:
+    Gui, Add, CheckBox, x130 y430 w15 h15 Checked%loot_one_item_active% vloot_one_item_active, 
+    Gui, Add, Edit, x160 y430 w50 h20 vlootOneItemHotkey, %lootOneItemHotkey%
+    Gui, Add, Text, x230 y430 w120 h20 , Loot all (hold key):
+    Gui, Add, CheckBox, x360 y430 w15 h15 Checked%auto_looting_active% vauto_looting_active, 
+    Gui, Add, Edit, x390 y430 w50 h20 vautoLootingHotkey, %autoLootingHotkey%
+    Gui, Add, Text, x42 y460 w120 h20 , Border loot color:
+    Gui, Add, Edit, x162 y460 w77 h20 vloot_color, %loot_color%
+    Gui, Add, Text, x350 y460 w90 h20 , Delay:
+    Gui, Add, Edit, x400 y460 w40 h20 vloot_delay, %loot_delay%
+    Gui, Font, S9 CDefault Bold, Verdana
+    Gui, Add, Text, x42 y490 w400 h20 , Required modified loot filter, see README.md
+    Gui, Font, norm, Verdana
+
+
+    ; Ability sequence section
+    Gui, Font, S9 CDefault Bold, Verdana
+    Gui, Add, GroupBox, x25 y530 w430 h150 , Ability sequence
+    Gui, Font, norm, Verdana
+    Gui, Add, Text, x42 y550 w150 h20 , Trigger key:
+    Gui, Add, CheckBox, x195 y550 w15 h15 Checked%seq_skills_active% vseq_skills_active, 
+    Gui, Add, Edit, x230 y550 w40 h20 vtriggerSeqHotkey, %triggerSeqHotkey%
+    Gui, Add, Text, x42 y580 w150 h20 , 1st skill key:
+    Gui, Add, Edit, x230 y580 w40 h20 vseq_first_skill, %seq_first_skill%
+    Gui, Add, Text, x290 y580 w120 h20 , 2nd skill key:
+    Gui, Add, Edit, x400 y580 w40 h20 vseq_second_skill, %seq_second_skill%
+    Gui, Add, Text, x42 y610 w180 h20 , Delay (cast time 1st skill):
+    Gui, Add, Edit, x230 y610 w40 h20 vseq_castspeed_time, %seq_castspeed_time%
+    Gui, Add, Text, x42 y640 w400 h30 , Example: put Desecrate key in 1st field and Cremation in 2nd, put Desecrate cast time (from ingame tooltip) to Delay field.
+
+
+    ; Rollers tab
+    Gui, Tab, Rollers
+    ; Utility section
+    Gui, Font, S9 CDefault Bold, Verdana
+    Gui, Add, GroupBox, x25 y25 w420 h300 , Utility
+    Gui, Font, norm, Verdana
+    Gui, Add, Text, x42 y45 w170 h20 , CleanInventory:
+    Gui, Add, CheckBox, x190 y45 w15 h15 Checked%clean_inv_key_active% vclean_inv_key_active, 
+    Gui, Add, Edit, x230 y45 w40 h20 vcleanInvHotkey, %cleanInvHotkey%
+    Gui, Add, Text, x52 y65 w170 h20 , Required opened stash.
+    Gui, Add, Text, x42 y95 w170 h20 , StackedDeckOpener:
+    Gui, Add, CheckBox, x190 y95 w15 h15 Checked%deck_opener_key_active% vdeck_opener_key_active, 
+    Gui, Add, Edit, x230 y95 w40 h20 vdeckOpenerHotkey, %deckOpenerHotkey%
+    Gui, Add, Text, x52 y120 w270 h45 , Put 5 stacked decks into column, click lmb on first one when it decompose all deck and open it one by one.
+
+
+    ; Rollers section
+    Gui, Font, S9 CDefault Bold, Verdana
+    Gui, Add, GroupBox, x455 y25 w420 h600 , Rollers
+    Gui, Font, norm, Verdana
+
+    Gui, Add, Text, x472 y45 w350 h20 , Click roller: 
+    Gui, Add, CheckBox, x560 y45 w15 h15 Checked%click_roller_key_active% vclick_roller_key_active, 
+    Gui, Add, Edit, x600 y45 w40 h20 vclickRollerHotkey, %clickRollerHotkey%
+    Gui, Font, S8 norm, Verdana
+    Gui, Add, Text, x475 y75 w30 h20 , X:
+    Gui, Add, Text, x475 y95 w30 h20 , Y:
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Edit, x490 y75 w50 h20 vfuse_X, %fuse_X%
+    Gui, Add, Edit, x490 y95 w50 h20 vfuse_Y, %fuse_Y%
+    Gui, Add, Radio, x489 y120 w51 h20 Checked%fuse% vfuse, fuse
+    Gui, Font, S8 norm, Verdana
+    Gui, Add, Text, x560 y75 w30 h20 , X:
+    Gui, Add, Text, x560 y95 w30 h20 , Y:
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Edit, x575 y75 w50 h20 vjeweller_X, %jeweller_X%
+    Gui, Add, Edit, x575 y95 w50 h20 vjeweller_Y, %jeweller_Y%
+    Gui, Add, Radio, x560 y120 w80 h20 Checked%jeweller% vjeweller, jeweller
+    Gui, Font, S8 norm, Verdana
+    Gui, Add, Text, x645 y75 w30 h20 , X:
+    Gui, Add, Text, x645 y95 w30 h20 , Y:
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Edit, x660 y75 w50 h20 vchaos_X, %chaos_X%
+    Gui, Add, Edit, x660 y95 w50 h20 vchaos_Y, %chaos_Y%
+    Gui, Add, Radio, x650 y120 w55 h20 Checked%chaos% vchaos, chaos
+    Gui, Font, S8 norm, Verdana
+    Gui, Add, Text, x725 y75 w30 h20 , X:
+    Gui, Add, Text, x725 y95 w30 h20 , Y:
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Edit, x740 y75 w50 h20 vchrom_X, %chrom_X%
+    Gui, Add, Edit, x740 y95 w50 h20 vchrom_Y, %chrom_Y%
+    Gui, Add, Radio, x730 y120 w55 h20 Checked%chrom% vchrom, chrom
+    Gui, Font, S8 norm, Verdana
+    Gui, Add, Text, x805 y75 w30 h20 , X:
+    Gui, Add, Text, x805 y95 w30 h20 , Y:
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Edit, x820 y75 w50 h20 valter_X, %alter_X%
+    Gui, Add, Edit, x820 y95 w50 h20 valter_Y, %alter_Y%
+    Gui, Add, Radio, x810 y120 w55 h20 Checked%alter% valter, alter
+
+    Gui, Add, Text, x472 y150 w350 h20 , Scour roller:
+    Gui, Add, CheckBox, x560 y150 w15 h15 Checked%scour_roller_key_active% vscour_roller_key_active,
+    Gui, Add, Edit, x600 y150 w40 h20 vscourRollerHotkey, %scourRollerHotkey%
+    Gui, Font, S8 norm, Verdana
+    Gui, Add, Text, x475 y180 w30 h20 , X:
+    Gui, Add, Text, x475 y200 w30 h20 , Y:
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Edit, x490 y180 w50 h20 valch_X, %alch_X%
+    Gui, Add, Edit, x490 y200 w50 h20 valch_Y, %alch_Y%
+    Gui, Add, Radio, x489 y225 w51 h20 Checked%alch% valch, alch
+    Gui, Font, S8 norm, Verdana
+    Gui, Add, Text, x560 y180 w30 h20 , X:
+    Gui, Add, Text, x560 y200 w30 h20 , Y:
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Edit, x575 y180 w50 h20 vbind_X, %bind_X%
+    Gui, Add, Edit, x575 y200 w50 h20 vbind_Y, %bind_Y%
+    Gui, Add, Radio, x560 y225 w51 h20 Checked%bind% vbind, bind
+    Gui, Font, S8 norm, Verdana
+    Gui, Add, Text, x645 y180 w30 h20 , X:
+    Gui, Add, Text, x645 y200 w30 h20 , Y:
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Edit, x660 y180 w50 h20 vchance_X, %chance_X%
+    Gui, Add, Edit, x660 y200 w50 h20 vchance_Y, %chance_Y%
+    Gui, Add, Radio, x650 y225 w70 h20 Checked%chance% vchance, chance
+    Gui, Font, S8 norm, Verdana
+    Gui, Add, Text, x725 y180 w30 h20 , X:
+    Gui, Add, Text, x725 y200 w30 h20 , Y:
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Edit, x740 y180 w50 h20 vscour_X, %scour_X%
+    Gui, Add, Edit, x740 y200 w50 h20 vscour_Y, %scour_Y%
+    Gui, Add, Text, x745 y228 w55 h20 , scour
+    Gui, Add, Text, x472 y265 w150 h20 , Item coords for rolling:
+    Gui, Font, S8 norm, Verdana
+    Gui, Add, Text, x640 y265 w20 h20 , X:
+    Gui, Add, Text, x640 y285 w20 h20 , Y:
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Edit, x670 y265 w50 h20 vrolling_item_X, %rolling_item_X%
+    Gui, Add, Edit, x670 y285 w50 h20 vrolling_item_Y, %rolling_item_Y%
+    Gui, Add, Text, x770 y265 w60 h20 , Delay:
+    Gui, Add, Edit, x820 y265 w50 h20 vrolling_item_delay, %rolling_item_delay%
+    Gui, Add, Text, x472 y320 w140 h40 , Reqtangle points for highlighted border:
+    Gui, Font, S8 norm, Verdana
+    Gui, Add, Text, x640 y320 w20 h20 , X1:
+    Gui, Add, Text, x640 y340 w20 h20 , Y1:
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Edit, x670 y320 w50 h20 vhighlighted_border_X1, %highlighted_border_X1%
+    Gui, Add, Edit, x670 y340 w50 h20 vhighlighted_border_Y1, %highlighted_border_Y1%
+    Gui, Font, S8 norm, Verdana
+    Gui, Add, Text, x740 y320 w20 h20 , X2:
+    Gui, Add, Text, x740 y340 w20 h20 , Y2:
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Edit, x770 y320 w50 h20 vhighlighted_border_X2, %highlighted_border_X2%
+    Gui, Add, Edit, x770 y340 w50 h20 vhighlighted_border_Y2, %highlighted_border_Y2%
+    Gui, Add, Text, x472 y370 w200 h20 , Highlighted border color:
+    Gui, Add, Edit, x670 y370 w80 h20 vhighlighted_border, %highlighted_border%
+    Gui, Add, Text, x472 y410 w380 h40 , To avoid any mistakes, roll all items into currency stash tab, where rolling item placed in center.
+    Gui, Add, Text, x472 y450 w380 h40 , Setup all coords and colors picking them by Alt + Z. Paste regexp (poe.re to make paste) into search field ingame.
+    Gui, Add, Text, x472 y490 w380 h45 , Open stash, place item, paste regexp (its necessarily for auto stop) and press trigger button. When item would be highlighted its mean a signal to break loop.
+    Gui, Add, Text, x472 y540 w380 h40 , If something goes not like discribed above, then check coords again and see README.md.
+
+
+    Gui, Font, S9 CDefault Bold, Verdana
+    Gui, Add, GroupBox, x25 y330 w420 h295 , Expedition
+    Gui, Font, norm, Verdana
+    Gui, Add, Text, x42 y350 w170 h20 , GwenRoller:
+    Gui, Add, CheckBox, x130 y350 w15 h15 Checked%gwen_roller_key_active% vgwen_roller_key_active, 
+    Gui, Add, Edit, x160 y350 w50 h20 vgwenRollerHotkey, %gwenRollerHotkey%
+    Gui, Add, Text, x270 y350 w170 h20 , Delay:
+    Gui, Add, Edit, x330 y350 w50 h20 vgwen_roller_delay, %gwen_roller_delay%
+    Gui, Add, Text, x42 y380 w170 h40 , Reqtangle points for Gwenenn window:
+    Gui, Font, S8 norm, Verdana
+    Gui, Add, Text, x200 y380 w20 h20 , X1:
+    Gui, Add, Text, x200 y400 w20 h20 , Y1:
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Edit, x230 y380 w50 h20 vgwen_window_X1, %gwen_window_X1%
+    Gui, Add, Edit, x230 y400 w50 h20 vgwen_window_Y1, %gwen_window_Y1%
+    Gui, Font, S8 norm, Verdana
+    Gui, Add, Text, x300 y380 w20 h20 , X2:
+    Gui, Add, Text, x300 y400 w20 h20 , Y2:
+    Gui, Font, S9 norm, Verdana
+    Gui, Add, Edit, x330 y380 w50 h20 vgwen_window_X2, %gwen_window_X2%
+    Gui, Add, Edit, x330 y400 w50 h20 vgwen_window_Y2, %gwen_window_Y2%
+    Gui, Add, Text, x42 y430 w300 h20 , Gwen roll key coords:
+    Gui, Add, Text, x200 y430 w20 h20 , X:
+    Gui, Add, Text, x300 y430 w20 h20 , Y:
+    Gui, Add, Edit, x230 y430 w50 h20 vgwen_roll_key_X, %gwen_roll_key_X%
+    Gui, Add, Edit, x330 y430 w50 h20 vgwen_roll_key_Y, %gwen_roll_key_Y%
+    ; ; GwenRoller tips
+    ; Gui, Add, Text, x300 y710 w270 h15 , Put regexp in search field in Gwennen roll
+    ; Gui, Add, Text, x300 y725 w270 h15 , window. Press Alt+E to start rolling.
+    ; Gui, Add, Text, x300 y740 w270 h15 , And again to stop.
 
 
     ; Main window params
-    Gui, Show, x3 y49 h778 w1208, Script
+    Gui, Color, 0xF4F4F4
+    Gui, Show, x3 y49 h700 w900, Script
     Return
 
 
     GuiClose:
-    SaveSettings()
     ExitApp
 }
 
@@ -292,54 +416,4 @@ ButtonApplyChange() {
     TurnOnAllHotkey()
     SaveSettings()
     MsgBox , 0, , change applied, 0.5
-}
-
-
-TurnOffAllHotkey() {
-    TurnOffHotkey(setOfFlasksHotkey)
-    TurnOffHotkey(autoHealHotkey)
-    TurnOffHotkey(autoLootingHotkey)
-    TurnOffHotkey(lootOneItemHotkey)
-    TurnOffHotkey(AutoWalkHotkey)
-    TurnOffHotkey(gameLogoutHotkey)
-    TurnOffHotkey(hideoutHotkey)
-    TurnOffHotkey(partyInviteHotkey)
-    TurnOffHotkey(partyKickHotkey)
-    TurnOffHotkey(openPortalHotkey)
-    TurnOffHotkey(smokeMineHotkey)
-    TurnOffHotkey(seqSkillsHotkey)
-}
-
-
-TurnOnAllHotkey() {
-    TurnOnHotkey(setOfFlasksHotkey, "SetOfFlasksLabel")
-    TurnOnHotkey(autoHealHotkey, "AutoHealLabel")
-    TurnOnHotkey(autoLootingHotkey, "LootAllLabel")
-    TurnOnHotkey(lootOneItemHotkey, "LootOneItem")
-    TurnOnHotkey(AutoWalkHotkey, "HoldWalkLabel")
-    TurnOnHotkey(gameLogoutHotkey, "GameLogoutLabel")
-    TurnOnHotkey(hideoutHotkey, "HideoutLabel")
-    TurnOnHotkey(partyInviteHotkey, "PartyInviteLabel")
-    TurnOnHotkey(partyKickHotkey, "PartyKickLabel")
-    TurnOnHotkey(openPortalHotkey, "OpenPortalLabel")
-    TurnOnHotkey(smokeMineHotkey, "SmokeMineLabel")
-    TurnOnHotkey(seqSkillsHotkey, "SequenceOfSkillsLabel")
-}
-
-
-TurnOffHotkey(key) {
-    if (key) {
-        Hotkey, %key%, Off
-    }
-    return
-}
-
-
-TurnOnHotkey(key, label){
-    if (key) {
-        Hotkey, %key%, %label%, On
-    } else {
-        ;Msgbox, %key%
-    }
-    return
 }

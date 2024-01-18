@@ -22,18 +22,6 @@ oosCommand() {
 }
 
 
-ResetAllToggles() {
-    door_searcher_toggle := 0
-    gwen_roll_toggle := 0
-    currency_click_toggle := 0
-    alch_scour_rolling_toggle := 0
-    auto_logout_toggle := 0
-    auto_rolling_toggle := 0
-    card_opener_toggle := 0
-    clean_inventory_toggle := 0
-}
-
-
 GameLogout() {
     ; Closing port which POE use by cports.exe.    
     if WinActive("Path of Exile"){
@@ -59,6 +47,8 @@ UpdateHealTreshold() {
 DisplayNotice(display := 0, GuiName := "none", label := "blank", x := 0, y := 0, h := 0, w := 0) {
     /*  Displays window on %x%, %y% with %label%. If called without
         args, then closing exact %GuiName% window.
+
+    Required: label should be without spaces.
     */
     if (display) {
         Gui, %GuiName%:New, AlwaysOnTop -SysMenu +Disabled,
@@ -66,4 +56,114 @@ DisplayNotice(display := 0, GuiName := "none", label := "blank", x := 0, y := 0,
     } else {
         Gui, %GuiName%:Destroy
     }
+}
+
+
+TurnOffAllHotkey() {
+    TurnOffHotkey(autoLootingHotkey)
+    TurnOffHotkey(lootOneItemHotkey)
+    TurnOffHotkey(setOfFlasksHotkey)
+    TurnOffHotkey(autoHealHotkey)
+    TurnOffHotkey(holdWalkHotkey)
+    TurnOffHotkey(openPortalHotkey)
+    TurnOffHotkey(hideoutHotkey)
+    TurnOffHotkey(partyInviteHotkey)
+    TurnOffHotkey(partyKickHotkey)
+    TurnOffHotkey(triggerSeqHotkey)
+    TurnOffHotkey(gameLogoutHotkey)
+    TurnOffHotkey(autoLogoutHotkey)
+    TurnOffHotkey(customChatCommandHotkey)
+    TurnOffHotkey(flaskTimersHotkey)
+    TurnOffHotkey(updateHealTresholdHotkey)
+    TurnOffHotkey(cleanInvHotkey)
+    TurnOffHotkey(deckOpenerHotkey)
+    TurnOffHotkey(clickRollerHotkey)
+    TurnOffHotkey(scourRollerHotkey)
+    TurnOffHotkey(gwenRollerHotkey)
+
+    return
+}
+
+
+TurnOnAllHotkey() {
+    if (auto_looting_active) {
+        TurnOnHotkey(autoLootingHotkey, "LootAllLabel")
+    }
+    if (loot_one_item_active) {
+        TurnOnHotkey(lootOneItemHotkey, "LootOneItem")
+    }
+    if (set_of_flasks_active) {
+        TurnOnHotkey(setOfFlasksHotkey, "SetOfFlasksLabel")
+    }
+    if (auto_heal_active) {
+        TurnOnHotkey(autoHealHotkey, "AutoHealLabel")
+    }
+    if (hold_walk_active) {
+        TurnOnHotkey(holdWalkHotkey, "HoldWalkLabel")
+    }
+    if (open_portal_active) {
+        TurnOnHotkey(openPortalHotkey, "OpenPortalLabel")
+    }
+    if (hideout_active) {
+        TurnOnHotkey(hideoutHotkey, "HideoutLabel")
+    }
+    if (party_invite_active) {
+        TurnOnHotkey(partyInviteHotkey, "PartyInviteLabel")
+    }
+    if (party_kick_active) {
+        TurnOnHotkey(partyKickHotkey, "PartyKickLabel")
+    }
+    if (seq_skills_active) {
+        TurnOnHotkey(triggerSeqHotkey, "SequenceOfSkillsLabel")
+    }
+    if (game_logout_active) {
+        TurnOnHotkey(gameLogoutHotkey, "GameLogoutLabel")
+    }
+    if (auto_logout_active) {
+        TurnOnHotkey(autoLogoutHotkey, "AutoLogoutLabel")
+    }
+    if (custom_chat_command_active) {
+        TurnOnHotkey(customChatCommandHotkey, "CustomChatCommandLabel")
+    }
+    if (flask_timers_key_active) {
+        TurnOnHotkey(flaskTimersHotkey, "FlaskTimersLabel")
+    }
+    if (update_heal_treshold_active) {
+        TurnOnHotkey(updateHealTresholdHotkey, "UpdateHealTresholdLabel")
+    }
+    if (clean_inv_key_active) {
+        TurnOnHotkey(cleanInvHotkey, "CleanInventoryLabel")
+    }
+    if (deck_opener_key_active) {
+        TurnOnHotkey(deckOpenerHotkey, "DeckOpenerLabel")
+    }
+    if (click_roller_key_active) {
+        TurnOnHotkey(clickRollerHotkey, "ClickRollerLabel")
+    }
+    if (scour_roller_key_active) {
+        TurnOnHotkey(scourRollerHotkey, "ScourRollerLabel")
+    }
+    if (gwen_roller_key_active) {
+        TurnOnHotkey(gwenRollerHotkey, "GwenRollerLabel")
+    }
+
+    return
+}
+
+
+TurnOffHotkey(key) {
+    if (key) {
+        Hotkey, %key%, Off
+    }
+    return
+}
+
+
+TurnOnHotkey(key, label){
+    if (key) {
+        Hotkey, %key%, %label%, On
+    } else {
+        ;Msgbox, %key%
+    }
+    return
 }

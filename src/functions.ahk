@@ -1,21 +1,10 @@
-SmokeMine() {
-    ; Sequentially press mine throwing key and mine detonate key.
-    Send %detonate_button%
-    Send %smoke_mine_button%
-    Sleep %mine_laying_time%
-    Send %detonate_button%
-    Sleep 40
-    Send %detonate_button%
-}
-
-
 SequenceOfSkills() {
     ; Sequentially press 1st skill key then awaits delay (cast time) and press 2nd skill key.
     ; TODO: Выяснить почему захардкожен Click, Right, 1st key не задаётся в GUI?
-    Click, Right
-    Sleep %seq_castspeed_time%
-    Send %seq_second_skill%
-    Sleep 20
+    Send, {%seq_first_skill%}
+    Sleep, %seq_castspeed_time%
+    Send, {%seq_second_skill%}
+    Sleep, 20
 }
 
 
@@ -46,14 +35,14 @@ CleanInventory(x_coords, y_coords, exclude_coords) {
     */
     Loop, parse, x_coords, `, 
     {
-        if (!clean_inventory_toggle) {
+        if (!clean_inv_toggle) {
             break
         }
         inv_point_x := A_LoopField
 
         Loop, parse, y_coords, `,
         {
-            if (!clean_inventory_toggle) {
+            if (!clean_inv_toggle) {
                 break
             }
             inv_point_y := A_LoopField
@@ -75,8 +64,8 @@ CleanInventory(x_coords, y_coords, exclude_coords) {
             }
         }
     }
-    if (clean_inventory_toggle) {
-        clean_inventory_toggle := !clean_inventory_toggle
+    if (clean_inv_toggle) {
+        clean_inv_toggle := !clean_inv_toggle
     }
 }
 
@@ -306,4 +295,34 @@ CustomChatCommand() {
 	Send ^{Enter}{Home}{Shift down}{End}{Shift up}{Delete}%chat_command%{Enter}
     Suspend, Off
 	BlockInput Off
+}
+
+
+AutoFlask1() {
+    ; Press flask key 1.
+    Send, {%flask_key_1%}
+}
+
+
+AutoFlask2() {
+    ; Press flask key 2.
+    Send, {%flask_key_2%}
+}
+
+
+AutoFlask3() {
+    ; Press flask key 3.
+    Send, {%flask_key_3%}
+}
+
+
+AutoFlask4() {
+    ; Press flask key 4.
+    Send, {%flask_key_4%}
+}
+
+
+AutoFlask5() {
+    ; Press flask key 5.
+    Send, {%flask_key_5%}
 }
