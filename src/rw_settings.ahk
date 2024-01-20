@@ -21,14 +21,14 @@ ReadSettings() {
     IniRead, clickRollerHotkey,   settings.ini, settings, clickRollerHotkey,   !v
     IniRead, scourRollerHotkey,   settings.ini, settings, scourRollerHotkey,   !n
     IniRead, gwenRollerHotkey,    settings.ini, settings, gwenRollerHotkey,    !l
+    IniRead, makeInvColorMapHotkey,   settings.ini, settings, makeInvColorMapHotkey,   !l
     ; Toggles
     IniRead, auto_heal_toggle,    settings.ini, settings, auto_heal_toggle,    0
     IniRead, door_searcher_toggle,settings.ini, settings, door_searcher_toggle,0
     IniRead, gwen_roller_toggle,  settings.ini, settings, gwen_roller_toggle,  0
-    IniRead, currency_click_toggle, settings.ini, settings, currency_click_toggle, 0
-    IniRead, alch_scour_rolling_toggle,settings.ini, settings, alch_scour_rolling_toggle, 0
+    IniRead, click_roller_toggle, settings.ini, settings, click_roller_toggle, 0
+    IniRead, scour_roller_toggle, settings.ini, settings, scour_roller_toggle, 0
     IniRead, auto_logout_toggle,  settings.ini, settings, auto_logout_toggle,  0
-    IniRead, auto_rolling_toggle, settings.ini, settings, auto_rolling_toggle, 0
     IniRead, card_opener_toggle,  settings.ini, settings, card_opener_toggle,  0
     IniRead, clean_inv_toggle,    settings.ini, settings, clean_inv_toggle,    0
     IniRead, flask_timers_toggle, settings.ini, settings, flask_timers_toggle, 0
@@ -56,11 +56,12 @@ ReadSettings() {
     IniRead, flask_timers_key_active,         settings.ini, settings, flask_timers_key_active, 0
     IniRead, flask_timers_start_press_active, settings.ini, settings, flask_timers_start_press_active, 0
     IniRead, update_heal_treshold_active,     settings.ini, settings, update_heal_treshold_active, 0
-    IniRead, clean_inv_key_active,    settings.ini, settings, clean_inv_key_active, 1
-    IniRead, deck_opener_key_active,  settings.ini, settings, deck_opener_key_active, 1
+    IniRead, clean_inv_key_active,    settings.ini, settings, clean_inv_key_active,    1
+    IniRead, deck_opener_key_active,  settings.ini, settings, deck_opener_key_active,  1
     IniRead, click_roller_key_active, settings.ini, settings, click_roller_key_active, 1
     IniRead, scour_roller_key_active, settings.ini, settings, scour_roller_key_active, 1
-    IniRead, gwen_roller_key_active,  settings.ini, settings, gwen_roller_key_active, 0
+    IniRead, gwen_roller_key_active,  settings.ini, settings, gwen_roller_key_active,  0
+    IniRead, make_inv_color_map_key_active,   settings.ini, settings, make_inv_color_map_key_active, 1
     ; Key lists
     IniRead, flask_key_set,       settings.ini, settings, flask_key_set,       1-2-3-4-5
     IniRead, seq_first_skill,     settings.ini, settings, seq_first_skill,     f
@@ -102,12 +103,6 @@ ReadSettings() {
     IniRead, logout_Y,            settings.ini, settings, logout_Y,            953
     IniRead, black_screen_X,      settings.ini, settings, black_screen_X,      0
     IniRead, black_screen_Y,      settings.ini, settings, black_screen_Y,      51
-    IniRead, inv_list_X_dflt,     settings.ini, settings, inv_list_X_dflt,     1313,1365,1418,1470,1522,1576,1627,1679,1733,1785,1838,1892
-    IniRead, inv_list_Y_dflt,     settings.ini, settings, inv_list_Y_dflt,     614,667,721,770,823
-    IniRead, coords_exclude_dflt, settings.ini, settings, coords_exclude_dflt, 1313-823,1365-823
-    IniRead, inv_list_X_wide,     settings.ini, settings, inv_list_X_wide,     1452,1492,1532,1572,1612,1652,1692,1732,1772,1812,1852,1892
-    IniRead, inv_list_Y_wide,     settings.ini, settings, inv_list_Y_wide,     494,534,574,614,654
-    IniRead, coords_exclude_wide, settings.ini, settings, coords_exclude_wide, 1452-654,1492-654
     IniRead, fuse_X,              settings.ini, settings, fuse_X,              111
     IniRead, fuse_Y,              settings.ini, settings, fuse_Y,              112
     IniRead, jeweller_X,          settings.ini, settings, jeweller_X,          221
@@ -138,6 +133,14 @@ ReadSettings() {
     IniRead, gwen_window_Y2,      settings.ini, settings, gwen_window_Y2,      1214
     IniRead, gwen_roll_key_X,     settings.ini, settings, gwen_roll_key_X,     1311
     IniRead, gwen_roll_key_Y,     settings.ini, settings, gwen_roll_key_Y,     1312
+    IniRead, inv_coords,          settings.ini, settings, inv_coords,          0
+    IniRead, inv_X1,              settings.ini, settings, inv_X1,              1271
+    IniRead, inv_Y1,              settings.ini, settings, inv_Y1,              586
+    IniRead, inv_X2,              settings.ini, settings, inv_X2,              1903
+    IniRead, inv_Y2,              settings.ini, settings, inv_Y2,              849
+    IniRead, inv_coords,          settings.ini, settings, inv_coords,          0
+    IniRead, cell_width,          settings.ini, settings, cell_width,          52
+    IniRead, cell_height,         settings.ini, settings, cell_height,         52
     ; States
     IniRead, fuse,                settings.ini, settings, fuse,                1
     IniRead, jeweller,            settings.ini, settings, jeweller,            0
@@ -181,6 +184,7 @@ SaveSettings() {
     IniWrite, %clickRollerHotkey%,   settings.ini, settings, clickRollerHotkey
     IniWrite, %scourRollerHotkey%,   settings.ini, settings, scourRollerHotkey
     IniWrite, %gwenRollerHotkey%,    settings.ini, settings, gwenRollerHotkey
+    IniWrite, %makeInvColorMapHotkey%,   settings.ini, settings, makeInvColorMapHotkey
     ; Activators
     IniWrite, %set_of_flasks_active%,settings.ini, settings, set_of_flasks_active
     IniWrite, %auto_heal_active%,    settings.ini, settings, auto_heal_active
@@ -210,6 +214,7 @@ SaveSettings() {
     IniWrite, %click_roller_key_active%, settings.ini, settings, click_roller_key_active
     IniWrite, %scour_roller_key_active%, settings.ini, settings, scour_roller_key_active
     IniWrite, %gwen_roller_key_active%,  settings.ini, settings, gwen_roller_key_active
+    IniWrite, %make_inv_color_map_key_active%,   settings.ini, settings, make_inv_color_map_key_active
     ; Key lists
     IniWrite, %flask_key_set%,       settings.ini, settings, flask_key_set
     IniWrite, %heal_key_1%,          settings.ini, settings, heal_key_1
@@ -274,6 +279,11 @@ SaveSettings() {
     IniWrite, %gwen_window_Y2%,      settings.ini, settings, gwen_window_Y2
     IniWrite, %gwen_roll_key_X%,     settings.ini, settings, gwen_roll_key_X
     IniWrite, %gwen_roll_key_Y%,     settings.ini, settings, gwen_roll_key_Y
+    IniWrite, %inv_coords%,          settings.ini, settings, inv_coords
+    IniWrite, %inv_X1%,              settings.ini, settings, inv_X1
+    IniWrite, %inv_Y1%,              settings.ini, settings, inv_Y1
+    IniWrite, %inv_X2%,              settings.ini, settings, inv_X2
+    IniWrite, %inv_Y2%,              settings.ini, settings, inv_Y2
     ; States
     IniWrite, %fuse%,                settings.ini, settings, fuse
     IniWrite, %jeweller%,            settings.ini, settings, jeweller

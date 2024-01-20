@@ -2,7 +2,9 @@ CleanInventoryToggle() {
     clean_inv_toggle := !clean_inv_toggle
     if (clean_inv_toggle) {
         DisplayNotice(1, "Sorting", "Sorting", 1297, 451, 0, 50)
-        ; TODO где вызов? CleanInventory() как передать координаты?
+        CleanInventory()
+        DisplayNotice(0, "Sorting", "Sorting", 1297, 451, 0, 50)
+        clean_inv_toggle := 0
     } else {
         DisplayNotice(0, "Sorting", "Sorting", 1297, 451, 0, 50)
     }
@@ -39,10 +41,12 @@ AutoLogoutToggle() {
 CardOpenerToggle() {
     card_opener_toggle := !card_opener_toggle
     if (card_opener_toggle) {
-        DisplayNotice(1, "Opening decks", "Opening decks", 1310, 494, 0, 50)
+        DisplayNotice(1, "OpeningDecks", "OpeningDecks", 1310, 494, 0, 90)
         CardOpener()
+        DisplayNotice(0, "OpeningDecks", "OpeningDecks", 1310, 494, 0, 90)
+        card_opener_toggle := 0
     } else {
-        DisplayNotice(0, "Opening decks", "Opening decks", 1310, 494, 0, 50)
+        DisplayNotice(0, "OpeningDecks", "OpeningDecks", 1310, 494, 0, 90)
     }
 }
 
@@ -51,10 +55,10 @@ DoorSearcherToggle() {
     ; TODO: Проверить переменные.
     door_searcher_toggle := !door_searcher_toggle
     if (door_searcher_toggle) {
-        DisplayNotice(1, "Door Searcher", "Door Searcher", 234, 894, 0, 50)
+        DisplayNotice(1, "DoorSearcher", "DoorSearcher", 234, 894, 0, 90)
         SetTimer, DoorSearcher, %door_searcher_delay%
     } else {
-        DisplayNotice(0, "Door Searcher", "Door Searcher", 234, 894, 0, 50)
+        DisplayNotice(0, "DoorSearcher", "DoorSearcher", 234, 894, 0, 90)
         SetTimer, DoorSearcher, Delete
     }
 }
@@ -136,5 +140,44 @@ FlaskTimersToggle() {
         if (flask_key_5_active) {
             SetTimer, AutoFlask5, Delete
         }
+    }
+}
+
+
+ClickRollerToggle() {
+    click_roller_toggle := !click_roller_toggle
+    if (click_roller_toggle) {
+        DisplayNotice(1, "ClickRoller", "ClickRoller", 230, 797, 0, 80)
+        ClickRoller()
+        DisplayNotice(0, "ClickRoller", "ClickRoller", 230, 797, 0, 80)
+        click_roller_toggle := 0
+    } else {
+        DisplayNotice(0, "ClickRoller", "ClickRoller", 230, 797, 0, 80)
+    }
+}
+
+
+ScourRollerToggle() {
+    scour_roller_toggle := !scour_roller_toggle
+    if (scour_roller_toggle) {
+        DisplayNotice(1, "ScourRoller", "ScourRoller", 230, 797, 0, 80)
+        ScourRoller()
+        DisplayNotice(0, "ScourRoller", "ScourRoller", 230, 797, 0, 80)
+        scour_roller_toggle := 0
+    } else {
+        DisplayNotice(0, "ScourRoller", "ScourRoller", 230, 797, 0, 80)
+    }
+}
+
+
+GwenRollerToggle() {
+    gwen_roller_toggle := !gwen_roller_toggle
+    if (gwen_roller_toggle) {
+        DisplayNotice(1, "GwenRoller", "GwenRoller", 234, 894, 0, 80)
+        GwenRoller()
+        DisplayNotice(0, "GwenRoller", "GwenRoller", 234, 894, 0, 80)
+        gwen_roller_toggle := 0
+    } else {
+        DisplayNotice(0, "GwenRoller", "GwenRoller", 234, 894, 0, 80)
     }
 }

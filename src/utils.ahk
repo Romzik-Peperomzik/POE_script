@@ -31,6 +31,9 @@ GameLogout() {
 
 
 UpdateHealTreshold() {
+    /*  Get value of x, y and color of pixel on mouse current position ingame
+        and setted %low_health_color%, %health_X%, %health_Y% vars.
+    */
     MouseGetPos, new_health_X, new_health_Y
     PixelGetColor, color, %MouseX%, %MouseY%
     low_health_color := color
@@ -48,7 +51,7 @@ DisplayNotice(display := 0, GuiName := "none", label := "blank", x := 0, y := 0,
     /*  Displays window on %x%, %y% with %label%. If called without
         args, then closing exact %GuiName% window.
 
-    Required: label should be without spaces.
+        Required: %label% value should be without spaces.
     */
     if (display) {
         Gui, %GuiName%:New, AlwaysOnTop -SysMenu +Disabled,
@@ -80,6 +83,7 @@ TurnOffAllHotkey() {
     TurnOffHotkey(clickRollerHotkey)
     TurnOffHotkey(scourRollerHotkey)
     TurnOffHotkey(gwenRollerHotkey)
+    TurnOffHotkey(makeInvColorMapHotkey)
 
     return
 }
@@ -146,7 +150,10 @@ TurnOnAllHotkey() {
     if (gwen_roller_key_active) {
         TurnOnHotkey(gwenRollerHotkey, "GwenRollerLabel")
     }
-
+    if (make_inv_color_map_key_active) {
+        TurnOnHotkey(makeInvColorMapHotkey, "MakeInvColorMapLabel")
+    }
+    
     return
 }
 
@@ -166,4 +173,40 @@ TurnOnHotkey(key, label){
         ;Msgbox, %key%
     }
     return
+}
+
+
+MakeInvColorMap() {
+    /*  Makes coords and colors map for each cell in inventory.
+        Choose top left corner and bottom right corner points of inventory
+        pick their values with Alt + Z and input them in GUI fields.
+        Then press hotkey ingame and its automatically collects x, y and color.
+
+        Required: Opened player inventory ingame.
+    */
+    inv_coords := ""
+
+    inv_width := inv_X2 - inv_X1
+    inv_height := inv_Y2 - inv_Y1
+    cell_width := inv_width // 12
+    cell_height := inv_height // 6
+    first_cell_X := cell_width // 2 + inv_X1
+    first_cell_Y := cell_height // 2 + inv_Y1
+    x := first_cell_X
+    y := first_cell_Y
+
+    while (x < inv_X2) {
+        while (y < inv_Y2) {
+            PixelGetColor, color, x, y, fast
+            inv_coords .= x . "-" . y . "-" . color . ","
+            y += cell_height
+        }
+        x += cell_width
+        y := first_cell_Y
+    }
+    IniWrite, %inv_coords%, settings.ini, settings, inv_coords
+    IniWrite, %cell_width%, settings.ini, settings, cell_width
+    IniWrite, %cell_height%, settings.ini, settings, cell_height
+    MsgBox, Inventory map are setted.
+    Reload
 }

@@ -38,6 +38,7 @@ Hotkey, %deckOpenerHotkey%, DeckOpenerLabel
 Hotkey, %clickRollerHotkey%, ClickRollerLabel
 Hotkey, %scourRollerHotkey%, ScourRollerLabel
 Hotkey, %gwenRollerHotkey%, GwenRollerLabel
+Hotkey, %makeInvColorMapHotkey%, MakeInvColorMapLabel
 
 ; Prevents single any key tap blocking when script launched.
 TurnOffAllHotkey()
@@ -48,33 +49,21 @@ RunGUI()
 ;-----------------------------------------------------------------------------
 ; Screen mode vars initialization.
 
-if (default_screen_mode) {
-    x_coords := inv_list_X_dflt
-    y_coords := inv_list_Y_dflt
-    exclude_coords := coords_exclude_dflt
-} else if (wide_screen_mode) {
-    x_coords := inv_list_X_wide
-    y_coords := inv_list_Y_wide
-    exclude_coords := coords_exclude_wide
-}
+; if (default_screen_mode) {
+;     x_coords := inv_list_X_dflt
+;     y_coords := inv_list_Y_dflt
+;     exclude_coords := coords_exclude_dflt
+; } else if (wide_screen_mode) {
+;     x_coords := inv_list_X_wide
+;     y_coords := inv_list_Y_wide
+;     exclude_coords := coords_exclude_wide
+; }
 
 
 ; ! - alt, ^ - ctrl, + - shift.
 ; Functions that are not represented into GUI, only hotkeys.
 !z::GetMouseColorPos()
-; ^g::CtrlClickLoop()
-; !x::CleanInventory(x_coords, y_coords, exclude_coords)
-; ^+F::UpdateHealTreshold()
-; ^n::CardOpenerToggle()
-
-; ^h::FuseJewellerClickLoop()
-; ^j::AltChaosRolling()
-; !g::AlchBindScourRolling()
-; !c::AlchBindScourOnce()
-; !e::GwenRoller()
-; ^+d::DoorSearcherToggle()
-
-; ^+s::ResetAllToggles() ; TODO удалить за ненадобностью
+^g::CtrlClickLoop()
 ;-----------------------------------------------------------------------------
 
 
@@ -275,7 +264,7 @@ DeckOpenerLabel:
 ClickRollerLabel:
     if (click_roller_key_active) {
         Hotkey, %clickRollerHotkey%, On
-        ; clickRollerToggle()
+        ClickRollerToggle()
     } else {
         Hotkey, %clickRollerHotkey%, Off
         Send, %clickRollerHotkey%
@@ -286,7 +275,7 @@ ClickRollerLabel:
 ScourRollerLabel:
     if (scour_roller_key_active) {
         Hotkey, %scourRollerHotkey%, On
-        ; scourRollerToggle()
+        ScourRollerToggle()
     } else {
         Hotkey, %scourRollerHotkey%, Off
         Send, %scourRollerHotkey%
@@ -297,10 +286,21 @@ ScourRollerLabel:
 GwenRollerLabel:
     if (gwen_roller_key_active) {
         Hotkey, %gwenRollerHotkey%, On
-        ; gwenRoller()
+        GwenRollerToggle()
     } else {
         Hotkey, %gwenRollerHotkey%, Off
         Send, %gwenRollerHotkey%
+    }
+    return
+
+
+MakeInvColorMapLabel:
+    if (make_inv_color_map_key_active) {
+        Hotkey, %makeInvColorMapHotkey%, On
+        MakeInvColorMap()
+    } else {
+        Hotkey, %makeInvColorMapHotkey%, Off
+        Send, %makeInvColorMapHotkey%
     }
     return
 

@@ -20,14 +20,14 @@ global deckOpenerHotkey
 global clickRollerHotkey
 global scourRollerHotkey
 global gwenRollerHotkey
+global makeInvColorMapHotkey
 ; Toggles
 global auto_heal_toggle
 global door_searcher_toggle
 global gwen_roller_toggle
-global currency_click_toggle
-global alch_scour_rolling_toggle
+global click_roller_toggle
+global scour_roller_toggle
 global auto_logout_toggle
-global auto_rolling_toggle
 global card_opener_toggle
 global clean_inv_toggle
 global flask_timers_toggle
@@ -60,6 +60,7 @@ global deck_opener_key_active
 global click_roller_key_active
 global scour_roller_key_active
 global gwen_roller_key_active
+global make_inv_color_map_key_active
 ; Key lists
 global flask_key_set
 global seq_first_skill
@@ -101,12 +102,6 @@ global logout_X
 global logout_Y
 global black_screen_X
 global black_screen_Y
-global inv_list_X_dflt
-global inv_list_Y_dflt
-global coords_exclude_dflt
-global inv_list_X_wide
-global inv_list_Y_wide
-global coords_exclude_wide
 global fuse_X
 global fuse_Y
 global jeweller_X
@@ -137,6 +132,14 @@ global gwen_window_Y1
 global gwen_window_Y2
 global gwen_roll_key_X
 global gwen_roll_key_Y
+global inv_coords
+global inv_X1
+global inv_Y1
+global inv_X2
+global inv_Y2
+global inv_coords
+global cell_width
+global cell_height
 ; States
 global fuse
 global jeweller

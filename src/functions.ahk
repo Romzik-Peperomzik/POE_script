@@ -1,6 +1,7 @@
 SequenceOfSkills() {
-    ; Sequentially press 1st skill key then awaits delay (cast time) and press 2nd skill key.
-    ; TODO: Выяснить почему захардкожен Click, Right, 1st key не задаётся в GUI?
+    /*  Sequentially press %seq_first_skill% skill key then awaits
+        delay (cast time of 1st skill) and press %seq_second_skill%.
+    */
     Send, {%seq_first_skill%}
     Sleep, %seq_castspeed_time%
     Send, {%seq_second_skill%}
@@ -24,98 +25,70 @@ SetOfFlasks() {
 }
 
 
-CleanInventory(x_coords, y_coords, exclude_coords) {
-    /*  Takes %x_coords%, %y_coords%, %exclude_coords% depends of
-        screen mode and runs over inventory cells and ctrl + LMB on founded items.
+CleanInventory() {
+    /*  Takes %inv_coords% with %x%, %y% and %color% of each cell in inventory
+        and runs over them. If color != %color% then pressing ctrl + LMB on cell
+        (its color was changed because of cell are not empty).
 
-    Required: opened stash window.
-    Known issues: skip every blueprint and contract from Heist.
-        Sometimes skip skill gems in both default and wide screen_mode.
-    TODO: Попробовать привести код в более читабельное состояние.
+        Required: Before use, create inventory mask with MakeInvColorMap(). 
+        Open stash window ingame.
     */
-    Loop, parse, x_coords, `, 
+    Loop, parse, inv_coords, `,
     {
         if (!clean_inv_toggle) {
             break
         }
-        inv_point_x := A_LoopField
-
-        Loop, parse, y_coords, `,
-        {
-            if (!clean_inv_toggle) {
-                break
-            }
-            inv_point_y := A_LoopField
-            Needle = %inv_point_x%-%inv_point_y%
-            if (InStr(exclude_coords, Needle)) {
-                break
-            }
-            PixelGetColor, color, inv_point_x, inv_point_y
-            reg_result := RegExMatch(color, "^0x0[0-6]0")
-            if (reg_result = 1) {
-                continue
-            } else {
-                Sleep, 25
-                Send {Control down}
-                MouseMove inv_point_x, inv_point_y
-                Click
-                Send {Control up}
-                Sleep, 125
-            }
+        arr := StrSplit(A_LoopField , "-")
+        
+        PixelGetColor, color, arr[1], arr[2]
+        if (color = arr[3]) {
+            continue
+        } else {
+            Sleep, 25
+            Send {Control down}
+            MouseMove arr[1], arr[2]
+            Click
+            Send {Control up}
+            Sleep, 125
         }
-    }
-    if (clean_inv_toggle) {
-        clean_inv_toggle := !clean_inv_toggle
     }
 }
 
 
 CardOpener() {
-    /*  Open card decks sequentially.
-        Place 5 full stacked(10) decks in column
-        in inventory from first cell.
-
-    TODO: add support for wide mode.
-        Убрать этот if (!card_opener_toggle) в while (decks_count != 0 OR !card_opener_toggle)
-        В целом привести код в более читабельное состояние.
+    /*  Open card decks sequentially. Place 5 full stacked(10) decks in column
+        in inventory starts with first cell. Hover mouse on first deck in
+        first cell and press trigger key.
     */
     decks_count := 5
-    while (decks_count != 0) {
-        if (!card_opener_toggle) {
-            break
-        }
+    while (decks_count != 0 && card_opener_toggle) {
         cards_count := 10
-        Send {ShiftDown} 
-        while (cards_count != 0) {
-            if (!card_opener_toggle) {
-                break
-            }
-            cards_count := cards_count - 1
+        while (cards_count != 0 && card_opener_toggle) {
+            Send, {ShiftDown}
+            cards_count -= 1
             Sleep, 60
             Click
             Sleep, 60
-            MouseMove 53, 0, 2, R
+            MouseMove %cell_width%, 0, 2, R
+            Send, {ShiftUp}
         }
-        Send {ShiftUp}
-        while (cards_count != 11) {
-            if (!card_opener_toggle) {
-                break
-            }
-            cards_count := cards_count + 1
+        while (cards_count != 10 && card_opener_toggle) {
+            cards_count += 1
             Click, Right
             Sleep, 80
             Click
-            MouseMove -53, 0, 2, R
+            MouseMove -%cell_width%, 0, 2, R
         }
-        if (decks_count != 1) {
-            MouseMove 53, 53, 2, R
-            Click, left
+        Click, Right
+        Sleep, 80
+        Click
+        if (decks_count != 1 && card_opener_toggle) {
+            MouseMove 0, %cell_height%, 2, R
+            Click
         }
-        decks_count := decks_count - 1
+        decks_count -= 1
     }
-    if (card_opener_toggle) {
-        card_opener_toggle := !card_opener_toggle
-    }
+    Send, {ShiftUp}
 }
 
 
@@ -148,7 +121,7 @@ AutoHeal() {
     TODO: Улучшить код? чекать цвет пикселя элемента интерфейса на экране, а не чёрный пиксель.
     TODO: Проверить переменные.
     */
-    PixelGetColor, color, health_X, health_Y
+    PixelGetColor, color, %health_X%, %health_Y%
     if (color != low_health_color) {
         PixelGetColor, black_pixel, black_screen_X, black_screen_Y
         if (black_pixel = black_screen) {

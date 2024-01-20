@@ -1,6 +1,6 @@
 RunGUI() {
     Gui, Margin , 0, 0
-    Gui, Add, Tab2, Choose3 w901 h701, General|Auto|Rollers
+    Gui, Add, Tab2, Choose1 w901 h701, General|Auto|Rollers
 
 
     ; General tab
@@ -17,7 +17,7 @@ RunGUI() {
     Gui, Add, Text, x40 y85 w810 h15 , F2 key toggling PAUSE/START hotkey binds by default.
     Gui, Add, Text, x40 y105 w810 h15 , Supports only
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, Text, x130 y105 w600 h15 , 1920x1080 (default_screen) and 1907x800 (wide_screen)
+    Gui, Add, Text, x130 y105 w600 h15 , 1920x1080 (default_screen) and 1904x800 (wide_screen)
     Gui, Font, S9 norm, Verdana
     Gui, Add, Text, x537 y105 w200 h15 , resolutions.
     Gui, Add, Text, x40 y125 w620 h15 , For detailed instruction see README.md.
@@ -67,7 +67,7 @@ RunGUI() {
     Gui, Add, GroupBox, x25 y415 w300 h70 , Screen mode
     Gui, Font, norm, Verdana
     Gui, Add, Radio, x40 y435 w140 h20 Checked%default_screen_mode% vdefault_screen_mode, default 1920x1080
-    Gui, Add, Radio, x190 y435 w120 h20 Checked%wide_screen_mode% vwide_screen_mode, wide 1907x800
+    Gui, Add, Radio, x190 y435 w120 h20 Checked%wide_screen_mode% vwide_screen_mode, wide 1904x800
 
 
     ; Character state
@@ -79,12 +79,28 @@ RunGUI() {
     Gui, Add, Text, x350 y460 w110 h20 , ES or Life based?
 
 
+    ; Open Portal section
+    Gui, Font, S9 CDefault Bold, Verdana
+    Gui, Add, GroupBox, x25 y490 w400 h110 , Open Portal
+    Gui, Font, norm, Verdana
+    Gui, Add, Text, x40 y515 w60 h20 , Quick TP:
+    Gui, Add, CheckBox, x110 y515 w15 h15 Checked%open_portal_active% vopen_portal_active, 
+    Gui, Add, Edit, x140 y515 w60 h20 vopenPortalHotkey, %openPortalHotkey%
+    Gui, Add, Text, x40 y540 w20 h20 , X:
+    Gui, Add, Edit, x60 y540 w50 h20 vportalX, %portalX%
+    Gui, Add, Text, x120 y540 w10 h20 , Y:
+    Gui, Add, Edit, x140 y540 w50 h20 vportalY, %portalY%
+    Gui, Font, S8 CDefault, Verdana
+    Gui, Add, Text, x240 y515 w180 h80 , Click on a portal scroll for coords in your inventory. To setup coords move cursor at a portal scroll in inventory and press Alt + Z hotkey.
+    Gui, Add, Text, x40 y570 w200 h15 , Put X and Y coords in input fields.
+
+
     ; Apply button
     Gui, Font, S9 Bold, Verdana
-    Gui, Add, GroupBox, x585 y415 w285 h70 , Save settings
+    Gui, Add, GroupBox, x590 y620 w285 h70 , Save settings
     Gui, Font, norm, Verdana
-    Gui, Add, Text, x600 y435 w120 h40 , Press it after any changes in all tabs.
-    Gui, Add, Button, x760 y450 w100 h30 , Apply change
+    Gui, Add, Text, x605 y640 w120 h45 , Press button after any changes in any tabs.
+    Gui, Add, Button, x760 y640 w100 h30 , Apply change
 
 
     ; Auto tab
@@ -98,22 +114,6 @@ RunGUI() {
     Gui, Font, norm, Verdana
     Gui, Add, Text, x40 y45 w400 h15 , To make sequence, separate keys by slash "/" example: e/f/^t
     Gui, Add, Text, x40 y65 w400 h15 , Shift +, Alt !, Ctrl ^ or sequence in input field: +q/!w/^e
-
-
-    ; Open Portal section
-    Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x472 y25 w400 h110 , Open Portal
-    Gui, Font, norm, Verdana
-    Gui, Add, Text, x482 y45 w60 h20 , Quick TP:
-    Gui, Add, CheckBox, x555 y45 w15 h15 Checked%open_portal_active% vopen_portal_active, 
-    Gui, Add, Edit, x582 y45 w60 h20 vopenPortalHotkey, %openPortalHotkey%
-    Gui, Add, Text, x482 y75 w20 h20 , X:
-    Gui, Add, Edit, x502 y75 w50 h20 vportalX, %portalX%
-    Gui, Add, Text, x572 y75 w10 h20 , Y:
-    Gui, Add, Edit, x592 y75 w50 h20 vportalY, %portalY%
-    Gui, Font, S8 CDefault, Verdana
-    Gui, Add, Text, x675 y45 w180 h80 , Click on a portal scroll for coords in your inventory. To setup coords move cursor at a portal scroll in inventory and press Alt + Z hotkey.
-    Gui, Add, Text, x482 y110 w200 h15 , Put X and Y coords in input fields.
 
 
     ; Flasks section
@@ -158,57 +158,57 @@ RunGUI() {
 
     ; Heal section
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x472 y140 w400 h260 , Heal
+    Gui, Add, GroupBox, x472 y25 w400 h260 , Heal
     Gui, Font, norm, Verdana
-    Gui, Add, Text, x482 y160 w190 h20 , Heal Key 1:
-    Gui, Add, CheckBox, x570 y160 w15 h15 Checked%auto_heal_active% vauto_heal_active,
-    Gui, Add, Edit, x600 y160 w30 h20 vheal_key_1, %heal_key_1%
-    Gui, Add, Text, x650 y160 w70 h15 , Delay:
-    Gui, Add, Edit, x700 y160 w50 h17 vauto_heal_delay, %auto_heal_delay%
-    Gui, Add, Text, x760 y160 w80 h20 , Hotkey:
-    Gui, Add, Edit, x820 y160 w40 h20 vautoHealHotkey, %autoHealHotkey%
-    Gui, Add, Text, x482 y190 w200 h15 , First heal key are flask?
-    Gui, Add, CheckBox, x650 y190 w15 h15 Checked%heal_key_1_are_flask% vheal_key_1_are_flask, 
+    Gui, Add, Text, x482 y45 w190 h20 , Heal Key 1:
+    Gui, Add, CheckBox, x570 y45 w15 h15 Checked%auto_heal_active% vauto_heal_active,
+    Gui, Add, Edit, x600 y45 w30 h20 vheal_key_1, %heal_key_1%
+    Gui, Add, Text, x650 y45 w70 h15 , Delay:
+    Gui, Add, Edit, x700 y45 w50 h17 vauto_heal_delay, %auto_heal_delay%
+    Gui, Add, Text, x760 y45 w80 h20 , Hotkey:
+    Gui, Add, Edit, x820 y45 w40 h20 vautoHealHotkey, %autoHealHotkey%
+    Gui, Add, Text, x482 y75 w200 h15 , First heal key are flask?
+    Gui, Add, CheckBox, x650 y75 w15 h15 Checked%heal_key_1_are_flask% vheal_key_1_are_flask, 
     Gui, Font, S7  Verdana
-    Gui, Add, Text, x482 y210 w250 h20 , (Have check when life flask duration ends)
+    Gui, Add, Text, x482 y95 w250 h20 , (Have check when life flask duration ends)
     Gui, Font, S9 norm, Verdana
-    Gui, Add, Text, x482 y245 w120 h20 , Heal Key 2:
-    Gui, Add, CheckBox, x570 y245 w20 h20 Checked%heal_key_duo_active% vheal_key_duo_active, 
-    Gui, Add, Edit, x600 y245 w30 h20 vheal_key_2, %heal_key_2%
-    Gui, Add, Text, x482 y275 w100 h20 , Health color:
-    Gui, Add, Edit, x600 y275 w80 h20 vlow_health_color, %low_health_color%
-    Gui, Add, Text, x482 y305 w20 h20 , X:
-    Gui, Add, Edit, x502 y305 w47 h20 vhealth_X, %health_X%
-    Gui, Add, Text, x580 y305 w10 h20 , Y:
-    Gui, Add, Edit, x600 y305 w47 h20 vhealth_Y, %health_Y%
+    Gui, Add, Text, x482 y130 w120 h20 , Heal Key 2:
+    Gui, Add, CheckBox, x570 y130 w20 h20 Checked%heal_key_duo_active% vheal_key_duo_active, 
+    Gui, Add, Edit, x600 y130 w30 h20 vheal_key_2, %heal_key_2%
+    Gui, Add, Text, x482 y160 w100 h20 , Health color:
+    Gui, Add, Edit, x600 y160 w80 h20 vlow_health_color, %low_health_color%
+    Gui, Add, Text, x482 y190 w20 h20 , X:
+    Gui, Add, Edit, x502 y190 w47 h20 vhealth_X, %health_X%
+    Gui, Add, Text, x580 y190 w10 h20 , Y:
+    Gui, Add, Edit, x600 y190 w47 h20 vhealth_Y, %health_Y%
     Gui, Font, S9 Bold, Verdana
-    Gui, Add, Text, x482 y335 w300 h15 , Health chord updater: ;To update X, Y, Color press: Ctrl+Shift+F
+    Gui, Add, Text, x482 y220 w300 h15 , Health chord updater: ;To update X, Y, Color press: Ctrl+Shift+F
     Gui, Font, S9 norm, Verdana
-    Gui, Add, CheckBox, x650 y335 w20 h20 Checked%update_heal_treshold_active% vupdate_heal_treshold_active, 
-    Gui, Add, Edit, x680 y335 w50 h17 vupdateHealTresholdHotkey, %updateHealTresholdHotkey%
-    Gui, Add, Text, x482 y360 w370 h30 , Hover mouse on health orb ingame, and press binded chord to update Health Color, X and Y vars.
+    Gui, Add, CheckBox, x650 y220 w20 h20 Checked%update_heal_treshold_active% vupdate_heal_treshold_active, 
+    Gui, Add, Edit, x680 y220 w50 h17 vupdateHealTresholdHotkey, %updateHealTresholdHotkey%
+    Gui, Add, Text, x482 y240 w370 h30 , Hover mouse on health orb ingame, and press binded chord to update Health Color, X and Y vars.
 
 
     ; Auto Logout section
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x472 y410 w400 h270 , Logout
+    Gui, Add, GroupBox, x472 y295 w400 h260 , Logout
     Gui, Font, norm, Verdana
-    Gui, Add, Text, x482 y430 w110 h20 , AutoLogout:
-    Gui, Add, CheckBox, x572 y430 w15 h15 Checked%auto_logout_active% vauto_logout_active, 
-    Gui, Add, Edit, x600 y430 w40 h20 vautoLogoutHotkey, %autoLogoutHotkey%
-    Gui, Add, Text, x650 y430 w70 h15 , Delay:
-    Gui, Add, Edit, x700 y430 w50 h17 vauto_logout_delay, %auto_logout_delay%
-    Gui, Add, Text, x482 y460 w190 h20 , Health AutoLogout color:
-    Gui, Add, Edit, x642 y460 w77 h20 vlogout_health_color, %logout_health_color%
-    Gui, Add, Text, x482 y490 w10 h20 , X:
-    Gui, Add, Edit, x502 y490 w40 h20 vlogout_X, %logout_X%
-    Gui, Add, Text, x552 y490 w10 h20 , Y:
-    Gui, Add, Edit, x572 y490 w40 h20 vlogout_Y, %logout_Y%
+    Gui, Add, Text, x482 y315 w110 h20 , AutoLogout:
+    Gui, Add, CheckBox, x572 y315 w15 h15 Checked%auto_logout_active% vauto_logout_active, 
+    Gui, Add, Edit, x600 y315 w40 h20 vautoLogoutHotkey, %autoLogoutHotkey%
+    Gui, Add, Text, x650 y315 w70 h15 , Delay:
+    Gui, Add, Edit, x700 y315 w50 h17 vauto_logout_delay, %auto_logout_delay%
+    Gui, Add, Text, x482 y345 w190 h20 , Health AutoLogout color:
+    Gui, Add, Edit, x642 y345 w77 h20 vlogout_health_color, %logout_health_color%
+    Gui, Add, Text, x482 y375 w10 h20 , X:
+    Gui, Add, Edit, x502 y375 w40 h20 vlogout_X, %logout_X%
+    Gui, Add, Text, x552 y375 w10 h20 , Y:
+    Gui, Add, Edit, x572 y375 w40 h20 vlogout_Y, %logout_Y%
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, Text, x482 y515 w190 h20 , How to use AutoLogout:
+    Gui, Add, Text, x482 y400 w190 h20 , How to use AutoLogout:
     Gui, Font, S9 norm, Verdana
-    Gui, Add, Text, x482 y535 w380 h60 , Hover mouse on health orb ingame, visually choose bound on orb where AutoLogout should be triggered and press Alt + Z. Paste X, Y, and Color to input fields^. When pixel color changes, AutoLogout would be triggered.
-    Gui, Add, Text, x482 y605 w380 h60 , Make sure that Logout feature works properly, see General tab -> Misc -> Logout, its require to run cports.exe and maybe need to run as admin.
+    Gui, Add, Text, x482 y420 w380 h60 , Hover mouse on health orb ingame, visually choose bound on orb where AutoLogout should be triggered and press Alt + Z. Paste X, Y, and Color to input fields^. When pixel color changes, AutoLogout would be triggered.
+    Gui, Add, Text, x482 y490 w380 h60 , Make sure that Logout feature works properly, see General tab -> Misc -> Logout, its require to run cports.exe and maybe need to run as admin.
 
 
     ; Auto Loot section
@@ -232,7 +232,7 @@ RunGUI() {
 
     ; Ability sequence section
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x25 y530 w430 h150 , Ability sequence
+    Gui, Add, GroupBox, x25 y530 w430 h160 , Ability sequence
     Gui, Font, norm, Verdana
     Gui, Add, Text, x42 y550 w150 h20 , Trigger key:
     Gui, Add, CheckBox, x195 y550 w15 h15 Checked%seq_skills_active% vseq_skills_active, 
@@ -244,6 +244,14 @@ RunGUI() {
     Gui, Add, Text, x42 y610 w180 h20 , Delay (cast time 1st skill):
     Gui, Add, Edit, x230 y610 w40 h20 vseq_castspeed_time, %seq_castspeed_time%
     Gui, Add, Text, x42 y640 w400 h30 , Example: put Desecrate key in 1st field and Cremation in 2nd, put Desecrate cast time (from ingame tooltip) to Delay field.
+
+
+    ; Apply button
+    Gui, Font, S9 Bold, Verdana
+    Gui, Add, GroupBox, x590 y620 w285 h70 , Save settings
+    Gui, Font, norm, Verdana
+    Gui, Add, Text, x605 y640 w120 h45 , Press button after any changes in any tabs.
+    Gui, Add, Button, x760 y640 w100 h30 , Apply change
 
 
     ; Rollers tab
@@ -259,12 +267,12 @@ RunGUI() {
     Gui, Add, Text, x42 y95 w170 h20 , StackedDeckOpener:
     Gui, Add, CheckBox, x190 y95 w15 h15 Checked%deck_opener_key_active% vdeck_opener_key_active, 
     Gui, Add, Edit, x230 y95 w40 h20 vdeckOpenerHotkey, %deckOpenerHotkey%
-    Gui, Add, Text, x52 y120 w270 h45 , Put 5 stacked decks into column, click lmb on first one when it decompose all deck and open it one by one.
+    Gui, Add, Text, x52 y120 w270 h100 , Put 5 stacked decks into column, click lmb on first one when it decompose all cards in deck and open it one by one. Trigger should be a key chord and contain Shift key in, because it pressed shift down in process and don't up it till released card deck. It leads to troubles to stop process.
 
 
     ; Rollers section
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x455 y25 w420 h600 , Rollers
+    Gui, Add, GroupBox, x455 y25 w420 h590 , Rollers
     Gui, Font, norm, Verdana
 
     Gui, Add, Text, x472 y45 w350 h20 , Click roller: 
@@ -276,34 +284,34 @@ RunGUI() {
     Gui, Font, S9 norm, Verdana
     Gui, Add, Edit, x490 y75 w50 h20 vfuse_X, %fuse_X%
     Gui, Add, Edit, x490 y95 w50 h20 vfuse_Y, %fuse_Y%
-    Gui, Add, Radio, x489 y120 w51 h20 Checked%fuse% vfuse, fuse
     Gui, Font, S8 norm, Verdana
     Gui, Add, Text, x560 y75 w30 h20 , X:
     Gui, Add, Text, x560 y95 w30 h20 , Y:
     Gui, Font, S9 norm, Verdana
     Gui, Add, Edit, x575 y75 w50 h20 vjeweller_X, %jeweller_X%
     Gui, Add, Edit, x575 y95 w50 h20 vjeweller_Y, %jeweller_Y%
-    Gui, Add, Radio, x560 y120 w80 h20 Checked%jeweller% vjeweller, jeweller
     Gui, Font, S8 norm, Verdana
     Gui, Add, Text, x645 y75 w30 h20 , X:
     Gui, Add, Text, x645 y95 w30 h20 , Y:
     Gui, Font, S9 norm, Verdana
     Gui, Add, Edit, x660 y75 w50 h20 vchaos_X, %chaos_X%
     Gui, Add, Edit, x660 y95 w50 h20 vchaos_Y, %chaos_Y%
-    Gui, Add, Radio, x650 y120 w55 h20 Checked%chaos% vchaos, chaos
     Gui, Font, S8 norm, Verdana
     Gui, Add, Text, x725 y75 w30 h20 , X:
     Gui, Add, Text, x725 y95 w30 h20 , Y:
     Gui, Font, S9 norm, Verdana
     Gui, Add, Edit, x740 y75 w50 h20 vchrom_X, %chrom_X%
     Gui, Add, Edit, x740 y95 w50 h20 vchrom_Y, %chrom_Y%
-    Gui, Add, Radio, x730 y120 w55 h20 Checked%chrom% vchrom, chrom
     Gui, Font, S8 norm, Verdana
     Gui, Add, Text, x805 y75 w30 h20 , X:
     Gui, Add, Text, x805 y95 w30 h20 , Y:
     Gui, Font, S9 norm, Verdana
     Gui, Add, Edit, x820 y75 w50 h20 valter_X, %alter_X%
     Gui, Add, Edit, x820 y95 w50 h20 valter_Y, %alter_Y%
+    Gui, Add, Radio, x560 y120 w80 h20 Checked%jeweller% vjeweller, jeweller
+    Gui, Add, Radio, x489 y120 w51 h20 Checked%fuse% vfuse, fuse
+    Gui, Add, Radio, x650 y120 w55 h20 Checked%chaos% vchaos, chaos
+    Gui, Add, Radio, x730 y120 w55 h20 Checked%chrom% vchrom, chrom
     Gui, Add, Radio, x810 y120 w55 h20 Checked%alter% valter, alter
 
     Gui, Add, Text, x472 y150 w350 h20 , Scour roller:
@@ -315,20 +323,20 @@ RunGUI() {
     Gui, Font, S9 norm, Verdana
     Gui, Add, Edit, x490 y180 w50 h20 valch_X, %alch_X%
     Gui, Add, Edit, x490 y200 w50 h20 valch_Y, %alch_Y%
-    Gui, Add, Radio, x489 y225 w51 h20 Checked%alch% valch, alch
     Gui, Font, S8 norm, Verdana
     Gui, Add, Text, x560 y180 w30 h20 , X:
     Gui, Add, Text, x560 y200 w30 h20 , Y:
     Gui, Font, S9 norm, Verdana
     Gui, Add, Edit, x575 y180 w50 h20 vbind_X, %bind_X%
     Gui, Add, Edit, x575 y200 w50 h20 vbind_Y, %bind_Y%
-    Gui, Add, Radio, x560 y225 w51 h20 Checked%bind% vbind, bind
     Gui, Font, S8 norm, Verdana
     Gui, Add, Text, x645 y180 w30 h20 , X:
     Gui, Add, Text, x645 y200 w30 h20 , Y:
     Gui, Font, S9 norm, Verdana
     Gui, Add, Edit, x660 y180 w50 h20 vchance_X, %chance_X%
     Gui, Add, Edit, x660 y200 w50 h20 vchance_Y, %chance_Y%
+    Gui, Add, Radio, x489 y225 w51 h20 Checked%alch% valch, alch
+    Gui, Add, Radio, x560 y225 w51 h20 Checked%bind% vbind, bind
     Gui, Add, Radio, x650 y225 w70 h20 Checked%chance% vchance, chance
     Gui, Font, S8 norm, Verdana
     Gui, Add, Text, x725 y180 w30 h20 , X:
@@ -368,7 +376,7 @@ RunGUI() {
 
 
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x25 y330 w420 h295 , Expedition
+    Gui, Add, GroupBox, x25 y330 w420 h285 , Expedition
     Gui, Font, norm, Verdana
     Gui, Add, Text, x42 y350 w170 h20 , GwenRoller:
     Gui, Add, CheckBox, x130 y350 w15 h15 Checked%gwen_roller_key_active% vgwen_roller_key_active, 
@@ -393,15 +401,20 @@ RunGUI() {
     Gui, Add, Text, x300 y430 w20 h20 , Y:
     Gui, Add, Edit, x230 y430 w50 h20 vgwen_roll_key_X, %gwen_roll_key_X%
     Gui, Add, Edit, x330 y430 w50 h20 vgwen_roll_key_Y, %gwen_roll_key_Y%
-    ; ; GwenRoller tips
-    ; Gui, Add, Text, x300 y710 w270 h15 , Put regexp in search field in Gwennen roll
-    ; Gui, Add, Text, x300 y725 w270 h15 , window. Press Alt+E to start rolling.
-    ; Gui, Add, Text, x300 y740 w270 h15 , And again to stop.
+    Gui, Add, Text, x42 y470 w350 h60 , Open Gwennen roll window, paste regexp (poe.re to make paste) into search field ingame. Press trigger key, it would buy any highlighted items. Make sure that you have space in inventory.
+
+
+    ; Apply button in Rollers section
+    Gui, Font, S9 Bold, Verdana
+    Gui, Add, GroupBox, x590 y620 w285 h70 , Save settings
+    Gui, Font, norm, Verdana
+    Gui, Add, Text, x605 y640 w120 h45 , Press button after any changes in any tabs.
+    Gui, Add, Button, x760 y640 w100 h30 , Apply change
 
 
     ; Main window params
     Gui, Color, 0xF4F4F4
-    Gui, Show, x3 y49 h700 w900, Script
+    Gui, Show, x250 y150 h700 w900, Script
     Return
 
 
