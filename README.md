@@ -26,6 +26,8 @@ AutoHotkey v1.1.34.04
 </details>
 
 ## How to use script:
+- Install requirements and run main.ahk.
+  - After run main.ahk script GUI are appear. Press trigger keys to interacts with script functional.
 - Activate checkboxes whatever you need which enable trigger keys.
   - Trigger keys (Hotkeys) can be edited in input fields.
 - Symbols which should represent special keys such as: Shift are +, Ctrl are ^ and Alt are !.
