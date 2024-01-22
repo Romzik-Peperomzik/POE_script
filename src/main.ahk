@@ -6,7 +6,7 @@
 #Include toggles.ahk
 #Include rollers.ahk
 
-;#IfWinActive, Path of Exile ahk_class POEWindowClass
+#IfWinActive, Path of Exile ahk_class POEWindowClass
 #SingleInstance force   ; Replaces the old instance of script automatically
 #NoEnv                  ; Recommended for performance
 #Persistent             ; Keeps a script permanently running
@@ -52,19 +52,6 @@ TurnOnAllHotkey()
 RunGUI()
 
 ;-----------------------------------------------------------------------------
-; Screen mode vars initialization.
-
-; if (default_screen_mode) {
-;     x_coords := inv_list_X_dflt
-;     y_coords := inv_list_Y_dflt
-;     exclude_coords := coords_exclude_dflt
-; } else if (wide_screen_mode) {
-;     x_coords := inv_list_X_wide
-;     y_coords := inv_list_Y_wide
-;     exclude_coords := coords_exclude_wide
-; }
-
-
 ; ! - alt, ^ - ctrl, + - shift.
 ; Functions that are not represented into GUI, only hotkeys.
 !z::GetMouseColorPos()
