@@ -62,42 +62,53 @@ RunGUI() {
     Gui, Add, Text, x500 y360 w288 h30 , For specific logout bind key use key_hooker.ahk to determinate keys id and past it to input field.
 
 
-    ; Screen mode section
+    ; Game and character state section
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x25 y415 w300 h70 , Screen mode
+    Gui, Add, GroupBox, x25 y415 w400 h130 , Game and character state
     Gui, Font, norm, Verdana
-    Gui, Add, Radio, x40 y435 w140 h20 Checked%default_screen_mode% vdefault_screen_mode, default 1920x1080
-    Gui, Add, Radio, x190 y435 w120 h20 Checked%wide_screen_mode% vwide_screen_mode, wide 1904x800
-
-
-    ; Character state
-    Gui, Font, S9 Bold, Verdana
-    Gui, Add, GroupBox, x340 y415 w230 h70 , Character state
-    Gui, Font, norm, Verdana
-    Gui, Add, Radio, x350 y435 w40 h20 Checked%life_based% vlife_based, life
-    Gui, Add, Radio, x400 y435 w40 h20 Checked%es_based% ves_based, es
-    Gui, Add, Text, x350 y460 w110 h20 , ES or Life based?
+    Gui, Add, Text, x40 y435 w110 h20 , Screen mode:
+    Gui, Add, Radio, x40 y455 w140 h20 Checked%default_screen_mode% vdefault_screen_mode, default 1920x1080
+    Gui, Add, Radio, x190 y455 w120 h20 Checked%wide_screen_mode% vwide_screen_mode, wide 1904x800
+    Gui, Add, Text, x40 y480 w350 h35 , ES or Life character based: (have bound with AutoHeal() and AutoLogout())
+    Gui, Add, Radio, x40 y515 w40 h20 Checked%life_based% vlife_based, life
+    Gui, Add, Radio, x90 y515 w40 h20 Checked%es_based% ves_based, es
 
 
     ; Open Portal section
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x25 y490 w400 h110 , Open Portal
+    Gui, Add, GroupBox, x25 y550 w400 h140 , Open Portal
     Gui, Font, norm, Verdana
-    Gui, Add, Text, x40 y515 w60 h20 , Quick TP:
-    Gui, Add, CheckBox, x110 y515 w15 h15 Checked%open_portal_active% vopen_portal_active, 
-    Gui, Add, Edit, x140 y515 w60 h20 vopenPortalHotkey, %openPortalHotkey%
-    Gui, Add, Text, x40 y540 w20 h20 , X:
-    Gui, Add, Edit, x60 y540 w50 h20 vportalX, %portalX%
-    Gui, Add, Text, x120 y540 w10 h20 , Y:
-    Gui, Add, Edit, x140 y540 w50 h20 vportalY, %portalY%
+    Gui, Add, Text, x40 y575 w60 h20 , Quick TP:
+    Gui, Add, CheckBox, x110 y575 w15 h15 Checked%open_portal_active% vopen_portal_active, 
+    Gui, Add, Edit, x140 y575 w60 h20 vopenPortalHotkey, %openPortalHotkey%
+    Gui, Add, Text, x40 y600 w20 h20 , X:
+    Gui, Add, Edit, x60 y600 w50 h20 vportalX, %portalX%
+    Gui, Add, Text, x120 y600 w10 h20 , Y:
+    Gui, Add, Edit, x140 y600 w50 h20 vportalY, %portalY%
     Gui, Font, S8 CDefault, Verdana
-    Gui, Add, Text, x240 y515 w180 h80 , Click on a portal scroll for coords in your inventory. To setup coords move cursor at a portal scroll in inventory and press Alt + Z hotkey.
-    Gui, Add, Text, x40 y570 w200 h15 , Put X and Y coords in input fields.
+    Gui, Add, Text, x240 y570 w180 h80 , Click on a portal scroll for coords in your inventory. To setup coords move cursor at a portal scroll in inventory and press Alt + Z hotkey.
+    Gui, Add, Text, x40 y630 w200 h15 , Put X and Y coords in input fields.
+
+
+    ; Ability sequence section
+    Gui, Font, S9 CDefault Bold, Verdana
+    Gui, Add, GroupBox, x445 y415 w425 h200 , Ability sequence
+    Gui, Font, norm, Verdana
+    Gui, Add, Text, x460 y440 w150 h20 , Trigger key:
+    Gui, Add, CheckBox, x545 y440 w15 h15 Checked%seq_skills_active% vseq_skills_active, 
+    Gui, Add, Edit, x570 y440 w40 h20 vtriggerSeqHotkey, %triggerSeqHotkey%
+    Gui, Add, Text, x460 y470 w150 h20 , 1st skill key:
+    Gui, Add, Edit, x550 y470 w40 h20 vseq_first_skill, %seq_first_skill%
+    Gui, Add, Text, x620 y470 w120 h20 , 2nd skill key:
+    Gui, Add, Edit, x710 y470 w40 h20 vseq_second_skill, %seq_second_skill%
+    Gui, Add, Text, x460 y500 w180 h20 , Delay (cast time 1st skill):
+    Gui, Add, Edit, x640 y500 w40 h20 vseq_castspeed_time, %seq_castspeed_time%
+    Gui, Add, Text, x460 y550 w400 h30 , Example: put Desecrate key in 1st field and Cremation in 2nd, put Desecrate cast time (from ingame tooltip) to Delay field.
 
 
     ; Apply button
     Gui, Font, S9 Bold, Verdana
-    Gui, Add, GroupBox, x590 y620 w285 h70 , Save settings
+    Gui, Add, GroupBox, x590 y620 w280 h70 , Save settings
     Gui, Font, norm, Verdana
     Gui, Add, Text, x605 y640 w120 h45 , Press button after any changes in any tabs.
     Gui, Add, Button, x760 y640 w100 h30 , Apply change
@@ -105,9 +116,6 @@ RunGUI() {
 
     ; Auto tab
     Gui, Tab, Auto
-    Gui, Add, Edit, x0 y0 w1 h0 ; Fix against forced input "a" to Edit field.
-
-
     ; Sequence create tip
     Gui, Font, S9 Bold, Verdana
     Gui, Add, GroupBox, x25 y25 w430 h70 , Sequence create tip
@@ -213,7 +221,7 @@ RunGUI() {
 
     ; Auto Loot section
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x25 y410 w430 h110 , Loot
+    Gui, Add, GroupBox, x25 y410 w430 h280 , Loot
     Gui, Font, norm, Verdana
     Gui, Add, Text, x42 y430 w80 h20 , Loot 1 item:
     Gui, Add, CheckBox, x130 y430 w15 h15 Checked%loot_one_item_active% vloot_one_item_active, 
@@ -225,25 +233,28 @@ RunGUI() {
     Gui, Add, Edit, x162 y460 w77 h20 vloot_color, %loot_color%
     Gui, Add, Text, x350 y460 w90 h20 , Delay:
     Gui, Add, Edit, x400 y460 w40 h20 vloot_delay, %loot_delay%
-    Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, Text, x42 y490 w400 h20 , Required modified loot filter, see README.md
-    Gui, Font, norm, Verdana
+    Gui, Add, Text, x42 y490 w250 h20 , Small loot reqtangle area coords:
+    Gui, Add, Text, x42 y520 w20 h20 , X1:
+    Gui, Add, Edit, x70 y520 w50 h20 vloot_small_X1, %loot_small_X1%
+    Gui, Add, Text, x42 y540 w20 h20 , Y1:
+    Gui, Add, Edit, x70 y540 w50 h20 vloot_small_Y1, %loot_small_Y1%
+    Gui, Add, Text, x150 y520 w20 h20 , X2:
+    Gui, Add, Edit, x180 y520 w50 h20 vloot_small_X2, %loot_small_X2%
+    Gui, Add, Text, x150 y540 w20 h20 , Y2:
+    Gui, Add, Edit, x180 y540 w50 h20 vloot_small_Y2, %loot_small_Y2%
 
-
-    ; Ability sequence section
+    Gui, Add, Text, x42 y570 w250 h20 , Big loot reqtangle area coords:
+    Gui, Add, Text, x42 y600 w20 h20 , X1:
+    Gui, Add, Edit, x70 y600 w50 h20 vloot_big_X1, %loot_big_X1%
+    Gui, Add, Text, x42 y620 w20 h20 , Y1:
+    Gui, Add, Edit, x70 y620 w50 h20 vloot_big_Y1, %loot_big_Y1%
+    Gui, Add, Text, x150 y600 w20 h20 , X2:
+    Gui, Add, Edit, x180 y600 w50 h20 vloot_big_X2, %loot_big_X2%
+    Gui, Add, Text, x150 y620 w20 h20 , Y2:
+    Gui, Add, Edit, x180 y620 w50 h20 vloot_big_Y2, %loot_big_Y2%
     Gui, Font, S9 CDefault Bold, Verdana
-    Gui, Add, GroupBox, x25 y530 w430 h160 , Ability sequence
+    Gui, Add, Text, x42 y660 w400 h20 , Required: modified loot filter, see README.md
     Gui, Font, norm, Verdana
-    Gui, Add, Text, x42 y550 w150 h20 , Trigger key:
-    Gui, Add, CheckBox, x195 y550 w15 h15 Checked%seq_skills_active% vseq_skills_active, 
-    Gui, Add, Edit, x230 y550 w40 h20 vtriggerSeqHotkey, %triggerSeqHotkey%
-    Gui, Add, Text, x42 y580 w150 h20 , 1st skill key:
-    Gui, Add, Edit, x230 y580 w40 h20 vseq_first_skill, %seq_first_skill%
-    Gui, Add, Text, x290 y580 w120 h20 , 2nd skill key:
-    Gui, Add, Edit, x400 y580 w40 h20 vseq_second_skill, %seq_second_skill%
-    Gui, Add, Text, x42 y610 w180 h20 , Delay (cast time 1st skill):
-    Gui, Add, Edit, x230 y610 w40 h20 vseq_castspeed_time, %seq_castspeed_time%
-    Gui, Add, Text, x42 y640 w400 h30 , Example: put Desecrate key in 1st field and Cremation in 2nd, put Desecrate cast time (from ingame tooltip) to Delay field.
 
 
     ; Apply button
@@ -260,21 +271,32 @@ RunGUI() {
     Gui, Font, S9 CDefault Bold, Verdana
     Gui, Add, GroupBox, x25 y25 w420 h300 , Utility
     Gui, Font, norm, Verdana
-    Gui, Add, Text, x42 y45 w170 h20 , CleanInventory:
-    Gui, Add, CheckBox, x190 y45 w15 h15 Checked%clean_inv_key_active% vclean_inv_key_active, 
-    Gui, Add, Edit, x230 y45 w40 h20 vcleanInvHotkey, %cleanInvHotkey%
-    Gui, Add, Text, x52 y65 w170 h20 , Required opened stash.
-    Gui, Add, Text, x42 y95 w170 h20 , StackedDeckOpener:
-    Gui, Add, CheckBox, x190 y95 w15 h15 Checked%deck_opener_key_active% vdeck_opener_key_active, 
-    Gui, Add, Edit, x230 y95 w40 h20 vdeckOpenerHotkey, %deckOpenerHotkey%
-    Gui, Add, Text, x52 y120 w270 h100 , Put 5 stacked decks into column, click lmb on first one when it decompose all cards in deck and open it one by one. Trigger should be a key chord and contain Shift key in, because it pressed shift down in process and don't up it till released card deck. It leads to troubles to stop process.
+    Gui, Add, Text, x42 y45 w170 h20 , InventoryColorMap:
+    Gui, Add, CheckBox, x190 y45 w15 h15 Checked%make_inv_color_map_key_active% vmake_inv_color_map_key_active, 
+    Gui, Add, Edit, x230 y45 w40 h20 vmakeInvColorMapHotkey, %makeInvColorMapHotkey%
+    Gui, Add, Text, x42 y75 w20 h20 , X1:
+    Gui, Add, Text, x42 y95 w20 h20 , Y1:
+    Gui, Add, Edit, x70 y75 w50 h20 vinv_X1, %inv_X1%
+    Gui, Add, Edit, x70 y95 w50 h20 vinv_Y1, %inv_Y1%
+    Gui, Add, Text, x140 y75 w20 h20 , X2:
+    Gui, Add, Text, x140 y95 w20 h20 , Y2:
+    Gui, Add, Edit, x170 y75 w50 h20 vinv_X2, %inv_X2%
+    Gui, Add, Edit, x170 y95 w50 h20 vinv_Y2, %inv_Y2%
+    Gui, Add, Text, x42 y125 w350 h70 , Creates inventory color map. Use Alt + Z in top left corner of first cell and bottom right corner of last cell in inventory. Then press trigger key, it creates a map in x-y-color format which are required for CleanInventory and StackedDeckOpener functions.
+    Gui, Add, Text, x42 y210 w170 h20 , CleanInventory:
+    Gui, Add, CheckBox, x190 y210 w15 h15 Checked%clean_inv_key_active% vclean_inv_key_active, 
+    Gui, Add, Edit, x230 y210 w40 h20 vcleanInvHotkey, %cleanInvHotkey%
+    Gui, Add, Text, x42 y230 w380 h20 , Required: Use InventoryColorMap before, opened stash.
+    Gui, Add, Text, x42 y260 w170 h20 , StackedDeckOpener:
+    Gui, Add, CheckBox, x190 y260 w15 h15 Checked%deck_opener_key_active% vdeck_opener_key_active, 
+    Gui, Add, Edit, x230 y260 w40 h20 vdeckOpenerHotkey, %deckOpenerHotkey%
+    Gui, Add, Text, x42 y285 w380 h30 , Put 5 stacked decks into column, click lmb on first one. Required: Use InventoryColorMap before.
 
 
     ; Rollers section
     Gui, Font, S9 CDefault Bold, Verdana
     Gui, Add, GroupBox, x455 y25 w420 h590 , Rollers
     Gui, Font, norm, Verdana
-
     Gui, Add, Text, x472 y45 w350 h20 , Click roller: 
     Gui, Add, CheckBox, x560 y45 w15 h15 Checked%click_roller_key_active% vclick_roller_key_active, 
     Gui, Add, Edit, x600 y45 w40 h20 vclickRollerHotkey, %clickRollerHotkey%
@@ -414,7 +436,7 @@ RunGUI() {
 
     ; Main window params
     Gui, Color, 0xF4F4F4
-    Gui, Show, x250 y150 h700 w900, Script
+    Gui, Show, x250 y100 h700 w900, Script
     Return
 
 

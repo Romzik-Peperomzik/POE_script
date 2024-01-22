@@ -97,6 +97,7 @@ DoorSearcher() {
         mouse position when found. For needle picks font
         color of "Door" label.
         TODO: проверить как это работает и работает ли вообще.
+        Not working. (Haven't need to brush code)
     */
     ; Expedition: 811, 417, 1139, 660, 0xFEB173
     ; Heist:      571, 140, 1219, 695, 0xDCC8C8
@@ -117,29 +118,30 @@ AutoHeal() {
         non-instant in acts it could be usefull for example.
         For %life_based% 1st flask, 2nd flask/enduring cry
         For %es_based% 1st vaal discipline 2nd enduring cry
-
-    TODO: Улучшить код? чекать цвет пикселя элемента интерфейса на экране, а не чёрный пиксель.
-    TODO: Проверить переменные.
+        To prevent accidentally clicks till loading to new location, checks
+        on %gui_static_X%, %gui_static_Y% pixel color and if it != %gui_static_color%
+        sleeps 500ms.
     */
     PixelGetColor, color, %health_X%, %health_Y%
     if (color != low_health_color) {
-        PixelGetColor, black_pixel, black_screen_X, black_screen_Y
-        if (black_pixel = black_screen) {
+        PixelGetColor, gui_pixel, gui_static_X, gui_static_Y
+        if (gui_pixel != gui_static_color) {
             ; Awaits loading screen
-            while (black_pixel = black_screen) {
-                PixelGetColor, black_pixel, black_screen_X, black_screen_Y
-                Sleep 500
+            while (gui_pixel = gui_static_color) {
+                PixelGetColor, gui_pixel, gui_static_X, gui_static_Y
+                Sleep, 500
             }
         } else {
             Send, {%heal_key_1%}
-            if (heal_key_duo_active) { ;TODO Добавить чекбокс в GUI
-                PixelGetColor, color, %health_X%, %health_Y% ;TODO 2ой color в fn области, сработает?
+            Sleep, 80
+            if (heal_key_duo_active) {
+                PixelGetColor, color, %health_X%, %health_Y%
                 if (color != low_health_color) {
                     if (es_based) {
                         Send, {%heal_key_2%}
                     }
                     if (life_based AND heal_key_1_are_flask) {
-                        PixelGetColor, color, %life_flask_bar_X%, %life_flask_bar_Y% ;TODO Задать координаты для life_flask_bar_X/Y
+                        PixelGetColor, color, %life_flask_bar_X%, %life_flask_bar_Y%
                         if (color != flask_bar_color) {
                             Send, {%heal_key_2%}
                         }
@@ -153,19 +155,20 @@ AutoHeal() {
 
 AutoLogout() {
     /*  Checks %logout_X%, %logout_Y% pixel color if it below a %logout_health_color%
-        (pixel color are changed) then calls Send, {%heal_key_1%} to heal
-        before logout, checks if %active_heal_key_duo% and then GameLogout().
-
-    TODO: Улучшить код? чекать цвет пикселя элемента интерфейса на экране, а не чёрный пиксель
+        (pixel color are changed) then press %heal_key_1% to heal before logout,
+        checks if %heal_key_duo_active% and then GameLogout().
+        To prevent accidentally clicks till loading to new location, checks
+        on %gui_static_X%, %gui_static_Y% pixel color and if it != %gui_static_color%
+        sleeps 500ms.
     */
     PixelGetColor, color, logout_X, logout_Y
     if (color != logout_health_color) {
-        PixelGetColor, black_pixel, black_screen_X, black_screen_Y
-        if (black_pixel = black_screen) {
+        PixelGetColor, gui_pixel, gui_static_X, gui_static_Y
+        if (gui_pixel != gui_static_color) {
             ; Awaits loading screen
-            while (black_pixel = black_screen) {
-                PixelGetColor, black_pixel, black_screen_X, black_screen_Y
-                Sleep 500
+            while (gui_pixel = gui_static_color) {
+                PixelGetColor, gui_pixel, gui_static_X, gui_static_Y
+                Sleep, 500
             }
         } else {
             Send, {%heal_key_1%}
@@ -182,11 +185,10 @@ LootBigRegion() {
     /*  Searching for %loot_color% pixel in big rectangle area and click
         on it if found. Can work slowly then %LootSmallRegion()% bcs square
         of rectangle area are bigger.
-        TODO: Убрать координаты площади прямоугольника в переменные.
 
-    Required: prepared item filter, see itemfilter/ folder.
+        Required: prepared item filter, see itemfilter/ folder.
     */
-    PixelSearch, Px, Py, 100, 100, A_ScreenWidth-10, A_ScreenHeight-150, loot_color, 5, Fast
+    PixelSearch, Px, Py, loot_big_X1, loot_big_Y1, loot_big_X2, loot_big_Y2, loot_color, 5, Fast
     if (ErrorLevel) {
         return False
     } else {
@@ -201,11 +203,10 @@ LootBigRegion() {
 LootSmallRegion() {
     /*  Searching for %loot_color% pixel in small rectangle area and click
         on it if found.
-        TODO: Убрать координаты площади прямоугольника в переменные.
 
-    Required: prepared item filter, see itemfilter/ folder.
+        Required: prepared item filter, see itemfilter/ folder.
     */
-    PixelSearch, Px, Py, 855, 341, 1050, 600, loot_color, 5, Fast
+    PixelSearch, Px, Py, loot_small_X1 ,loot_small_Y1 ,loot_small_X2 ,loot_small_Y2, loot_color, 5, Fast
     if (ErrorLevel) {
         return False
     } else {

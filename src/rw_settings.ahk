@@ -77,7 +77,7 @@ ReadSettings() {
     IniRead, low_health_color,    settings.ini, settings, low_health_color,    0x1A0D98
     IniRead, loot_color,          settings.ini, settings, loot_color,          0x790062
     IniRead, logout_health_color, settings.ini, settings, logout_health_color, 0x160C92
-    IniRead, black_screen,        settings.ini, settings, black_screen,        0x000000
+    IniRead, gui_static_color,    settings.ini, settings, gui_static_color,    0x262527
     IniRead, highlighted_border,  settings.ini, settings, highlighted_border,  0x77B4E7
     IniRead, flask_bar_color,     settings.ini, settings, flask_bar_color,     0x99D7F9
     ; Delays
@@ -101,8 +101,8 @@ ReadSettings() {
     IniRead, portalY,             settings.ini, settings, portalY,             816
     IniRead, logout_X,            settings.ini, settings, logout_X,            161
     IniRead, logout_Y,            settings.ini, settings, logout_Y,            953
-    IniRead, black_screen_X,      settings.ini, settings, black_screen_X,      0
-    IniRead, black_screen_Y,      settings.ini, settings, black_screen_Y,      51
+    IniRead, gui_static_X,        settings.ini, settings, gui_static_X,        263
+    IniRead, gui_static_Y,        settings.ini, settings, gui_static_Y,        951
     IniRead, fuse_X,              settings.ini, settings, fuse_X,              111
     IniRead, fuse_Y,              settings.ini, settings, fuse_Y,              112
     IniRead, jeweller_X,          settings.ini, settings, jeweller_X,          221
@@ -141,6 +141,32 @@ ReadSettings() {
     IniRead, inv_coords,          settings.ini, settings, inv_coords,          0
     IniRead, cell_width,          settings.ini, settings, cell_width,          52
     IniRead, cell_height,         settings.ini, settings, cell_height,         52
+    IniRead, loot_big_X1,         settings.ini, settings, loot_big_X1,         100
+    IniRead, loot_big_Y1,         settings.ini, settings, loot_big_Y1,         101
+    IniRead, loot_big_X2,         settings.ini, settings, loot_big_X2,         200
+    IniRead, loot_big_Y2,         settings.ini, settings, loot_big_Y2,         201
+    IniRead, loot_small_X1,       settings.ini, settings, loot_small_X1,       300
+    IniRead, loot_small_Y1,       settings.ini, settings, loot_small_Y1,       301
+    IniRead, loot_small_X2,       settings.ini, settings, loot_small_X2,       400
+    IniRead, loot_small_Y2,       settings.ini, settings, loot_small_Y2,       401
+    IniRead, display_sorting_X,   settings.ini, settings, display_sorting_X,   1297
+    IniRead, display_sorting_Y,   settings.ini, settings, display_sorting_Y,   451
+    IniRead, display_heal_X,      settings.ini, settings, display_heal_X,      234
+    IniRead, display_heal_Y,      settings.ini, settings, display_heal_Y,      894
+    IniRead, display_logout_X,    settings.ini, settings, display_logout_X,    1536
+    IniRead, display_logout_Y,    settings.ini, settings, display_logout_Y,    230
+    IniRead, display_opening_decks_X,   settings.ini, settings, display_opening_decks_X, 1310
+    IniRead, display_opening_decks_Y,   settings.ini, settings, display_opening_decks_Y, 494
+    IniRead, display_door_searcher_X,   settings.ini, settings, display_door_searcher_X, 234
+    IniRead, display_door_searcher_Y,   settings.ini, settings, display_door_searcher_Y, 894
+    IniRead, display_flask_timers_X,    settings.ini, settings, display_flask_timers_X,  234
+    IniRead, display_flask_timers_Y,    settings.ini, settings, display_flask_timers_Y,  894
+    IniRead, display_click_roller_X,    settings.ini, settings, display_click_roller_X,  230
+    IniRead, display_click_roller_Y,    settings.ini, settings, display_click_roller_Y,  797
+    IniRead, display_scour_roller_X,    settings.ini, settings, display_scour_roller_X,  230
+    IniRead, display_scour_roller_Y,    settings.ini, settings, display_scour_roller_Y,  797
+    IniRead, display_gwen_roller_X,     settings.ini, settings, display_gwen_roller_X,   234
+    IniRead, display_gwen_roller_Y,     settings.ini, settings, display_gwen_roller_Y,   894
     ; States
     IniRead, fuse,                settings.ini, settings, fuse,                1
     IniRead, jeweller,            settings.ini, settings, jeweller,            0
@@ -218,6 +244,7 @@ SaveSettings() {
     ; Key lists
     IniWrite, %flask_key_set%,       settings.ini, settings, flask_key_set
     IniWrite, %heal_key_1%,          settings.ini, settings, heal_key_1
+    IniWrite, %heal_key_2%,          settings.ini, settings, heal_key_2
     IniWrite, %seq_first_skill%,     settings.ini, settings, seq_first_skill
     IniWrite, %seq_second_skill%,    settings.ini, settings, seq_second_skill
     IniWrite, %flask_key_1%,         settings.ini, settings, flask_key_1
@@ -229,7 +256,7 @@ SaveSettings() {
     IniWrite, %low_health_color%,    settings.ini, settings, low_health_color
     IniWrite, %loot_color%,          settings.ini, settings, loot_color
     IniWrite, %logout_health_color%, settings.ini, settings, logout_health_color
-    IniWrite, %black_screen%,        settings.ini, settings, black_screen
+    IniWrite, %gui_static_color%,    settings.ini, settings, gui_static_color
     ; Delays
     IniWrite, %loot_delay%,          settings.ini, settings, loot_delay
     IniWrite, %seq_castspeed_time%,  settings.ini, settings, seq_castspeed_time
@@ -247,8 +274,8 @@ SaveSettings() {
     IniWrite, %portalY%,             settings.ini, settings, portalY
     IniWrite, %logout_X%,            settings.ini, settings, logout_X
     IniWrite, %logout_Y%,            settings.ini, settings, logout_Y
-    IniWrite, %black_screen_X%,      settings.ini, settings, black_screen_X
-    IniWrite, %black_screen_Y%,      settings.ini, settings, black_screen_Y
+    IniWrite, %gui_static_X%,        settings.ini, settings, gui_static_X
+    IniWrite, %gui_static_Y%,        settings.ini, settings, gui_static_Y
     IniWrite, %fuse_X%,              settings.ini, settings, fuse_X
     IniWrite, %fuse_Y%,              settings.ini, settings, fuse_Y
     IniWrite, %jeweller_X%,          settings.ini, settings, jeweller_X
@@ -284,6 +311,14 @@ SaveSettings() {
     IniWrite, %inv_Y1%,              settings.ini, settings, inv_Y1
     IniWrite, %inv_X2%,              settings.ini, settings, inv_X2
     IniWrite, %inv_Y2%,              settings.ini, settings, inv_Y2
+    IniWrite, %loot_big_X1%,         settings.ini, settings, loot_big_X1
+    IniWrite, %loot_big_Y1%,         settings.ini, settings, loot_big_Y1
+    IniWrite, %loot_big_X2%,         settings.ini, settings, loot_big_X2
+    IniWrite, %loot_big_Y2%,         settings.ini, settings, loot_big_Y2
+    IniWrite, %loot_small_X1%,       settings.ini, settings, loot_small_X1
+    IniWrite, %loot_small_Y1%,       settings.ini, settings, loot_small_Y1
+    IniWrite, %loot_small_X2%,       settings.ini, settings, loot_small_X2
+    IniWrite, %loot_small_Y2%,       settings.ini, settings, loot_small_Y2
     ; States
     IniWrite, %fuse%,                settings.ini, settings, fuse
     IniWrite, %jeweller%,            settings.ini, settings, jeweller

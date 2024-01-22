@@ -23,7 +23,10 @@ oosCommand() {
 
 
 GameLogout() {
-    ; Closing port which POE use by cports.exe.    
+    /*  Closing port which POE use by cports.exe.
+
+        Required: run script as admin.
+    */ 
     if WinActive("Path of Exile"){
         Run ./cports/cports.exe /close * * * * PathofExile.exe
     }
@@ -35,7 +38,7 @@ UpdateHealTreshold() {
         and setted %low_health_color%, %health_X%, %health_Y% vars.
     */
     MouseGetPos, new_health_X, new_health_Y
-    PixelGetColor, color, %MouseX%, %MouseY%
+    PixelGetColor, color, %new_health_X%, %new_health_Y%
     low_health_color := color
     health_X := new_health_X
     health_Y := new_health_Y

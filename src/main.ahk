@@ -6,7 +6,7 @@
 #Include toggles.ahk
 #Include rollers.ahk
 
-; #IfWinActive, Path of Exile ahk_class POEWindowClass
+#IfWinActive, Path of Exile ahk_class POEWindowClass
 #SingleInstance force   ; Replaces the old instance of script automatically
 #NoEnv                  ; Recommended for performance
 #Persistent             ; Keeps a script permanently running
@@ -194,8 +194,6 @@ PartyKickLabel:
 
 
 SequenceOfSkillsLabel:
-    ; TODO: Выяснить почему триггерит срабатывание и появляется ввод Right в виде текста, так же блочит нажатие rArrow
-    ; RMB он же Right в settings.ini не корректно парсится, из-за чего 
     if (seq_skills_active) {
         Hotkey, %triggerSeqHotkey%, On
         SequenceOfSkills()
