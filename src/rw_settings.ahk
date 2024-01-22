@@ -92,81 +92,6 @@ ReadSettings() {
     IniRead, flask_key_5_delay,   settings.ini, settings, flask_key_5_delay,   8000
     IniRead, rolling_item_delay,  settings.ini, settings, rolling_item_delay,  300
     IniRead, gwen_roller_delay,   settings.ini, settings, gwen_roller_delay,   500
-    ; Any coords
-    IniRead, health_X,            settings.ini, settings, health_X,            158
-    IniRead, health_Y,            settings.ini, settings, health_Y,            937
-    IniRead, life_flask_bar_X,    settings.ini, settings, life_flask_bar_X,    000
-    IniRead, life_flask_bar_Y,    settings.ini, settings, life_flask_bar_Y,    000
-    IniRead, portalX,             settings.ini, settings, portalX,             1303
-    IniRead, portalY,             settings.ini, settings, portalY,             816
-    IniRead, logout_X,            settings.ini, settings, logout_X,            161
-    IniRead, logout_Y,            settings.ini, settings, logout_Y,            953
-    IniRead, gui_static_X,        settings.ini, settings, gui_static_X,        263
-    IniRead, gui_static_Y,        settings.ini, settings, gui_static_Y,        951
-    IniRead, fuse_X,              settings.ini, settings, fuse_X,              111
-    IniRead, fuse_Y,              settings.ini, settings, fuse_Y,              112
-    IniRead, jeweller_X,          settings.ini, settings, jeweller_X,          221
-    IniRead, jeweller_Y,          settings.ini, settings, jeweller_Y,          222
-    IniRead, chaos_X,             settings.ini, settings, chaos_X,             331
-    IniRead, chaos_Y,             settings.ini, settings, chaos_Y,             332
-    IniRead, chrom_X,             settings.ini, settings, chrom_X,             441
-    IniRead, chrom_Y,             settings.ini, settings, chrom_Y,             442
-    IniRead, alter_X,             settings.ini, settings, alter_X,             551
-    IniRead, alter_Y,             settings.ini, settings, alter_Y,             552
-    IniRead, alch_X,              settings.ini, settings, alch_X,              661
-    IniRead, alch_Y,              settings.ini, settings, alch_Y,              662
-    IniRead, bind_X,              settings.ini, settings, bind_X,              771
-    IniRead, bind_Y,              settings.ini, settings, bind_Y,              772
-    IniRead, chance_X,            settings.ini, settings, chance_X,            881
-    IniRead, chance_Y,            settings.ini, settings, chance_Y,            882
-    IniRead, scour_X,             settings.ini, settings, scour_X,             991
-    IniRead, scour_Y,             settings.ini, settings, scour_Y,             992
-    IniRead, rolling_item_X,      settings.ini, settings, rolling_item_X,      1001
-    IniRead, rolling_item_Y,      settings.ini, settings, rolling_item_Y,      1002
-    IniRead, highlighted_border_X1, settings.ini, settings, highlighted_border_X1, 1111
-    IniRead, highlighted_border_X2, settings.ini, settings, highlighted_border_X2, 1112
-    IniRead, highlighted_border_Y1, settings.ini, settings, highlighted_border_Y1, 1113
-    IniRead, highlighted_border_Y2, settings.ini, settings, highlighted_border_Y2, 1114
-    IniRead, gwen_window_X1,      settings.ini, settings, gwen_window_X1,      1211
-    IniRead, gwen_window_X2,      settings.ini, settings, gwen_window_X2,      1212
-    IniRead, gwen_window_Y1,      settings.ini, settings, gwen_window_Y1,      1213
-    IniRead, gwen_window_Y2,      settings.ini, settings, gwen_window_Y2,      1214
-    IniRead, gwen_roll_key_X,     settings.ini, settings, gwen_roll_key_X,     1311
-    IniRead, gwen_roll_key_Y,     settings.ini, settings, gwen_roll_key_Y,     1312
-    IniRead, inv_coords,          settings.ini, settings, inv_coords,          0
-    IniRead, inv_X1,              settings.ini, settings, inv_X1,              1271
-    IniRead, inv_Y1,              settings.ini, settings, inv_Y1,              586
-    IniRead, inv_X2,              settings.ini, settings, inv_X2,              1903
-    IniRead, inv_Y2,              settings.ini, settings, inv_Y2,              849
-    IniRead, inv_coords,          settings.ini, settings, inv_coords,          0
-    IniRead, cell_width,          settings.ini, settings, cell_width,          52
-    IniRead, cell_height,         settings.ini, settings, cell_height,         52
-    IniRead, loot_big_X1,         settings.ini, settings, loot_big_X1,         100
-    IniRead, loot_big_Y1,         settings.ini, settings, loot_big_Y1,         101
-    IniRead, loot_big_X2,         settings.ini, settings, loot_big_X2,         200
-    IniRead, loot_big_Y2,         settings.ini, settings, loot_big_Y2,         201
-    IniRead, loot_small_X1,       settings.ini, settings, loot_small_X1,       300
-    IniRead, loot_small_Y1,       settings.ini, settings, loot_small_Y1,       301
-    IniRead, loot_small_X2,       settings.ini, settings, loot_small_X2,       400
-    IniRead, loot_small_Y2,       settings.ini, settings, loot_small_Y2,       401
-    IniRead, display_sorting_X,   settings.ini, settings, display_sorting_X,   1297
-    IniRead, display_sorting_Y,   settings.ini, settings, display_sorting_Y,   451
-    IniRead, display_heal_X,      settings.ini, settings, display_heal_X,      234
-    IniRead, display_heal_Y,      settings.ini, settings, display_heal_Y,      894
-    IniRead, display_logout_X,    settings.ini, settings, display_logout_X,    1536
-    IniRead, display_logout_Y,    settings.ini, settings, display_logout_Y,    230
-    IniRead, display_opening_decks_X,   settings.ini, settings, display_opening_decks_X, 1310
-    IniRead, display_opening_decks_Y,   settings.ini, settings, display_opening_decks_Y, 494
-    IniRead, display_door_searcher_X,   settings.ini, settings, display_door_searcher_X, 234
-    IniRead, display_door_searcher_Y,   settings.ini, settings, display_door_searcher_Y, 894
-    IniRead, display_flask_timers_X,    settings.ini, settings, display_flask_timers_X,  234
-    IniRead, display_flask_timers_Y,    settings.ini, settings, display_flask_timers_Y,  894
-    IniRead, display_click_roller_X,    settings.ini, settings, display_click_roller_X,  230
-    IniRead, display_click_roller_Y,    settings.ini, settings, display_click_roller_Y,  797
-    IniRead, display_scour_roller_X,    settings.ini, settings, display_scour_roller_X,  230
-    IniRead, display_scour_roller_Y,    settings.ini, settings, display_scour_roller_Y,  797
-    IniRead, display_gwen_roller_X,     settings.ini, settings, display_gwen_roller_X,   234
-    IniRead, display_gwen_roller_Y,     settings.ini, settings, display_gwen_roller_Y,   894
     ; States
     IniRead, fuse,                settings.ini, settings, fuse,                1
     IniRead, jeweller,            settings.ini, settings, jeweller,            0
@@ -186,6 +111,7 @@ ReadSettings() {
 
     return
 }
+
 
 SaveSettings() {
     ; Hotkeys
@@ -267,58 +193,6 @@ SaveSettings() {
     IniWrite, %flask_key_5_delay%,   settings.ini, settings, flask_key_5_delay
     IniWrite, %rolling_item_delay%,  settings.ini, settings, rolling_item_delay
     IniWrite, %gwen_roller_delay%,   settings.ini, settings, gwen_roller_delay
-    ; Any coords
-    IniWrite, %health_X%,            settings.ini, settings, health_X
-    IniWrite, %health_Y%,            settings.ini, settings, health_Y
-    IniWrite, %portalX%,             settings.ini, settings, portalX
-    IniWrite, %portalY%,             settings.ini, settings, portalY
-    IniWrite, %logout_X%,            settings.ini, settings, logout_X
-    IniWrite, %logout_Y%,            settings.ini, settings, logout_Y
-    IniWrite, %gui_static_X%,        settings.ini, settings, gui_static_X
-    IniWrite, %gui_static_Y%,        settings.ini, settings, gui_static_Y
-    IniWrite, %fuse_X%,              settings.ini, settings, fuse_X
-    IniWrite, %fuse_Y%,              settings.ini, settings, fuse_Y
-    IniWrite, %jeweller_X%,          settings.ini, settings, jeweller_X
-    IniWrite, %jeweller_Y%,          settings.ini, settings, jeweller_Y
-    IniWrite, %chaos_X%,             settings.ini, settings, chaos_X
-    IniWrite, %chaos_Y%,             settings.ini, settings, chaos_Y
-    IniWrite, %chrom_X%,             settings.ini, settings, chrom_X
-    IniWrite, %chrom_Y%,             settings.ini, settings, chrom_Y
-    IniWrite, %alter_X%,             settings.ini, settings, alter_X
-    IniWrite, %alter_Y%,             settings.ini, settings, alter_Y
-    IniWrite, %alch_X%,              settings.ini, settings, alch_X
-    IniWrite, %alch_Y%,              settings.ini, settings, alch_Y
-    IniWrite, %bind_X%,              settings.ini, settings, bind_X
-    IniWrite, %bind_Y%,              settings.ini, settings, bind_Y
-    IniWrite, %chance_X%,            settings.ini, settings, chance_X
-    IniWrite, %chance_Y%,            settings.ini, settings, chance_Y
-    IniWrite, %scour_X%,             settings.ini, settings, scour_X
-    IniWrite, %scour_Y%,             settings.ini, settings, scour_Y
-    IniWrite, %rolling_item_X%,      settings.ini, settings, rolling_item_X
-    IniWrite, %rolling_item_Y%,      settings.ini, settings, rolling_item_Y
-    IniWrite, %highlighted_border_X1%, settings.ini, settings, highlighted_border_X1
-    IniWrite, %highlighted_border_X2%, settings.ini, settings, highlighted_border_X2
-    IniWrite, %highlighted_border_Y1%, settings.ini, settings, highlighted_border_Y1
-    IniWrite, %highlighted_border_Y2%, settings.ini, settings, highlighted_border_Y2
-    IniWrite, %gwen_window_X1%,      settings.ini, settings, gwen_window_X1
-    IniWrite, %gwen_window_X2%,      settings.ini, settings, gwen_window_X2
-    IniWrite, %gwen_window_Y1%,      settings.ini, settings, gwen_window_Y1
-    IniWrite, %gwen_window_Y2%,      settings.ini, settings, gwen_window_Y2
-    IniWrite, %gwen_roll_key_X%,     settings.ini, settings, gwen_roll_key_X
-    IniWrite, %gwen_roll_key_Y%,     settings.ini, settings, gwen_roll_key_Y
-    IniWrite, %inv_coords%,          settings.ini, settings, inv_coords
-    IniWrite, %inv_X1%,              settings.ini, settings, inv_X1
-    IniWrite, %inv_Y1%,              settings.ini, settings, inv_Y1
-    IniWrite, %inv_X2%,              settings.ini, settings, inv_X2
-    IniWrite, %inv_Y2%,              settings.ini, settings, inv_Y2
-    IniWrite, %loot_big_X1%,         settings.ini, settings, loot_big_X1
-    IniWrite, %loot_big_Y1%,         settings.ini, settings, loot_big_Y1
-    IniWrite, %loot_big_X2%,         settings.ini, settings, loot_big_X2
-    IniWrite, %loot_big_Y2%,         settings.ini, settings, loot_big_Y2
-    IniWrite, %loot_small_X1%,       settings.ini, settings, loot_small_X1
-    IniWrite, %loot_small_Y1%,       settings.ini, settings, loot_small_Y1
-    IniWrite, %loot_small_X2%,       settings.ini, settings, loot_small_X2
-    IniWrite, %loot_small_Y2%,       settings.ini, settings, loot_small_Y2
     ; States
     IniWrite, %fuse%,                settings.ini, settings, fuse
     IniWrite, %jeweller%,            settings.ini, settings, jeweller
@@ -335,6 +209,278 @@ SaveSettings() {
     IniWrite, %es_based%,            settings.ini, settings, es_based
     ; Commands
     IniWrite, %chat_command%,        settings.ini, settings, chat_command
+
+    return
+}
+
+
+ReadDefaultCoords() {
+    IniRead, health_X,            settings.ini, coords, health_X,            158
+    IniRead, health_Y,            settings.ini, coords, health_Y,            937
+    IniRead, life_flask_bar_X,    settings.ini, coords, life_flask_bar_X,    000
+    IniRead, life_flask_bar_Y,    settings.ini, coords, life_flask_bar_Y,    000
+    IniRead, portalX,             settings.ini, coords, portalX,             1303
+    IniRead, portalY,             settings.ini, coords, portalY,             816
+    IniRead, logout_X,            settings.ini, coords, logout_X,            161
+    IniRead, logout_Y,            settings.ini, coords, logout_Y,            953
+    IniRead, gui_static_X,        settings.ini, coords, gui_static_X,        263
+    IniRead, gui_static_Y,        settings.ini, coords, gui_static_Y,        951
+    IniRead, fuse_X,              settings.ini, coords, fuse_X,              111
+    IniRead, fuse_Y,              settings.ini, coords, fuse_Y,              112
+    IniRead, jeweller_X,          settings.ini, coords, jeweller_X,          221
+    IniRead, jeweller_Y,          settings.ini, coords, jeweller_Y,          222
+    IniRead, chaos_X,             settings.ini, coords, chaos_X,             331
+    IniRead, chaos_Y,             settings.ini, coords, chaos_Y,             332
+    IniRead, chrom_X,             settings.ini, coords, chrom_X,             441
+    IniRead, chrom_Y,             settings.ini, coords, chrom_Y,             442
+    IniRead, alter_X,             settings.ini, coords, alter_X,             551
+    IniRead, alter_Y,             settings.ini, coords, alter_Y,             552
+    IniRead, alch_X,              settings.ini, coords, alch_X,              661
+    IniRead, alch_Y,              settings.ini, coords, alch_Y,              662
+    IniRead, bind_X,              settings.ini, coords, bind_X,              771
+    IniRead, bind_Y,              settings.ini, coords, bind_Y,              772
+    IniRead, chance_X,            settings.ini, coords, chance_X,            881
+    IniRead, chance_Y,            settings.ini, coords, chance_Y,            882
+    IniRead, scour_X,             settings.ini, coords, scour_X,             991
+    IniRead, scour_Y,             settings.ini, coords, scour_Y,             992
+    IniRead, rolling_item_X,      settings.ini, coords, rolling_item_X,      1001
+    IniRead, rolling_item_Y,      settings.ini, coords, rolling_item_Y,      1002
+    IniRead, highlighted_border_X1, settings.ini, coords, highlighted_border_X1, 1111
+    IniRead, highlighted_border_X2, settings.ini, coords, highlighted_border_X2, 1112
+    IniRead, highlighted_border_Y1, settings.ini, coords, highlighted_border_Y1, 1113
+    IniRead, highlighted_border_Y2, settings.ini, coords, highlighted_border_Y2, 1114
+    IniRead, gwen_window_X1,      settings.ini, coords, gwen_window_X1,      1211
+    IniRead, gwen_window_X2,      settings.ini, coords, gwen_window_X2,      1212
+    IniRead, gwen_window_Y1,      settings.ini, coords, gwen_window_Y1,      1213
+    IniRead, gwen_window_Y2,      settings.ini, coords, gwen_window_Y2,      1214
+    IniRead, gwen_roll_key_X,     settings.ini, coords, gwen_roll_key_X,     1311
+    IniRead, gwen_roll_key_Y,     settings.ini, coords, gwen_roll_key_Y,     1312
+    IniRead, inv_coords,          settings.ini, coords, inv_coords,          0
+    IniRead, inv_X1,              settings.ini, coords, inv_X1,              1271
+    IniRead, inv_Y1,              settings.ini, coords, inv_Y1,              586
+    IniRead, inv_X2,              settings.ini, coords, inv_X2,              1903
+    IniRead, inv_Y2,              settings.ini, coords, inv_Y2,              849
+    IniRead, inv_coords,          settings.ini, coords, inv_coords,          0
+    IniRead, cell_width,          settings.ini, coords, cell_width,          52
+    IniRead, cell_height,         settings.ini, coords, cell_height,         52
+    IniRead, loot_big_X1,         settings.ini, coords, loot_big_X1,         100
+    IniRead, loot_big_Y1,         settings.ini, coords, loot_big_Y1,         101
+    IniRead, loot_big_X2,         settings.ini, coords, loot_big_X2,         200
+    IniRead, loot_big_Y2,         settings.ini, coords, loot_big_Y2,         201
+    IniRead, loot_small_X1,       settings.ini, coords, loot_small_X1,       300
+    IniRead, loot_small_Y1,       settings.ini, coords, loot_small_Y1,       301
+    IniRead, loot_small_X2,       settings.ini, coords, loot_small_X2,       400
+    IniRead, loot_small_Y2,       settings.ini, coords, loot_small_Y2,       401
+    IniRead, display_sorting_X,   settings.ini, coords, display_sorting_X,   1297
+    IniRead, display_sorting_Y,   settings.ini, coords, display_sorting_Y,   451
+    IniRead, display_heal_X,      settings.ini, coords, display_heal_X,      234
+    IniRead, display_heal_Y,      settings.ini, coords, display_heal_Y,      894
+    IniRead, display_logout_X,    settings.ini, coords, display_logout_X,    1536
+    IniRead, display_logout_Y,    settings.ini, coords, display_logout_Y,    230
+    IniRead, display_opening_decks_X,   settings.ini, coords, display_opening_decks_X, 1310
+    IniRead, display_opening_decks_Y,   settings.ini, coords, display_opening_decks_Y, 494
+    IniRead, display_door_searcher_X,   settings.ini, coords, display_door_searcher_X, 234
+    IniRead, display_door_searcher_Y,   settings.ini, coords, display_door_searcher_Y, 894
+    IniRead, display_flask_timers_X,    settings.ini, coords, display_flask_timers_X,  234
+    IniRead, display_flask_timers_Y,    settings.ini, coords, display_flask_timers_Y,  894
+    IniRead, display_click_roller_X,    settings.ini, coords, display_click_roller_X,  230
+    IniRead, display_click_roller_Y,    settings.ini, coords, display_click_roller_Y,  797
+    IniRead, display_scour_roller_X,    settings.ini, coords, display_scour_roller_X,  230
+    IniRead, display_scour_roller_Y,    settings.ini, coords, display_scour_roller_Y,  797
+    IniRead, display_gwen_roller_X,     settings.ini, coords, display_gwen_roller_X,   234
+    IniRead, display_gwen_roller_Y,     settings.ini, coords, display_gwen_roller_Y,   894
+}
+
+
+SaveDefaultCoords() {
+    IniWrite, %health_X%,            settings.ini, coords, health_X
+    IniWrite, %health_Y%,            settings.ini, coords, health_Y
+    IniWrite, %portalX%,             settings.ini, coords, portalX
+    IniWrite, %portalY%,             settings.ini, coords, portalY
+    IniWrite, %logout_X%,            settings.ini, coords, logout_X
+    IniWrite, %logout_Y%,            settings.ini, coords, logout_Y
+    IniWrite, %gui_static_X%,        settings.ini, coords, gui_static_X
+    IniWrite, %gui_static_Y%,        settings.ini, coords, gui_static_Y
+    IniWrite, %fuse_X%,              settings.ini, coords, fuse_X
+    IniWrite, %fuse_Y%,              settings.ini, coords, fuse_Y
+    IniWrite, %jeweller_X%,          settings.ini, coords, jeweller_X
+    IniWrite, %jeweller_Y%,          settings.ini, coords, jeweller_Y
+    IniWrite, %chaos_X%,             settings.ini, coords, chaos_X
+    IniWrite, %chaos_Y%,             settings.ini, coords, chaos_Y
+    IniWrite, %chrom_X%,             settings.ini, coords, chrom_X
+    IniWrite, %chrom_Y%,             settings.ini, coords, chrom_Y
+    IniWrite, %alter_X%,             settings.ini, coords, alter_X
+    IniWrite, %alter_Y%,             settings.ini, coords, alter_Y
+    IniWrite, %alch_X%,              settings.ini, coords, alch_X
+    IniWrite, %alch_Y%,              settings.ini, coords, alch_Y
+    IniWrite, %bind_X%,              settings.ini, coords, bind_X
+    IniWrite, %bind_Y%,              settings.ini, coords, bind_Y
+    IniWrite, %chance_X%,            settings.ini, coords, chance_X
+    IniWrite, %chance_Y%,            settings.ini, coords, chance_Y
+    IniWrite, %scour_X%,             settings.ini, coords, scour_X
+    IniWrite, %scour_Y%,             settings.ini, coords, scour_Y
+    IniWrite, %rolling_item_X%,      settings.ini, coords, rolling_item_X
+    IniWrite, %rolling_item_Y%,      settings.ini, coords, rolling_item_Y
+    IniWrite, %highlighted_border_X1%, settings.ini, coords, highlighted_border_X1
+    IniWrite, %highlighted_border_X2%, settings.ini, coords, highlighted_border_X2
+    IniWrite, %highlighted_border_Y1%, settings.ini, coords, highlighted_border_Y1
+    IniWrite, %highlighted_border_Y2%, settings.ini, coords, highlighted_border_Y2
+    IniWrite, %gwen_window_X1%,      settings.ini, coords, gwen_window_X1
+    IniWrite, %gwen_window_X2%,      settings.ini, coords, gwen_window_X2
+    IniWrite, %gwen_window_Y1%,      settings.ini, coords, gwen_window_Y1
+    IniWrite, %gwen_window_Y2%,      settings.ini, coords, gwen_window_Y2
+    IniWrite, %gwen_roll_key_X%,     settings.ini, coords, gwen_roll_key_X
+    IniWrite, %gwen_roll_key_Y%,     settings.ini, coords, gwen_roll_key_Y
+    IniWrite, %inv_coords%,          settings.ini, coords, inv_coords
+    IniWrite, %inv_X1%,              settings.ini, coords, inv_X1
+    IniWrite, %inv_Y1%,              settings.ini, coords, inv_Y1
+    IniWrite, %inv_X2%,              settings.ini, coords, inv_X2
+    IniWrite, %inv_Y2%,              settings.ini, coords, inv_Y2
+    IniWrite, %loot_big_X1%,         settings.ini, coords, loot_big_X1
+    IniWrite, %loot_big_Y1%,         settings.ini, coords, loot_big_Y1
+    IniWrite, %loot_big_X2%,         settings.ini, coords, loot_big_X2
+    IniWrite, %loot_big_Y2%,         settings.ini, coords, loot_big_Y2
+    IniWrite, %loot_small_X1%,       settings.ini, coords, loot_small_X1
+    IniWrite, %loot_small_Y1%,       settings.ini, coords, loot_small_Y1
+    IniWrite, %loot_small_X2%,       settings.ini, coords, loot_small_X2
+    IniWrite, %loot_small_Y2%,       settings.ini, coords, loot_small_Y2
+}
+
+
+ReadWideCoords() {
+    ; Any coords
+    IniRead, health_X,            settings.ini, wide_coords, health_X,            158
+    IniRead, health_Y,            settings.ini, wide_coords, health_Y,            937
+    IniRead, life_flask_bar_X,    settings.ini, wide_coords, life_flask_bar_X,    000
+    IniRead, life_flask_bar_Y,    settings.ini, wide_coords, life_flask_bar_Y,    000
+    IniRead, portalX,             settings.ini, wide_coords, portalX,             1303
+    IniRead, portalY,             settings.ini, wide_coords, portalY,             816
+    IniRead, logout_X,            settings.ini, wide_coords, logout_X,            161
+    IniRead, logout_Y,            settings.ini, wide_coords, logout_Y,            953
+    IniRead, gui_static_X,        settings.ini, wide_coords, gui_static_X,        263
+    IniRead, gui_static_Y,        settings.ini, wide_coords, gui_static_Y,        951
+    IniRead, fuse_X,              settings.ini, wide_coords, fuse_X,              111
+    IniRead, fuse_Y,              settings.ini, wide_coords, fuse_Y,              112
+    IniRead, jeweller_X,          settings.ini, wide_coords, jeweller_X,          221
+    IniRead, jeweller_Y,          settings.ini, wide_coords, jeweller_Y,          222
+    IniRead, chaos_X,             settings.ini, wide_coords, chaos_X,             331
+    IniRead, chaos_Y,             settings.ini, wide_coords, chaos_Y,             332
+    IniRead, chrom_X,             settings.ini, wide_coords, chrom_X,             441
+    IniRead, chrom_Y,             settings.ini, wide_coords, chrom_Y,             442
+    IniRead, alter_X,             settings.ini, wide_coords, alter_X,             551
+    IniRead, alter_Y,             settings.ini, wide_coords, alter_Y,             552
+    IniRead, alch_X,              settings.ini, wide_coords, alch_X,              661
+    IniRead, alch_Y,              settings.ini, wide_coords, alch_Y,              662
+    IniRead, bind_X,              settings.ini, wide_coords, bind_X,              771
+    IniRead, bind_Y,              settings.ini, wide_coords, bind_Y,              772
+    IniRead, chance_X,            settings.ini, wide_coords, chance_X,            881
+    IniRead, chance_Y,            settings.ini, wide_coords, chance_Y,            882
+    IniRead, scour_X,             settings.ini, wide_coords, scour_X,             991
+    IniRead, scour_Y,             settings.ini, wide_coords, scour_Y,             992
+    IniRead, rolling_item_X,      settings.ini, wide_coords, rolling_item_X,      1001
+    IniRead, rolling_item_Y,      settings.ini, wide_coords, rolling_item_Y,      1002
+    IniRead, highlighted_border_X1, settings.ini, wide_coords, highlighted_border_X1, 1111
+    IniRead, highlighted_border_X2, settings.ini, wide_coords, highlighted_border_X2, 1112
+    IniRead, highlighted_border_Y1, settings.ini, wide_coords, highlighted_border_Y1, 1113
+    IniRead, highlighted_border_Y2, settings.ini, wide_coords, highlighted_border_Y2, 1114
+    IniRead, gwen_window_X1,      settings.ini, wide_coords, gwen_window_X1,      1211
+    IniRead, gwen_window_X2,      settings.ini, wide_coords, gwen_window_X2,      1212
+    IniRead, gwen_window_Y1,      settings.ini, wide_coords, gwen_window_Y1,      1213
+    IniRead, gwen_window_Y2,      settings.ini, wide_coords, gwen_window_Y2,      1214
+    IniRead, gwen_roll_key_X,     settings.ini, wide_coords, gwen_roll_key_X,     1311
+    IniRead, gwen_roll_key_Y,     settings.ini, wide_coords, gwen_roll_key_Y,     1312
+    IniRead, inv_coords,          settings.ini, wide_coords, inv_coords,          0
+    IniRead, inv_X1,              settings.ini, wide_coords, inv_X1,              1271
+    IniRead, inv_Y1,              settings.ini, wide_coords, inv_Y1,              586
+    IniRead, inv_X2,              settings.ini, wide_coords, inv_X2,              1903
+    IniRead, inv_Y2,              settings.ini, wide_coords, inv_Y2,              849
+    IniRead, inv_coords,          settings.ini, wide_coords, inv_coords,          0
+    IniRead, cell_width,          settings.ini, wide_coords, cell_width,          52
+    IniRead, cell_height,         settings.ini, wide_coords, cell_height,         52
+    IniRead, loot_big_X1,         settings.ini, wide_coords, loot_big_X1,         100
+    IniRead, loot_big_Y1,         settings.ini, wide_coords, loot_big_Y1,         101
+    IniRead, loot_big_X2,         settings.ini, wide_coords, loot_big_X2,         200
+    IniRead, loot_big_Y2,         settings.ini, wide_coords, loot_big_Y2,         201
+    IniRead, loot_small_X1,       settings.ini, wide_coords, loot_small_X1,       300
+    IniRead, loot_small_Y1,       settings.ini, wide_coords, loot_small_Y1,       301
+    IniRead, loot_small_X2,       settings.ini, wide_coords, loot_small_X2,       400
+    IniRead, loot_small_Y2,       settings.ini, wide_coords, loot_small_Y2,       401
+    IniRead, display_sorting_X,   settings.ini, wide_coords, display_sorting_X,   1297
+    IniRead, display_sorting_Y,   settings.ini, wide_coords, display_sorting_Y,   451
+    IniRead, display_heal_X,      settings.ini, wide_coords, display_heal_X,      234
+    IniRead, display_heal_Y,      settings.ini, wide_coords, display_heal_Y,      894
+    IniRead, display_logout_X,    settings.ini, wide_coords, display_logout_X,    1536
+    IniRead, display_logout_Y,    settings.ini, wide_coords, display_logout_Y,    230
+    IniRead, display_opening_decks_X,   settings.ini, wide_coords, display_opening_decks_X, 1310
+    IniRead, display_opening_decks_Y,   settings.ini, wide_coords, display_opening_decks_Y, 494
+    IniRead, display_door_searcher_X,   settings.ini, wide_coords, display_door_searcher_X, 234
+    IniRead, display_door_searcher_Y,   settings.ini, wide_coords, display_door_searcher_Y, 894
+    IniRead, display_flask_timers_X,    settings.ini, wide_coords, display_flask_timers_X,  234
+    IniRead, display_flask_timers_Y,    settings.ini, wide_coords, display_flask_timers_Y,  894
+    IniRead, display_click_roller_X,    settings.ini, wide_coords, display_click_roller_X,  230
+    IniRead, display_click_roller_Y,    settings.ini, wide_coords, display_click_roller_Y,  797
+    IniRead, display_scour_roller_X,    settings.ini, wide_coords, display_scour_roller_X,  230
+    IniRead, display_scour_roller_Y,    settings.ini, wide_coords, display_scour_roller_Y,  797
+    IniRead, display_gwen_roller_X,     settings.ini, wide_coords, display_gwen_roller_X,   234
+    IniRead, display_gwen_roller_Y,     settings.ini, wide_coords, display_gwen_roller_Y,   894
+
+    return
+}
+
+
+SaveWideSettings() {
+    ; Any coords
+    IniWrite, %health_X%,            settings.ini, wide_coords, health_X
+    IniWrite, %health_Y%,            settings.ini, wide_coords, health_Y
+    IniWrite, %portalX%,             settings.ini, wide_coords, portalX
+    IniWrite, %portalY%,             settings.ini, wide_coords, portalY
+    IniWrite, %logout_X%,            settings.ini, wide_coords, logout_X
+    IniWrite, %logout_Y%,            settings.ini, wide_coords, logout_Y
+    IniWrite, %gui_static_X%,        settings.ini, wide_coords, gui_static_X
+    IniWrite, %gui_static_Y%,        settings.ini, wide_coords, gui_static_Y
+    IniWrite, %fuse_X%,              settings.ini, wide_coords, fuse_X
+    IniWrite, %fuse_Y%,              settings.ini, wide_coords, fuse_Y
+    IniWrite, %jeweller_X%,          settings.ini, wide_coords, jeweller_X
+    IniWrite, %jeweller_Y%,          settings.ini, wide_coords, jeweller_Y
+    IniWrite, %chaos_X%,             settings.ini, wide_coords, chaos_X
+    IniWrite, %chaos_Y%,             settings.ini, wide_coords, chaos_Y
+    IniWrite, %chrom_X%,             settings.ini, wide_coords, chrom_X
+    IniWrite, %chrom_Y%,             settings.ini, wide_coords, chrom_Y
+    IniWrite, %alter_X%,             settings.ini, wide_coords, alter_X
+    IniWrite, %alter_Y%,             settings.ini, wide_coords, alter_Y
+    IniWrite, %alch_X%,              settings.ini, wide_coords, alch_X
+    IniWrite, %alch_Y%,              settings.ini, wide_coords, alch_Y
+    IniWrite, %bind_X%,              settings.ini, wide_coords, bind_X
+    IniWrite, %bind_Y%,              settings.ini, wide_coords, bind_Y
+    IniWrite, %chance_X%,            settings.ini, wide_coords, chance_X
+    IniWrite, %chance_Y%,            settings.ini, wide_coords, chance_Y
+    IniWrite, %scour_X%,             settings.ini, wide_coords, scour_X
+    IniWrite, %scour_Y%,             settings.ini, wide_coords, scour_Y
+    IniWrite, %rolling_item_X%,      settings.ini, wide_coords, rolling_item_X
+    IniWrite, %rolling_item_Y%,      settings.ini, wide_coords, rolling_item_Y
+    IniWrite, %highlighted_border_X1%, settings.ini, wide_coords, highlighted_border_X1
+    IniWrite, %highlighted_border_X2%, settings.ini, wide_coords, highlighted_border_X2
+    IniWrite, %highlighted_border_Y1%, settings.ini, wide_coords, highlighted_border_Y1
+    IniWrite, %highlighted_border_Y2%, settings.ini, wide_coords, highlighted_border_Y2
+    IniWrite, %gwen_window_X1%,      settings.ini, wide_coords, gwen_window_X1
+    IniWrite, %gwen_window_X2%,      settings.ini, wide_coords, gwen_window_X2
+    IniWrite, %gwen_window_Y1%,      settings.ini, wide_coords, gwen_window_Y1
+    IniWrite, %gwen_window_Y2%,      settings.ini, wide_coords, gwen_window_Y2
+    IniWrite, %gwen_roll_key_X%,     settings.ini, wide_coords, gwen_roll_key_X
+    IniWrite, %gwen_roll_key_Y%,     settings.ini, wide_coords, gwen_roll_key_Y
+    IniWrite, %inv_coords%,          settings.ini, wide_coords, inv_coords
+    IniWrite, %inv_X1%,              settings.ini, wide_coords, inv_X1
+    IniWrite, %inv_Y1%,              settings.ini, wide_coords, inv_Y1
+    IniWrite, %inv_X2%,              settings.ini, wide_coords, inv_X2
+    IniWrite, %inv_Y2%,              settings.ini, wide_coords, inv_Y2
+    IniWrite, %loot_big_X1%,         settings.ini, wide_coords, loot_big_X1
+    IniWrite, %loot_big_Y1%,         settings.ini, wide_coords, loot_big_Y1
+    IniWrite, %loot_big_X2%,         settings.ini, wide_coords, loot_big_X2
+    IniWrite, %loot_big_Y2%,         settings.ini, wide_coords, loot_big_Y2
+    IniWrite, %loot_small_X1%,       settings.ini, wide_coords, loot_small_X1
+    IniWrite, %loot_small_Y1%,       settings.ini, wide_coords, loot_small_Y1
+    IniWrite, %loot_small_X2%,       settings.ini, wide_coords, loot_small_X2
+    IniWrite, %loot_small_Y2%,       settings.ini, wide_coords, loot_small_Y2
 
     return
 }

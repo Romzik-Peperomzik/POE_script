@@ -6,7 +6,7 @@
 #Include toggles.ahk
 #Include rollers.ahk
 
-#IfWinActive, Path of Exile ahk_class POEWindowClass
+;#IfWinActive, Path of Exile ahk_class POEWindowClass
 #SingleInstance force   ; Replaces the old instance of script automatically
 #NoEnv                  ; Recommended for performance
 #Persistent             ; Keeps a script permanently running
@@ -16,6 +16,11 @@ SetDefaultMouseSpeed, 0 ; Sets the mouse speed, 0 - instantly
 
 ;-----------------------------------------------------------------------------
 ReadSettings()
+if (default_screen_mode) {
+    ReadDefaultCoords()
+} else {
+    ReadWideCoords()
+}
 
 ; Binding hotkeys to functions of callback
 Hotkey, %setOfFlasksHotkey%, SetOfFlasksLabel
@@ -311,5 +316,11 @@ $F2:: suspend
 
 reloadNsave() {
     SaveSettings()
+    if (default_screen_mode) {
+        SaveDefaultCoords()
+    } else {
+        SaveWideSettings()
+    }
+    
     reload
 }

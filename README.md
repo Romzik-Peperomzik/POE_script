@@ -10,5 +10,4 @@ AutoHotkey v1.1.34.04
 </p>
 
 ## Todo:
-- Перенос и сохранение всех координат (файла settings.ini) при переключении режима экрана default/wide?
-  Если default то читать/писать settings.ini если wide то settings_wide.ini.
+- Добавить подробные инструкции в REAMDE.md с картинками.

@@ -42,9 +42,15 @@ UpdateHealTreshold() {
     low_health_color := color
     health_X := new_health_X
     health_Y := new_health_Y
+
     IniWrite, %low_health_color%, settings.ini, settings, low_health_color
-    IniWrite, %health_X%, settings.ini, settings, health_X
-    IniWrite, %health_Y%, settings.ini, settings, health_Y
+    if (default_screen_mode) {
+        IniWrite, %health_X%, settings.ini, coords, health_X
+        IniWrite, %health_Y%, settings.ini, coords, health_Y
+    } else {
+        IniWrite, %health_X%, settings.ini, wide_coords, health_X
+        IniWrite, %health_Y%, settings.ini, wide_coords, health_Y
+    }
     MsgBox, New heal treshold setted.
     Reload
 }
@@ -207,9 +213,15 @@ MakeInvColorMap() {
         x += cell_width
         y := first_cell_Y
     }
-    IniWrite, %inv_coords%, settings.ini, settings, inv_coords
-    IniWrite, %cell_width%, settings.ini, settings, cell_width
-    IniWrite, %cell_height%, settings.ini, settings, cell_height
+    if (default_screen_mode) {
+        IniWrite, %inv_coords%, settings.ini, coords, inv_coords
+        IniWrite, %cell_width%, settings.ini, coords, cell_width
+        IniWrite, %cell_height%, settings.ini, coords, cell_height
+    } else {
+        IniWrite, %inv_coords%, settings.ini, wide_coords, inv_coords
+        IniWrite, %cell_width%, settings.ini, wide_coords, cell_width
+        IniWrite, %cell_height%, settings.ini, wide_coords, cell_height
+    }
     MsgBox, Inventory map are setted.
     Reload
 }

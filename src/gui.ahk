@@ -72,6 +72,7 @@ RunGUI() {
     Gui, Add, Text, x40 y480 w350 h35 , ES or Life character based: (have bound with AutoHeal() and AutoLogout())
     Gui, Add, Radio, x40 y515 w40 h20 Checked%life_based% vlife_based, life
     Gui, Add, Radio, x90 y515 w40 h20 Checked%es_based% ves_based, es
+    Gui, Add, Button, x340 y435 w70 h30 , Change
 
 
     ; Open Portal section
@@ -450,5 +451,23 @@ ButtonApplyChange() {
     Gui, Submit, NoHide
     TurnOnAllHotkey()
     SaveSettings()
+    if (default_screen_mode) {
+        SaveDefaultCoords()
+    } else {
+        SaveWideSettings()
+    }
     MsgBox , 0, , change applied, 0.5
+
+    return
+}
+
+
+ButtonChange() {
+    Gui, Submit, NoHide
+    IniWrite, %default_screen_mode%, settings.ini, settings, default_screen_mode
+    IniWrite, %wide_screen_mode%,    settings.ini, settings, wide_screen_mode
+    MsgBox , 0, , Screen mode changed, 0.5
+
+    Reload
+    return
 }
